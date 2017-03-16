@@ -50,7 +50,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |||- coord.cury  : WGS84 Y 좌표||
 |THINKMAP.wgs84_Tw(wgs_lon, wgs_lat)|wgs_lon : Number<br>변환할 WGS84 경도 좌표|coord : Object<br>변환된 TW 좌표 |WGS84 좌표를 TW 좌표로 변환합니다.|
 ||wgs_lat : Number<br>변환할 WGS84 위도 좌표|- coord.curx  : TW X 좌표||
-|||- coord.cury  : TW Y 좌표 | - |
+|||- coord.cury  : TW Y 좌표 ||
 
 #### TOAST Cloud Maps API 사용하기
 ```
