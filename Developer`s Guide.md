@@ -17,7 +17,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 
 
 #### 주요 TOAST Cloud Maps API 안내
-##### 추가적인 TOAST Cloud Maps API 사용법은 해당 <a href="http://dev.m.map.inavi.com/guide/reference.html" target="_blank" rel="nofollow">링크</a>를 참조 하시기 바랍니다.  
+##### 추가적인 TOAST Cloud Maps API 사용법은 해당 <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">링크</a>를 참조 하시기 바랍니다.  
 
 |API 명|Parameter				|Returns		| 설명			|
 |:------:|:------------------------:|:---------------:|:---------------:|
