@@ -11,7 +11,7 @@ iOS에서 API를 호출하고 콜백함수로 매개변수를 전달받는 방�
 
 
 #### A. 주요 TOAST Cloud Maps iOS WebView API 안내
-##### 추가적인 TOAST Cloud Maps iOS WebView API 사용법은 해당 <a href="http://dev.m.map.inavi.com/guide/reference_mobile.html" target="_blank" rel="nofollow">링크</a>를 참조 하시기 바랍니다.  
+##### 추가적인 TOAST Cloud Maps iOS WebView API 사용법은 해당 <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">링크</a>를 참조 하시기 바랍니다.  
 
 > ※ TOAST Cloud Maps API에서 사용되고 있는 좌표는 팅크웨어 전용 좌표로만 사용되고 있습니다.
 <br>팅크웨어 좌표를 위경도 좌표(WGS84)로 변환하기 위해서는 TMWA.getWgs84FromTw() 함수를 이용하여 변경하시고,
