@@ -326,7 +326,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 
 |Http method|	URI|
 |:---:|:---:|
-|GET|	/maps/v1.0/appkeys/{appkey}/addresses?query={query}&posX={posX}&posY={posY}&coordtype={coordtype}|
+|GET|	/maps/v1.0/appkeys/{appkey}/addresses?query={query}&posX={posX}&posY={posY}|
 
 [Path parameter]
 
@@ -340,7 +340,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |:---:|:---:|:---:|:---:|
 |​posX|	String|	O|	X좌표|
 |​posY|	String|	O|	Y좌표|
-|coordtype|	String|	X| 요청 좌표형식 <br>0:TW 좌표<br> 1:WGS84 좌표<br>미 입력 시 TW 좌표 기준 검색|
+
 
 #### 응답
 
@@ -376,8 +376,8 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |location|	Object|	본문 영역|
 |- result|	Boolean|	성공여부|
 |- adm|	Object|	검색결과|
-|-- posx| String|	TW X좌표|
-|-- posy| String|	TW Y좌표|
+|-- posx| String|	X좌표|
+|-- posy| String|	Y좌표|
 |-- admcode| String| 행정코드|
 |-- address| String|	주소|
 |-- jibun| String|	지번|
@@ -1309,45 +1309,6 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |-- 4|	String|	고속모드 타입|
 |-- 5|	String|	Reserved|
 |-- 6|	String|	휴게소 명칭|
-
-### 3. 경로 탐색 상세(json Parsing)
-
-#### 경로 탐색 결과 값을 보기 쉽게 Parsing
-
-```
-<script type="text/javascript src="https://api-maps.cloud.toast.com/maps/js/v1.0/route.js" > </script>
-<script type="text/javascript">
-function fnRouteParse(data){ // 경로 탐색 상세 결과값
-
-  var routeParsing = route.jsonParsing(data);
-  routeParsing.routeSummaryInfo;		// 탐색 결과 종합
-  routeParsing.routeDetailInfo;		// 탐색 경로 리스트
-  routeParsing.vtxInfo; 			// 지도 그리기용 좌표 리스트
-}
-</script>
-
-```
-
-|값|	타입|	설명|
-|---|:---:|:---:|
-|routeSummaryInfo|	Object|	탐색 결과 종합|
-|- distance|	Integer|	경로 총길이 (단위 : m)|
-|- time|	Integer|	경로의 총 소요시간 (단위 :분)|
-|- max_x|	String|	보간점 레코드 중 최대 X 좌표|
-|- max_y|	String|	보간점 레코드 중 최대 Y 좌표|
-|- min_x|	String|	보간점 레코드 중 최소 X 좌표|
-|- min_y|	String|	보간점 레코드 중 최소 Y 좌표|
-|routeDetailInfo|	Array|	탐색 경로 리스트|
-|- distance|	Integer|	구간 상세거리 (단위 : m)|
-|- speed|	Integer|	구간 상세 속도 (단위 : km/h)|
-|- roadName|	String|	도로명|
-|- direction|	String|	방향 정보|
-|- district|	String|	방면 정보|
-|- cross|	String|	안내 정보|
-|- directionDetail|	String|	상세 경로 설명|
-|vtxInfo|	Array|	지도 그리기용 좌표 리스트|
-|- 0|	Integer|	twX|
-|- 1|	Integer|	twY|
 
 
 ## 결과 코드
