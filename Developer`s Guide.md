@@ -340,7 +340,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |:---:|:---:|:---:|:---:|
 |​posX|	String|	O|	X좌표|
 |​posY|	String|	O|	Y좌표|
-|coordtype|	String|	X| 요청 좌표형식 <br>0:TW 좌표<br> 1:WGS84 좌표<br>미 입력 시 TW 좌표 기준 검색|
+|coordtype|	String|	X| 요청 좌표형식 <br>0 : TW 좌표<br> 1 : WGS84 좌표<br>미 입력 시 TW 좌표 기준 검색|
 
 #### 응답
 
