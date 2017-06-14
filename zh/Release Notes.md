@@ -1,4 +1,8 @@
-## Upcoming Products > Maps > Release Notes
+## Common > Maps > Release Notes
+
+### 2017.06.22
+#### 버그 수정
+* [Console] 실행예제 - 통합 검색 예제 검색 결과가 정상적으로 조회되지 않는 버그 수정
 
 ### 2017.04.20
 #### 기능 개선/변경

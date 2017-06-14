@@ -1,8 +1,4 @@
-## Upcoming Products > Maps > Overview
-
-> ※ 본 문서는 alpha 개발 단계의 문서입니다.
-> 사용에 관심이 있으신 분은 **support@cloud.toast.com**으로 문의해 주시기 바랍니다.
-
+## Common > Maps > Overview
 
 TOAST Cloud Maps 서비스는 오랫동안 내비게이션 기술을 축적해온 아이나비 서비스를 HTTP RESTful API를 통하여 쉽고 정확한 지도, 검색, 길 찾기 서비스 등 다양한 정보를 제공합니다.
 

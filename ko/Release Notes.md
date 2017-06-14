@@ -1,4 +1,4 @@
-## Upcoming Products > Maps > Release Notes
+## Common > Maps > Release Notes
 
 ### 2017.06.22
 #### 버그 수정
