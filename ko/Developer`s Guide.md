@@ -420,6 +420,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |x2|	String|	X|	X2좌표 <br>spopt가 1인 경우 Extent의 우하단 X좌표, spopt가 2인 경우 사용 안함|
 |y2|	String|	X|	Y2좌표 <br>spopt가 1인 경우 Extent의 우하단 Y좌표, spopt가 2인 경우 사용 안함|
 |sortopt|	String|	X|	정렬option <br>1 : 명칭순 정렬<br> 2 : 거리순 정렬 (좌표를 입력한 경우)<br> 3 : 이름매치->거리순 정렬(좌표를 입력한 경우)<br> 4 : 검색어 Weight 정렬 (엔진기준)<br> 5 : 검색어 Weight 정렬 + length(엔진기준)<br> 6 : 선호카테고리 우선 정렬[V8.1.5 미지원]<br>7 : 최신데이터 순 정렬<br> 8 : 검색어 Weight 정렬(Landmark>거리>PoiWeight) + 거리순(좌표를 입력한 경우)<br> *sortopt값이 설정되지 않은 경우  4로설정|
+|catecode|	String|	X|	선호 카테고리 <br>- 선호 카테고리 검색 시 검색어에 카테고리 명칭을 입력한 경우, 검색어 우선 정책에 의해 입력한 선호 카테고리보다 검색어를 기준으로 검색 됨<br>ex) 검색어 : "미용실" , 선호 카테고리 : "100000"(음식점) -> 미용실 기준으로 검색 됨|
 
 #### 응답
 
