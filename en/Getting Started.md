@@ -53,4 +53,4 @@ API 호출에 대한 시간별/일별/월별 통계를 Maps API의 세부 API �
 ![](http://static.toastoven.net/prod_maps/img_03.JPG)
 
 ### 서비스 비활성화
-Maps 서비스 사용을 중지하기 위해서는 Console에서 [Upcoming Products] > [Maps]를 선택한 후 [이용 종료] 버튼을 클릭하여 서비스를 비활성화시킵니다.
+Maps 서비스 사용을 중지하기 위해서는 Console에서 [Common] > [Maps]를 선택한 후 [이용 종료] 버튼을 클릭하여 서비스를 비활성화시킵니다.
