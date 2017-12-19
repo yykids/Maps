@@ -39,7 +39,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 ||param : String||Marker 객체의 사용자 변수||
 |THINKMAP.addMarker(marker)|marker : Marker||지도에 추가할 대상 Marker 객체<br><br>지도에 Marker 객체를 추가합니다.|
 |THINKMAP.featureDrawing(draw_type, style, func_cb)|draw_type : String||사용자가 그릴 Feature 객체 타입<br>'lineDraw' : 선<br>'polygonDraw' : 다각형<br> 'regularPolygonDraw' :   형태가 정해진 다각형<br><br>사용자가 지도에 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드로 전환합니다.<br>지도 마우스 클릭 시 객체 그리기가 시작되고 마우스를 더블클릭하면 그리기가 완료됩니다. <br>그리기 완료 시 콜백함수로 그려진 Feature 객체를 넘겨줍니다. |
-||style : Object||<br> Polygon, Polyline의 스타일을 지정하기 위한 Object<br>strokeColor : 선 색<br>- 'red', '#fff123' <br> strokeWidth : 선 두께<br> - 10<br> strokeOpacity : 선 투명도<br>fillColor : 채우기 색<br>fillOpacity : 채우기 투명도 <br>strokeDashstyle : 선 스타일<br><br> dot : · · · · · · <br>dash : - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid : 일반라인  <br> |
+||style : Object||<br> Polygon, Polyline의 스타일을 지정하기 위한 Object<br>strokeColor : 선 색<br>- 'red', '#fff123' <br> strokeWidth : 선 두께<br> - 10<br> strokeOpacity : 선 투명도<br>fillColor : 채우기 색<br>fillOpacity : 채우기 투명도 <br>strokeDashstyle : 선 스타일<br>dot : · · · · · · <br>dash : - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid : 일반라인  <br> |
 ||func_cb : function()||사용자가 지도를 더블클릭하여<br>Feature 객체 그리기가 완료되었을 때 호출되는 콜백함수|
 |THINKMAP.featureDrawingCancel()|||지도에 사용자가 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드를 종료합니다. |
 |THINKMAP.tw_Wgs84(twX, twY)|twX : Number|coord : Object<br>변환된 WGS84 좌표<br>- coord.curx : WGS84 X 좌표<br>- coord.cury  : WGS84 Y 좌표|변환할 TW X 좌표<br><br>TW 좌표를 WGS84 좌표로 변환합니다. |
@@ -311,7 +311,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |-- address| String|	주소|
 |-- roadname| String|	새주소 도로명|
 |-- roadjibun| String|	새주소 지번|
-|-- accuracy| Integer|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br> 2 : 모지번 확장|
+|-- accuracy| Integer|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br>ex) 963-2 검색 시 963-X 검색 결과 반환<br> 2 : 모지번 확장<br>ex) 963-2 검색 시 96X 검색 결과 반환<br>3 : 법정동 동좌표<br>ex) 삼평동 까지만 입력 되는 경우<br>4 : 동단위 이상 좌표 또는 법정동 좌표<br>ex) 분당구 까지만 입력 되는 경우|
 
 
 ### 2. 좌표검색(좌표 -> 주소)
@@ -372,14 +372,15 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |location|	Object|	본문 영역|
 |- result|	Boolean|	성공여부|
 |- adm|	Object|	검색결과|
-|-- posx| String|	TW X좌표|
-|-- posy| String|	TW Y좌표|
+|-- posx| String|	X좌표|
+|-- posy| String|	Y좌표|
 |-- admcode| String| 행정코드|
 |-- address| String|	주소|
 |-- jibun| String|	지번|
 |-- roadname| String|	새주소 도로명|
 |-- roadjibun| String|	새주소 지번|
-|-- accuracy| String|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br> 2 : 모지번 확장|
+|-- distance| Integer|	좌표와의 거리(해당시에만)|
+|-- accuracy| String|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br>ex) 963-2 검색 시 963-X 검색 결과 반환<br> 2 : 모지번 확장<br>ex) 963-2 검색 시 96X 검색 결과 반환<br>3 : 법정동 동좌표<br>ex) 삼평동 까지만 입력 되는 경우<br>4 : 동단위 이상 좌표 또는 법정동 좌표<br>ex) 분당구 까지만 입력 되는 경우|
 
 
 
@@ -410,7 +411,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |spopt|	String|	X|	공간검색 option <br>0 : 공간검색 사용 안함<br>1 : Extent 검색<br>2 : Range 검색 *spopt값이 설정되지 않은 경우 0으로 설정|
 |radius|	String|	X|	반경 <br>spopt가 2인 경우 사용 Meter 단위 |
 |admcode|	String|	X|	행정코드|
-|depth|	String|	X|	하위시설물 요구 depth <br>1 : 1 depth 만 요청(최상위 depth)<br>2 : 2 depth 까지 요청<br> 3 : 3 depth 까지 요청 *depth값이 설정되지 않은 경우 1로 설정|
+|depth|	String|	X|	하위시설물 요구 depth <br>1 : 1 depth 만 요청(최상위 depth)<br>2 : 2 depth 까지 요청<br> 3 : 3 depth 까지 요청 *depth값이 설정되지 않은 경우 1로 설정<br>* depth 설정 시 아래 Response 처럼 subpoi 상세 정보가 depth에 맞게 반환 됩니다.|
 |x1|	String|	X|	X1좌표 <br>spopt가 0인 경우 기준점 X좌표<br> spopt가 1인 경우 Extent의 좌상단 X좌표<br> spopt가 2인 경우 기준점 X좌표|
 |y1|	String|	X|	Y1좌표 <br>spopt가 0인 경우 기준점 Y좌표<br> spopt가 1인 경우 Extent의 좌상단 Y좌표<br> spopt가 2인 경우 기준점 Y좌표|
 |x2|	String|	X|	X2좌표 <br>spopt가 1인 경우 Extent의 우하단 X좌표, spopt가 2인 경우 사용 안함|
@@ -576,7 +577,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |- recommendedCost|	Integer|오타보정 결과 Cost(0~10000)|
 |- res_type|	String|검색결과Type명칭 <br>명칭, 카테고리, 주소, 전화번호 순 <br>(ex) NYNN: 명칭 No, 카테고리 YES, 주소 NO, 전화번호 NO|
 |- poi|	Array| POI 검색 결과 리스트|
-|-- poiid|	Integer| POI 검색 결과 리스트|
+|-- poiid|	Integer| POI ID|
 |-- depth|	String| POI depth|
 |-- dpx|	String|display X좌표(WGS84의 경우 longitude)|
 |-- dpy|	String|display Y좌표(WGS84의 경우 latitude)|
@@ -623,13 +624,14 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |--- count|Integer| 하위 시설물 개수|
 |--- poi|Array| POI 정보와 동일|
 |- tel|	Array| TEL 검색 결과 리스트 (POI 정보와 동일)|
-|- poi|	Array| UCP 검색 결과 리스트 (POI 정보와 동일)|
+|- ucp|	Array| UCP 검색 결과 리스트 (POI 정보와 동일)|
 |- adm|	Array| ADM 검색 결과 리스트|
 |-- type| String|	검색 type <br>1 : 행정계 검색<br> 2 : 지번 검색<br>3 : 새주소 검색|
-|-- posx| String|	X좌표|
-|-- posy| String|	Y좌표|
+|-- posx| String|	X좌표(WGS84의 경우 longitude)|
+|-- posy| String|	Y좌표(WGS84의 경우 latitude)|
 |-- admcode| String| 행정코드|
 |-- address| String|	주소|
+|-- jibun| String|	지번|
 |-- roadname| String|	새주소 도로명|
 |-- roadjibun| String|	새주소 지번|
 |-- accuracy| Integer|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br> 2 : 모지번 확장|
@@ -737,9 +739,9 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |- resultMessage|	String|	실패 메시지|
 |proposer|	Object|	본문 영역|
 |- result|	 Boolean|	성공 여부|
-|- count|	 Integer|	검색어 개수|
+|- count|	 Integer|	추천 검색어 개수|
 |- keyword|	Array|	추천 검색어 리스트|
-|-- keyword|	String|	검색어|
+|-- keyword|	String|	추천 검색어|
 |-- frequency|	Integer|	조회 빈도|
 
 
@@ -885,7 +887,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |- totalcount|	Integer|	전체 검색결과 대상 개수|
 |- count|	Integer|	검색 결과 개수|
 |- poiinfo|	Array| POI 검색 결과 리스트|
-|-- poiid |Integer|poi id|
+|-- poiid |Integer|POI ID|
 |-- dpx|String|display X좌표(WGS84의 경우 longitude)|
 |-- dpy|String|display Y좌표(WGS84의 경우 latitude)|
 |-- rpx|String|탐색 X좌표(WGS84의 경우 longitude)|
@@ -1056,7 +1058,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |- totalcount|	String|	전체 검색결과 대상 개수|
 |- count|	String|	검색 결과 개수|
 |- poi|	Array| POI 검색 결과 리스트|
-|-- poiid |Integer|poi id|
+|-- poiid |Integer|POI ID|
 |-- depth|String|poi depth|
 |-- dpx|String|display X좌표(WGS84의 경우 longitude)|
 |-- dpy|String|display Y좌표(WGS84의 경우 latitude)|
@@ -1097,6 +1099,11 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |--- wash|Boolean|세차시설여부|
 |--- fix|Boolean|정비가능여부|
 |--- mart|Boolean|매점여부|
+|-- AdInfo |Array|광고코드 리스트|
+|--- ADCODE|Integer|광고코드<br>1 ~ 99까지 부여가능(최대99개)|
+|-- subpoi  |Object|하위 시설물 정보|
+|--- count|Integer|subpoi 개수|
+|--- poi|Array|poi 정보와 동일|
 
 ## 탐색
 

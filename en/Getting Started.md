@@ -17,8 +17,8 @@ Maps 서비스를 사용하기 위해서는 Console에서 [Common] > [Maps]를 �
 
 |API명|	URL|
 |:---:|:---|
-|지도|https://api-maps.cloud.toast.com/maps/js/v1/map.js|
-|Static 지도|https://api-maps.cloud.toast.com/maps/js/v1/staticMap.js|
+|지도|https://api-maps.cloud.toast.com/maps/js/v1.0/map.js|
+|Static 지도|https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js|
 
 
 #### 2. 검색 API

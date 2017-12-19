@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-1. 지도 초기화 & 정보 얻어오기
+[1] 지도 초기화 & 정보 얻어오기
 <br>1번 예제에서는 지도를 초기화 하고 지도 정보를 얻어오는 방법에 대해 설명합니다.
 <br>지도를 초기화 하는 방법은 두가지가 있습니다.
 <br>웹뷰에서 로딩할 페이지 android_webview.html에서 THINKMAP.initMap을 호출하는 방법과
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		
+
 		//Layout을 설정
         setContentView(R.layout.activity_main);
 
@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 <center>**MainActivity.java**</center>
 
 
-2. 지도 이벤트
+[2] 지도 이벤트
 <br>2번 예제에서는 지도에 이벤트를 등록하고 제거하는 방법에 대해 설명합니다.
 
 ```
@@ -428,7 +428,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-3. 지도 마커
+[3] 지도 마커
 <br> 3번 예제에서는 지도에 Marker를 추가하고 Marker에 이벤트를 등록하고 제거하는 방법에 대해 설명합니다.
 
 ```
@@ -529,7 +529,7 @@ public class MainActivity extends AppCompatActivity {
 ```
 <center>**MainActivity.java**</center>
 
-4. 기타
+[4] 기타
 <br>4번 예제에서는 주소 검색, 경로 탐색과 좌표 변환, 계산하는 방법에 대해 설명합니다.
 
 ```
