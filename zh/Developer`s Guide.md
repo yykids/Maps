@@ -18,36 +18,35 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 
 |API 명|Parameter				|Returns		| 설명			|
 |:------:|:------------------------:|:---------------:|:---------------:|
-|THINKMAP.initMap(map_div_name, twX, twY, level, init_cb, arrange_type, map_type)|map_div : String<br>지도를 담을 div 태그 ID||지도를 사용하기 위해서 최초에 반드시 호출해야 하는 초기화 함수입니다.|
-||twX : Number	<br>지도 초기화 TW X 좌표|||
-||twY : Number	<br>지도 초기화 TW Y 좌표|||
-||level : Number	<br>지도 초기화 Level<br>- 일반지도 : 1~13<br>- 항공지도 : 1~13|||
-||init_cb : function()<br>지도 초기화 이후 호출되는 콜백함수|||
-||arrange_type : Number	<br>지도 레이어 정렬방식<br>1 : 중앙정렬방식(resize효과 있음)<br>2 : 전체로딩방식(resize효과 없음)<br> 3 : 우상단정렬방식(resize효과 있음)|||
-||map_type : String	<br>지도 타입 설정<br>'i' : 일반맵<br>'a' : 항공맵<br>'s' : 요약맵<br>'m' : 모바일|||
+|THINKMAP.initMap(map_div_name, twX, twY, level, init_cb, arrange_type, map_type)|map_div : String||지도를 담을 div 태그 ID<br>지도를 사용하기 위해서 최초에 반드시 호출해야 하는 초기화 함수입니다.|
+||twX : Number	||지도 초기화 TW X 좌표|
+||twY : Number	||지도 초기화 TW Y 좌표|
+||level : Number||지도 초기화 Level<br>- 일반지도 : 1~13<br>- 항공지도 : 1~13|
+||init_cb : function()||지도 초기화 이후 호출되는 콜백함수|
+||arrange_type : Number	||지도 레이어 정렬방식<br>1 : 중앙정렬방식(resize효과 있음)<br>2 : 전체로딩방식(resize효과 없음)<br> 3 : 우상단정렬방식(resize효과 있음)|
+||map_type : String	||지도 타입 설정<br>'i' : 일반맵<br>'a' : 항공맵<br>'s' : 요약맵<br>'m' : 모바일|
 |THINKMAP.imageMap()|||지도를 일반 지도로 전환합니다.|
 |THINKMAP.aerialMap()|||지도를 항공 지도로 전환합니다.|
-|THINKMAP.setAerialHybrid(active)|active : Boolean<br>항공주기 표시 여부  <br>true : 지도위에 항공주기를 표출   <br>false : 지도위에 항공주기 표출안함||지도 위에 항공지도 주기 표출여부를 설정합니다.|
-|THINKMAP.addMapListener(event_name, func_cb)|event_name : String<br> 지도에 등록할 이벤트 이름<br>'movestart'<br>- 지도가 움직이기 시작했을 때<br>'move'<br> - 지도가 움직일 때<br>'moveend'<br>- 지도 움직임이 끝났을 때<br>'zoomend'<br>- 지도가 확대, 축소가 끝났을 때<br>'mouseover'<br>- 지도위에 마우스가 들어왔을 때<br>'mouseout'<br>- 지도에서 마우스가 나갔을 때<br> 'mousemove'<br>- 지도에서 마우스가 움직일 때||지도에 이벤트를 등록합니다.<br>(지도에 관련된 이벤트, 확대/축소, 움직임 등)|
-||func_cb : function()<br>	지도에서 이벤트가 발생했을 때 호출되는 콜백 함수<br>(콜백함수에 매개변수로 Map 객체가 전달됩니다)|||
-|THINKMAP.removeMapListener(event_name)|event_name : String<br> 지도에 제거할 이벤트 이름<br>'movestart'<br>- 지도가 움직이기 시작했을 때<br>'move'<br> - 지도가 움직일 때<br>'moveend'<br>- 지도 움직임이 끝났을 때<br>'zoomend'<br>- 지도가 확대, 축소가 끝났을 때<br>'mouseover'<br>- 지도위에 마우스가 들어왔을 때<br>'mouseout'<br>- 지도에서 마우스가 나갔을 때<br> 'mousemove'<br>- 지도에서 마우스가 움직일 때||지도에 등록한 이벤트를 제거합니다. <br>THINKMAP.addMapListener 메소드로 등록한 event_name에 해당하는 모든 콜백함수를 삭제하므로 주의가 필요합니다.|
-|THINKMAP.createMarker(twX, twY, width, height, iconUrl, [param])|twX : Number	<br>Marker 객체 위치 TW X 좌표	||Marker 객체를 생성합니다. <br>생성한 Marker 객체를 지도에 표출하기 위해서는 THINKMAP.addMarker 메소드로 지도에 Marker 객체를 추가해야합니다.|
-||twY : Number	<br>Marker 객체 위치 TW Y 좌표|||
-||width : Number <br>Marker 이미지 너비|||
-||height : Number <br>Marker 이미지의 높이|||
-||iconURL : String <br>Marker 이미지의 URL|||
-||param : String <br>Marker 객체의 사용자 변수|||
-|THINKMAP.addMarker(marker)|marker : Marker<br>지도에 추가할 대상 Marker 객체||지도에 Marker 객체를 추가합니다.|
-|THINKMAP.featureDrawing(draw_type, style, func_cb)|draw_type : String<br>사용자가 그릴 Feature 객체 타입<br>'lineDraw' : 선<br>'polygonDraw' : 다각형<br> 'regularPolygonDraw' :   형태가 정해진 다각형||사용자가 지도에 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드로 전환합니다.<br>지도 마우스 클릭 시 객체 그리기가 시작되고 마우스를 더블클릭하면 그리기가 완료됩니다. <br>그리기 완료 시 콜백함수로 그려진 Feature 객체를 넘겨줍니다. |
-||style : Object<br> Polygon, Polyline의 스타일을 지정하기 위한 Object<br>strokeColor : 선 색<br>- 'red', '#fff123' <br> strokeWidth : 선 두께<br> - 10<br>strokeDashstyle : 선 스타일<br> strokeOpacity : 선 투명도<br>fillColor : 채우기 색<br>fillOpacity : 채우기 투명도|||
-||func_cb : function()<br>사용자가 지도를 더블클릭하여<br>Feature 객체 그리기가 완료되었을 때 호출되는 콜백함수|||
+|THINKMAP.setAerialHybrid(active)|active : Boolean||항공주기 표시 여부  <br>true : 지도위에 항공주기를 표출   <br>false : 지도위에 항공주기 표출안함<br><br>지도 위에 항공지도 주기 표출여부를 설정합니다.|
+|THINKMAP.addMapListener(event_name, func_cb)|event_name : String<br> ||지도에 등록할 이벤트 이름<br>'movestart'<br>- 지도가 움직이기 시작했을 때<br>'move'<br> - 지도가 움직일 때<br>'moveend'<br>- 지도 움직임이 끝났을 때<br>'zoomend'<br>- 지도가 확대, 축소가 끝났을 때<br>'mouseover'<br>- 지도위에 마우스가 들어왔을 때<br>'mouseout'<br>- 지도에서 마우스가 나갔을 때<br> 'mousemove'<br>- 지도에서 마우스가 움직일 때<br><br>지도에 이벤트를 등록합니다.<br>(지도에 관련된 이벤트, 확대/축소, 움직임 등)|
+||func_cb : function()||지도에서 이벤트가 발생했을 때 호출되는 콜백 함수<br>(콜백함수에 매개변수로 Map 객체가 전달됩니다)|
+|THINKMAP.removeMapListener(event_name)|event_name : String||지도에 제거할 이벤트 이름<br>'movestart'<br>- 지도가 움직이기 시작했을 때<br>'move'<br> - 지도가 움직일 때<br>'moveend'<br>- 지도 움직임이 끝났을 때<br>'zoomend'<br>- 지도가 확대, 축소가 끝났을 때<br>'mouseover'<br>- 지도위에 마우스가 들어왔을 때<br>'mouseout'<br>- 지도에서 마우스가 나갔을 때<br> 'mousemove'<br>- 지도에서 마우스가 움직일 때<br><br>지도에 등록한 이벤트를 제거합니다. <br>THINKMAP.addMapListener 메소드로 등록한 event_name에 해당하는 모든 콜백함수를 삭제하므로 주의가 필요합니다.|
+|THINKMAP.createMarker(twX, twY, width, height, iconUrl, [param])|twX : Number||<br>Marker 객체 위치 TW X 좌표 <br><br>Marker 객체를 생성합니다. <br>생성한 Marker 객체를 지도에 표출하기 위해서는 THINKMAP.addMarker 메소드로 지도에 Marker 객체를 추가해야합니다.|
+||twY : Number	||Marker 객체 위치 TW Y 좌표|
+||width : Number||Marker 이미지 너비|
+||height : Number ||Marker 이미지의 높이|
+||iconURL : String ||Marker 이미지의 URL|
+||param : String||Marker 객체의 사용자 변수||
+|THINKMAP.addMarker(marker)|marker : Marker||지도에 추가할 대상 Marker 객체<br><br>지도에 Marker 객체를 추가합니다.|
+|THINKMAP.featureDrawing(draw_type, style, func_cb)|draw_type : String||사용자가 그릴 Feature 객체 타입<br>'lineDraw' : 선<br>'polygonDraw' : 다각형<br> 'regularPolygonDraw' :   형태가 정해진 다각형<br><br>사용자가 지도에 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드로 전환합니다.<br>지도 마우스 클릭 시 객체 그리기가 시작되고 마우스를 더블클릭하면 그리기가 완료됩니다. <br>그리기 완료 시 콜백함수로 그려진 Feature 객체를 넘겨줍니다. |
+||style : Object||<br> Polygon, Polyline의 스타일을 지정하기 위한 Object<br>strokeColor : 선 색<br>- 'red', '#fff123' <br> strokeWidth : 선 두께<br> - 10<br> strokeOpacity : 선 투명도<br>fillColor : 채우기 색<br>fillOpacity : 채우기 투명도 <br>strokeDashstyle : 선 스타일<br>dot : · · · · · · <br>dash : - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid : 일반라인  <br> |
+||func_cb : function()||사용자가 지도를 더블클릭하여<br>Feature 객체 그리기가 완료되었을 때 호출되는 콜백함수|
 |THINKMAP.featureDrawingCancel()|||지도에 사용자가 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드를 종료합니다. |
-|THINKMAP.tw_Wgs84(twX, twY)|twX : Number<br> 변환할 TW X 좌표|coord : Object<br>변환된 WGS84 좌표|TW 좌표를 WGS84 좌표로 변환합니다. |
-||twY : Number<br> 변환할 TW Y 좌표<br>|- coord.curx : WGS84 X 좌표||
-|||- coord.cury  : WGS84 Y 좌표||
-|THINKMAP.wgs84_Tw(wgs_lon, wgs_lat)|wgs_lon : Number<br>변환할 WGS84 경도 좌표|coord : Object<br>변환된 TW 좌표 |WGS84 좌표를 TW 좌표로 변환합니다.|
-||wgs_lat : Number<br>변환할 WGS84 위도 좌표|- coord.curx  : TW X 좌표||
-|||- coord.cury  : TW Y 좌표 ||
+|THINKMAP.tw_Wgs84(twX, twY)|twX : Number|coord : Object<br>변환된 WGS84 좌표<br>- coord.curx : WGS84 X 좌표<br>- coord.cury  : WGS84 Y 좌표|변환할 TW X 좌표<br><br>TW 좌표를 WGS84 좌표로 변환합니다. |
+||twY : Number||변환할 TW Y 좌표|
+|THINKMAP.wgs84_Tw(wgs_lon, wgs_lat)|wgs_lon : Number|coord : Object<br>변환된 TW 좌표 <br>- coord.curx  : TW X 좌표<br>- coord.cury  : TW Y 좌표 |변환할 WGS84 경도 좌표<br><br>WGS84 좌표를 TW 좌표로 변환합니다.|
+||wgs_lat : Number||변환할 WGS84 위도 좌표|
+
 
 #### TOAST Cloud Maps API 사용하기
 ```
@@ -312,7 +311,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |-- address| String|	주소|
 |-- roadname| String|	새주소 도로명|
 |-- roadjibun| String|	새주소 지번|
-|-- accuracy| Integer|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br> 2 : 모지번 확장|
+|-- accuracy| Integer|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br>ex) 963-2 검색 시 963-X 검색 결과 반환<br> 2 : 모지번 확장<br>ex) 963-2 검색 시 96X 검색 결과 반환<br>3 : 법정동 동좌표<br>ex) 삼평동 까지만 입력 되는 경우<br>4 : 동단위 이상 좌표 또는 법정동 좌표<br>ex) 분당구 까지만 입력 되는 경우|
 
 
 ### 2. 좌표검색(좌표 -> 주소)
@@ -373,14 +372,15 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |location|	Object|	본문 영역|
 |- result|	Boolean|	성공여부|
 |- adm|	Object|	검색결과|
-|-- posx| String|	TW X좌표|
-|-- posy| String|	TW Y좌표|
+|-- posx| String|	X좌표|
+|-- posy| String|	Y좌표|
 |-- admcode| String| 행정코드|
 |-- address| String|	주소|
 |-- jibun| String|	지번|
 |-- roadname| String|	새주소 도로명|
 |-- roadjibun| String|	새주소 지번|
-|-- accuracy| String|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br> 2 : 모지번 확장|
+|-- distance| Integer|	좌표와의 거리(해당시에만)|
+|-- accuracy| String|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br>ex) 963-2 검색 시 963-X 검색 결과 반환<br> 2 : 모지번 확장<br>ex) 963-2 검색 시 96X 검색 결과 반환<br>3 : 법정동 동좌표<br>ex) 삼평동 까지만 입력 되는 경우<br>4 : 동단위 이상 좌표 또는 법정동 좌표<br>ex) 분당구 까지만 입력 되는 경우|
 
 
 
@@ -411,7 +411,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |spopt|	String|	X|	공간검색 option <br>0 : 공간검색 사용 안함<br>1 : Extent 검색<br>2 : Range 검색 *spopt값이 설정되지 않은 경우 0으로 설정|
 |radius|	String|	X|	반경 <br>spopt가 2인 경우 사용 Meter 단위 |
 |admcode|	String|	X|	행정코드|
-|depth|	String|	X|	하위시설물 요구 depth <br>1 : 1 depth 만 요청(최상위 depth)<br>2 : 2 depth 까지 요청<br> 3 : 3 depth 까지 요청 *depth값이 설정되지 않은 경우 1로 설정|
+|depth|	String|	X|	하위시설물 요구 depth <br>1 : 1 depth 만 요청(최상위 depth)<br>2 : 2 depth 까지 요청<br> 3 : 3 depth 까지 요청 *depth값이 설정되지 않은 경우 1로 설정<br>* depth 설정 시 아래 Response 처럼 subpoi 상세 정보가 depth에 맞게 반환 됩니다.|
 |x1|	String|	X|	X1좌표 <br>spopt가 0인 경우 기준점 X좌표<br> spopt가 1인 경우 Extent의 좌상단 X좌표<br> spopt가 2인 경우 기준점 X좌표|
 |y1|	String|	X|	Y1좌표 <br>spopt가 0인 경우 기준점 Y좌표<br> spopt가 1인 경우 Extent의 좌상단 Y좌표<br> spopt가 2인 경우 기준점 Y좌표|
 |x2|	String|	X|	X2좌표 <br>spopt가 1인 경우 Extent의 우하단 X좌표, spopt가 2인 경우 사용 안함|
@@ -423,63 +423,129 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 
 ```
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": ""
-  },
-  search": {
-	"result": true,
-	"type": 0,
-	"totalcount": 126,
-	"count": 126,
-	"poitotalcount": 95,
-	"poicount": 95,
-	"ucp_poitotalcount": 0,
-	"ucp_poicount": 0,
-	"tel_poitotalcount": 31,
-	"tel_poicount": 31,
-	"admtotalcount": 0,
-	"admcount": 0,
-	"reftotalcount": 0,
-	"refcount": 0,
-	"res_type": "YYYY",
-	"poi": [
-		  {
-			"poiid": 4521974,
-			"depth": 0,
-			"dpx": "169068",
-			"dpy": "517049",
-			"rpx": "169172",
-			"rpy": "517030",
-			"name1": "판교역(신분당선)",
-			"name2": "판교(판교테크노밸리)역(신분당선)",
-			"name3": "판교테크노밸리역(신분당선)",
-			"name4": "",
-			"admcode": "4113511000",
-			"jibun": "19-2",
-			"address": "경기도 성남시 분당구 백현동",
-			"roadname": "경기도 성남시 분당구 판교역로",
-			"roadjibun": "160",
-			"detailaddress": "",
-			"catecode": "172900",
-			"catename": "지하철",
-			"dp_catecode": "370",
-			"userid": "",
-			"imagecount": 0,
-			"userimagecount": 0,
-			"badgeflag": false,
-			"distance": 0,
-			"tel": "",
-			"islandmark": true,
-			"updateTS": "2016-01-26 00:00:00",
-			"data_source": "Thinkware",
-			"hasoildata": false,
-			"hasdetailinfo": true,
-			"hassubpoi": true,
-			"subpoi": {
-			"count": 5
-		},
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": ""
+    },
+    "search": {
+        "result": true,
+        "type": 0,
+        "totalcount": 1,
+        "count": 1,
+        "poitotalcount": 1,
+        "poicount": 1,
+        "ucp_poitotalcount": 0,
+        "ucp_poicount": 0,
+        "tel_poitotalcount": 0,
+        "tel_poicount": 0,
+        "admtotalcount": 0,
+        "admcount": 0,
+        "reftotalcount": 0,
+        "refcount": 0,
+        "res_type": "YYYY",
+        "poi": [
+            {
+                "poiid": 4722977,
+                "depth": 0,
+                "dpx": "169031",
+                "dpy": "517906",
+                "rpx": "169039",
+                "rpy": "517941",
+                "name1": "삼환하이펙스",
+                "name2": "하이펙스",
+                "name3": "삼환하이팩스",
+                "name4": "하이팩스",
+                "admcode": "4113510900",
+                "jibun": "678",
+                "address": "경기도 성남시 분당구 삼평동",
+                "roadname": "경기도 성남시 분당구 판교역로",
+                "roadjibun": "240",
+                "detailaddress": "",
+                "catecode": "130301",
+                "catename": "기업",
+                "dp_catecode": "150",
+                "userid": "",
+                "imagecount": 0,
+                "userimagecount": 0,
+                "badgeflag": false,
+                "distance": 0,
+                "tel": "",
+                "islandmark": false,
+                "updateTS": "2017-10-12 00:00:00",
+                "data_source": "Thinkware",
+                "hasoildata": false,
+                "hasdetailinfo": false,
+                "hassubpoi": true,
+                "subpoi": {
+                    "count": 5,
+                    "poi": [
+                        {
+                            "poiid": 4828295,
+                            "depth": 1,
+                            "dpx": "169031",
+                            "dpy": "517910",
+                            "rpx": "169039",
+                            "rpy": "517941",
+                            "name1": "A동",
+                            "name2": "삼환하이팩스A동",
+                            "name3": "",
+                            "name4": "",
+                            "admcode": "4113510900",
+                            "jibun": "678",
+                            "address": "경기도 성남시 분당구 삼평동",
+                            "roadname": "경기도 성남시 분당구 판교역로",
+                            "roadjibun": "240",
+                            "detailaddress": "",
+                            "catecode": "130301",
+                            "catename": "기업",
+                            "dp_catecode": "150",
+                            "userid": "",
+                            "imagecount": 0,
+                            "userimagecount": 0,
+                            "badgeflag": false,
+                            "distance": 0,
+                            "tel": "",
+                            "islandmark": false,
+                            "updateTS": "2017-10-13 00:00:00",
+                            "hasoildata": false,
+                            "hasdetailinfo": false,
+                            "hassubpoi": true,
+                            "subpoi": {
+                                "count": 36,
+                                "poi": [
+                                    {
+                                        "poiid": 4722978,
+                                        "depth": 2,
+                                        "dpx": "169039",
+                                        "dpy": "517941",
+                                        "rpx": "169039",
+                                        "rpy": "517941",
+                                        "name1": "입구",
+                                        "name2": "",
+                                        "name3": "",
+                                        "name4": "",
+                                        "admcode": "4113510900",
+                                        "jibun": "678",
+                                        "address": "경기도 성남시 분당구 삼평동",
+                                        "roadname": "",
+                                        "roadjibun": "",
+                                        "detailaddress": "",
+                                        "catecode": "181100",
+                                        "catename": "도로시설",
+                                        "dp_catecode": "000",
+                                        "userid": "",
+                                        "imagecount": 0,
+                                        "userimagecount": 0,
+                                        "badgeflag": false,
+                                        "distance": 0,
+                                        "tel": "",
+                                        "islandmark": false,
+                                        "updateTS": "2017-10-13 00:00:00",
+                                        "hasoildata": false,
+                                        "hasdetailinfo": false,
+                                        "hassubpoi": false
+                                    },
 		....
 		]
 	}
@@ -511,7 +577,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |- recommendedCost|	Integer|오타보정 결과 Cost(0~10000)|
 |- res_type|	String|검색결과Type명칭 <br>명칭, 카테고리, 주소, 전화번호 순 <br>(ex) NYNN: 명칭 No, 카테고리 YES, 주소 NO, 전화번호 NO|
 |- poi|	Array| POI 검색 결과 리스트|
-|-- poiid|	Integer| POI 검색 결과 리스트|
+|-- poiid|	Integer| POI ID|
 |-- depth|	String| POI depth|
 |-- dpx|	String|display X좌표(WGS84의 경우 longitude)|
 |-- dpy|	String|display Y좌표(WGS84의 경우 latitude)|
@@ -558,13 +624,14 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |--- count|Integer| 하위 시설물 개수|
 |--- poi|Array| POI 정보와 동일|
 |- tel|	Array| TEL 검색 결과 리스트 (POI 정보와 동일)|
-|- poi|	Array| UCP 검색 결과 리스트 (POI 정보와 동일)|
+|- ucp|	Array| UCP 검색 결과 리스트 (POI 정보와 동일)|
 |- adm|	Array| ADM 검색 결과 리스트|
 |-- type| String|	검색 type <br>1 : 행정계 검색<br> 2 : 지번 검색<br>3 : 새주소 검색|
-|-- posx| String|	X좌표|
-|-- posy| String|	Y좌표|
+|-- posx| String|	X좌표(WGS84의 경우 longitude)|
+|-- posy| String|	Y좌표(WGS84의 경우 latitude)|
 |-- admcode| String| 행정코드|
 |-- address| String|	주소|
+|-- jibun| String|	지번|
 |-- roadname| String|	새주소 도로명|
 |-- roadjibun| String|	새주소 지번|
 |-- accuracy| Integer|	지번 정확도 <br>0 : 정확 검색<br> 1 : 호지번 확장<br> 2 : 모지번 확장|
@@ -672,9 +739,9 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |- resultMessage|	String|	실패 메시지|
 |proposer|	Object|	본문 영역|
 |- result|	 Boolean|	성공 여부|
-|- count|	 Integer|	검색어 개수|
+|- count|	 Integer|	추천 검색어 개수|
 |- keyword|	Array|	추천 검색어 리스트|
-|-- keyword|	String|	검색어|
+|-- keyword|	String|	추천 검색어|
 |-- frequency|	Integer|	조회 빈도|
 
 
@@ -820,7 +887,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |- totalcount|	Integer|	전체 검색결과 대상 개수|
 |- count|	Integer|	검색 결과 개수|
 |- poiinfo|	Array| POI 검색 결과 리스트|
-|-- poiid |Integer|poi id|
+|-- poiid |Integer|POI ID|
 |-- dpx|String|display X좌표(WGS84의 경우 longitude)|
 |-- dpy|String|display Y좌표(WGS84의 경우 latitude)|
 |-- rpx|String|탐색 X좌표(WGS84의 경우 longitude)|
@@ -991,7 +1058,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |- totalcount|	String|	전체 검색결과 대상 개수|
 |- count|	String|	검색 결과 개수|
 |- poi|	Array| POI 검색 결과 리스트|
-|-- poiid |Integer|poi id|
+|-- poiid |Integer|POI ID|
 |-- depth|String|poi depth|
 |-- dpx|String|display X좌표(WGS84의 경우 longitude)|
 |-- dpy|String|display Y좌표(WGS84의 경우 latitude)|
@@ -1032,6 +1099,11 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 |--- wash|Boolean|세차시설여부|
 |--- fix|Boolean|정비가능여부|
 |--- mart|Boolean|매점여부|
+|-- AdInfo |Array|광고코드 리스트|
+|--- ADCODE|Integer|광고코드<br>1 ~ 99까지 부여가능(최대99개)|
+|-- subpoi  |Object|하위 시설물 정보|
+|--- count|Integer|subpoi 개수|
+|--- poi|Array|poi 정보와 동일|
 
 ## 탐색
 
@@ -1049,7 +1121,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 
 |Http method|	URI|
 |:---:|:---:|
-|GET|	/maps/v1.0/appkeys/{appkey}/routes?query={query}&coordtype={coordtype}&startposition={startposition}&reqcount={reqcount}&admcode={admcode}|
+|GET|	/maps/v1.0/appkeys/{appkey}/routes?startX={startX}&startY={startY}&endX={endX}&endY={endY}&viaCount={viaCount}&via1X={via1X}&via1Y={via1Y}&via2X={via2X}&via2Y={via2Y}&option={option}|
 
 [Path parameter]
 
@@ -1137,7 +1209,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 
 |Http method|	URI|
 |:---:|:---:|
-|GET|	/maps/v1.0/appkeys/{appkey}/route-details?query={query}&coordtype={coordtype}&startposition={startposition}&reqcount={reqcount}&admcode={admcode}|
+|GET|	/maps/v1.0/appkeys/{appkey}/route-details?startX={startX}&startY={startY}&endX={endX}&endY={endY}&viaCount={viaCount}&via1X={via1X}&via1Y={via1Y}&via2X={via2X}&via2Y={via2Y}&option={option}|
 
 [Path parameter]
 
@@ -1313,7 +1385,7 @@ TOAST Cloud Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 
 #### 경로 탐색 결과 값을 보기 쉽게 Parsing
 
 ```
-<script type="text/javascript src="https://api-maps.cloud.toast.com/maps/js/v1.0/route.js" > </script>
+<script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v1.0/route.js" > </script>
 <script type="text/javascript">
 function fnRouteParse(data){ // 경로 탐색 상세 결과값
 
