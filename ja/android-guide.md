@@ -1,4 +1,4 @@
-## Application Service > Maps > Android 가이드
+## Application Service > Maps > Android 사용 가이드
 
 Android 기반으로 Maps 서비스를 사용하는 방법에 대해 설명합니다.
 
