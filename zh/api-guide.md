@@ -11,14 +11,14 @@ Maps 서비스를 사용하는 데 필요한 API를 설명합니다.
 ### 요청 공통 정보
 
 #### URL 정보
-##### 지도 API
+##### [지도 API]
 
 | 항목 | URL |
 | --- | --- |
 | 지도 | https://api-maps.cloud.toast.com/maps/js/v1.0/map.js |
 | Static 지도 | https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js |
 
-##### 검색/탐색 API
+##### [검색/탐색 API]
 
 |환경|	도메인|
 |---|---|
@@ -55,7 +55,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 #### 주요 TOAST Maps API 안내
 ##### 추가적인 TOAST Maps API 사용법은 해당 <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">링크</a>를 참조하시기 바랍니다.  
 
-|API 명|Parameter				|Returns		| 설명			|
+| API 명 | Parameter | Returns | 설명 |
 |------|------------------------|---------------|---------------|
 | THINKMAP.initMap(map_div_name, twX, twY, level, init_cb, arrange_type, map_type) | map_div : String || 지도를 담을 div 태그 ID<br>지도를 사용하기 위해서 최초에 반드시 호출해야 하는 초기화 함수입니다. |
 ||twX : Number	||지도 초기화 TW X 좌표|
@@ -158,7 +158,6 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 		}
 	}
 </script>
-
 ```
 
 
@@ -181,7 +180,6 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 		alert("그리기 모드 전환!");
 	}
 </script>
-
 ```
 
 #### 지도 그리기 모드 종료 하기
@@ -190,7 +188,6 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 	//지도 그리기 모드를 종료 한다.
 	THINKMAP.featureDrawingCancel();
 </script>
-
 ```
 
 
@@ -205,7 +202,6 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 	console.log(wgs.curx);
 	console.log(wgs.cury);
 </script>
-
 ```
 
 
@@ -220,7 +216,6 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 	console.log(tw.curx);
 	console.log(tw.cury);
 </script>
-
 ```
 
 ### 2. Static 지도
@@ -278,8 +273,8 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | 이름 | 타입 | 필수 여부 | 유효 범위 |	설명 |
 |---|---|---|---|---|
 |​ query | String | 필수 |  | 검색어 |
-| coordtype |	String | 선택 |  | 좌표형식 <br>0:TW 좌표<br> 1:WGS84 좌표<br> 2:TM 좌표 |
-| startposition |	String | 선택 |  | 검색 시작 위치 <br>0:첫번째 위치<br>미입력 시 0으로 조회 |
+| coordtype |	String | 선택 |  | 좌표형식 <br>0 : TW 좌표<br> 1 : WGS84 좌표<br> 2 : TM 좌표 |
+| startposition |	String | 선택 |  | 검색 시작 위치 <br>0 : 첫번째 위치<br>미입력 시 0으로 조회 |
 | reqcount | String | 선택 |  | 검색 요청 개수 <br>0으로 설정 시 Max Count 반환 |
 | admcode |	String | 선택 |  | 행정코드 |
 
@@ -339,7 +334,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | address |	Object | 본문 영역 |
 | address.result | Boolean | 성공여부 |
 | address.totalcount | Integer | 전체 검색결과 대상 개수 |
-| address.res_type | String |	검색결과Type명칭 <br>명칭, 카테고리, 주소, 전화번호 순 <br>(ex) NYNN: 명칭 No, 카테고리 YES, 주소 NO, 전화번호 NO |
+| address.res_type | String |	검색결과Type명칭 <br>명칭, 카테고리, 주소, 전화번호 순 <br>(ex) NYNN : 명칭 No, 카테고리 YES, 주소 NO, 전화번호 NO |
 | address.adm |	Array |	검색결과 |
 | address.adm[0].type | String | 검색 type <br>1 : 행정계 검색<br> 2 : 지번 검색<br>3 : 새주소 검색 |
 | address.adm[0].posx | String | X좌표 |
@@ -651,22 +646,22 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | search.poi[0].adv_count |	Integer | 광고코드 개수 |
 | search.poi[0].islandmark | Boolean | 랜드마크 여부 |
 | search.poi[0].updateTS | String | 최종변경 일시 (Y4-MM-DD HH:mm:ss)포맷 |
-| search.poi[0].data_source |	String | poi 생성 정보 구분 (Thinkware/Tel/User) |
-| search.poi[0].badgeflag |	Boolean | Badge 유무(Not Yet:FALSE, Badged:TRUE) |
-| search.poi[0].userid | String | poi 등록 사용자 ID (UCP인 경우에만) |
-| search.poi[0].imagecount | Integer | poi 이미지 개수 |
+| search.poi[0].data_source |	String | POI 생성 정보 구분 (Thinkware/Tel/User) |
+| search.poi[0].badgeflag |	Boolean | Badge 유무(Not Yet : FALSE, Badged : TRUE) |
+| search.poi[0].userid | String | POI 등록 사용자 ID (UCP인 경우에만) |
+| search.poi[0].imagecount | Integer | POI 이미지 개수 |
 | search.poi[0].oildata | Object | 유가 데이터 정보 |
 | search.poi[0].oildata.g_price | Integer | 휘발유 가격 |
 | search.poi[0].oildata.hg_price | Integer | 고급휘발유 가격 |
 | search.poi[0].oildata.d_price | Integer | 경유 가격 |
 | search.poi[0].oildata.l_price | Integer | LPG 가격 |
 | search.poi[0].oildata.updatetime | String | Update 시간 |
-| search.poi[0].oildata.priceinfo | String | 최고,최저 유가 정보<br>(H : 최고, L : 최저, X : 해당없음)<br>휘발유, 고급휘발유, 경유, LPG 순 |
+| search.poi[0].oildata.priceinfo | String | 최고, 최저 유가 정보<br>(H : 최고, L : 최저, X : 해당없음)<br>휘발유, 고급휘발유, 경유, LPG 순 |
 | search.poi[0].oildata.wash | Boolean | 세차시설여부 |
 | search.poi[0].oildata.fix | Boolean | 정비가능여부 |
 | search.poi[0].oildata.mart | Boolean | 매점여부 |
 | search.poi[0].AdInfo | Array | 광고제공업체 광고 코드 |
-| search.poi[0].AdInfo.ADCODE | Integer | 광고코드.. 1 ~ 99까지 부여가능<br>(최대99개) |
+| search.poi[0].AdInfo.ADCODE | Integer | 광고코드<br>1 ~ 99까지 부여가능(최대99개) |
 | search.poi[0].subpoi | Object | 하위 시설물 정보 |
 | search.poi[0].subpoi.count | Integer | 하위 시설물 개수 |
 | search.poi[0].subpoi.poi | Array | POI 정보와 동일 |
@@ -974,7 +969,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | poi.poiinfo[0].detail_count | Integer | 분류상세항목개수 |
 | poi.poiinfo[0].etc_count | Integer | 분류기타항목개수 |
 | poi.poiinfo[0].badgeflag | Boolean | Badge 유무(Not Yet:FALSE, Badged:TRUE) |
-| poi.poiinfo[0].imagecount | Integer | poi 이미지 개수 |
+| poi.poiinfo[0].imagecount | Integer | POI 이미지 개수 |
 | poi.poiinfo[0].hasoildata | Boolean | 유가 데이터 존재 유무 |
 | poi.poiinfo[0].detailinfo | Array | 분류상세항목 |
 | poi.poiinfo[0].detailinfo[0].name | String | 분류상세항목설명 |
@@ -988,7 +983,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | poi.poiinfo[0].oilda.d_price | Integer | 경유 가격 |
 | poi.poiinfo[0].oilda.l_price | Integer | LPG 가격 |
 | poi.poiinfo[0].oilda.updatetime | String | Update 시간 |
-| poi.poiinfo[0].oilda.priceinfo | String | 최고,최저 유가 정보<br>(H : 최고, L : 최저, X : 해당없음)<br>휘발유, 고급휘발유, 경유, LPG 순 |
+| poi.poiinfo[0].oilda.priceinfo | String | 최고, 최저 유가 정보<br>(H : 최고, L : 최저, X : 해당없음)<br>휘발유, 고급휘발유, 경유, LPG 순 |
 | poi.poiinfo[0].oilda.wash | Boolean | 세차시설여부 |
 | poi.poiinfo[0].oilda.fix | Boolean | 정비가능여부 |
 | poi.poiinfo[0].oilda.mart | Boolean | 매점여부 |
@@ -1118,7 +1113,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | subpoi.count | String |	검색 결과 개수 |
 | subpoi.poi | Array | POI 검색 결과 리스트 |
 | subpoi.poi[0].poiid | Integer | POI ID |
-| subpoi.poi[0].depth | String | poi depth |
+| subpoi.poi[0].depth | String | POI depth |
 | subpoi.poi[0].dpx | String | display X좌표(WGS84의 경우 longitude) |
 | subpoi.poi[0].dpy | String | display Y좌표(WGS84의 경우 latitude) |
 | subpoi.poi[0].rpx | String | 탐색 X좌표(WGS84의 경우 longitude) |
@@ -1154,7 +1149,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | subpoi.poi[0].oildata.d_price | Integer | 경유 가격 |
 | subpoi.poi[0].oildata.l_price | Integer | LPG 가격 |
 | subpoi.poi[0].oildata.updatetime | String | Update 시간 |
-| subpoi.poi[0].oildata.priceinfo | String | 최고, 최저 유가 정보<br>(H : 최고, L : 최저, X : 해당없음)<br>휘발유,고급휘발유, 경유, LPG 순 |
+| subpoi.poi[0].oildata.priceinfo | String | 최고, 최저 유가 정보<br>(H : 최고, L : 최저, X : 해당없음)<br>휘발유, 고급휘발유, 경유, LPG 순 |
 | subpoi.poi[0].oildata.wash | Boolean | 세차시설여부 |
 | subpoi.poi[0].oildata.fix | Boolean | 정비가능여부 |
 | subpoi.poi[0].oildata.mart | Boolean | 매점여부 |
@@ -1196,7 +1191,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | ​via1Y | String | 선택 |  | 경유지1 Y좌표 |
 | ​via2X | String | 선택 |  | 경유지2 X좌표 |
 | ​via2Y | String | 선택 |  | 경유지2 Y좌표 |
-| ​option | String | 필수 | 경로탐색 옵션<br>탐색 option "," 단위로 요청<br>ex) option=real_traffic,real_traffic2<br>freeroad_priority : 무료<br>highway_priority : 고속도로<br>real_traffic : 실시간<br>real_traffic_freeroad : 실시간 (무료)<br>real_traffic : 추천1<br>real_traffic2 : 추천2<br>rt_stats : 실시간통계<br>rt_stats_freeroad : 실시간통계(무료)<br>short_distance_priority : 단거리<br>stats : 통계<br>stats_freeroad : 통계(무료)<br>motorcycle : 이륜차 |
+| ​option | String | 필수 |  | 경로탐색 옵션<br>탐색 option "," 단위로 요청<br>ex) option=real_traffic,real_traffic2<br>freeroad_priority : 무료<br>highway_priority : 고속도로<br>real_traffic : 실시간<br>real_traffic_freeroad : 실시간 (무료)<br>real_traffic : 추천1<br>real_traffic2 : 추천2<br>rt_stats : 실시간통계<br>rt_stats_freeroad : 실시간통계(무료)<br>short_distance_priority : 단거리<br>stats : 통계<br>stats_freeroad : 통계(무료)<br>motorcycle : 이륜차 |
 
 #### 응답
 
@@ -1286,7 +1281,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | ​via1Y | String | 선택 |  | 경유지1 Y좌표 |
 | ​via2X | String | 선택 |  | 경유지2 X좌표 |
 | ​via2Y | String | 선택 |  | 경유지2 Y좌표 |
-| ​option | String | 필수 | 경로탐색 옵션<br>탐색 option 하나만 가능<br>ex) option=real_traffic<br>freeroad_priority : 무료<br>highway_priority : 고속도로<br>real_traffic : 실시간<br>real_traffic_freeroad : 실시간 (무료)<br>real_traffic : 추천1<br>real_traffic2 : 추천2<br>rt_stats : 실시간통계<br>rt_stats_freeroad : 실시간통계(무료)<br>short_distance_priority : 단거리<br>stats : 통계<br>stats_freeroad : 통계(무료)<br>motorcycle : 이륜차 |
+| ​option | String | 필수 |  | 경로탐색 옵션<br>탐색 option 하나만 가능<br>ex) option=real_traffic<br>freeroad_priority : 무료<br>highway_priority : 고속도로<br>real_traffic : 실시간<br>real_traffic_freeroad : 실시간 (무료)<br>real_traffic : 추천1<br>real_traffic2 : 추천2<br>rt_stats : 실시간통계<br>rt_stats_freeroad : 실시간통계(무료)<br>short_distance_priority : 단거리<br>stats : 통계<br>stats_freeroad : 통계(무료)<br>motorcycle : 이륜차 |
 
 #### 응답
 

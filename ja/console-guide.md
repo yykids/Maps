@@ -9,10 +9,8 @@ Maps 서비스를 사용하기 위해서 먼저 서비스를 활성화해야 하
 Maps 서비스를 사용하기 위해서는 [서비스 선택]에서 [Application Service] > [Maps]를 클릭하여 서비스를 활성화합니다.
 
 ### URL & Appkey 확인
-서비스를 활성화하면 자동으로 생성된 Maps API의 URL과 Appkey를 [URL & Appkey] 항목에서 확인할 수 있습니다. URL과 Appkey 값은 Maps API(지도/검색/탐색)를 호출할 때 URI로 사용합니다.
-
-### API의 사용
-제공하는 Maps API의 서비스 URL은 아래와 같으며 더 자세한  API 사용법은 Maps Developer's Guide를 참조 하시기 바랍니다.
+서비스를 활성화하면 자동으로 생성된 Maps API의 URL과 Appkey를 [URL & Appkey] 항목에서 확인할 수 있습니다.<br>
+URL과 Appkey 값은 Maps API(지도/검색/탐색)를 호출할 때 URI로 사용합니다.
 
 ###  API 통계 확인
 API 호출에 대한 시간별/일별/월별 통계를 Maps API의 세부 API 별로 확인할 수 있습니다.

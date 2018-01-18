@@ -16,4 +16,4 @@
 |207|	POI not in given Category|결과없음(분류설정)|	검색전용|
 |208|	Neighbor Search Only|결과없음(주변검색만입력)|	검색전용|
 |209|	Neighbor Search not Found|결과없음(주변 + 키워드 검색 결과 없음)|	검색전용|
-|300|	AppKey Error|AppKey 인증 오류	|공통|
+|300|	AppKey Error|Appkey 인증 오류	|공통|
