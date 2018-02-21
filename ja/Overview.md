@@ -1,4 +1,4 @@
-## Application Service > Maps > 개요
+## Application Service > Maps > Overview
 
 TOAST Maps 서비스는 오랫동안 내비게이션 기술을 축적해온 아이나비 서비스를 HTTP RESTful API로 제공합니다.
 쉽고 정확한 지도, 검색, 길 찾기 서비스 등 다양한 정보를 사용할 수 있습니다.

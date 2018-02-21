@@ -1,4 +1,4 @@
-## Application Service > Maps > 콘솔 사용 가이드
+## Application Service > Maps > Console Guide
 
 Maps 서비스를 사용하기 위해서 먼저 서비스를 활성화해야 하며, 서비스가 활성화되면 지도, 검색, 탐색 API를 사용할 수 있습니다.
 

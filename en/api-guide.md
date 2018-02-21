@@ -1,4 +1,4 @@
-## Application Service > Maps > API 가이드
+## Application Service > Maps > API Guide
 
 Maps 서비스를 사용하는 데 필요한 API를 설명합니다.
 
