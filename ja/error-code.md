@@ -1,4 +1,4 @@
-## Application Service > Maps > 오류 코드
+## Application Service > Maps > Error Code
 
 ## API 오류 코드
 |resultCode|	resultMessage|	설명|	비고|
