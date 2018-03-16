@@ -1,4 +1,4 @@
-## Application Service > Maps > Web 지도 v2.0 가이드
+## Application Service > Maps > Web map v2.0 Guide
 
 Maps 웹지도를 사용하는 데 필요한 API를 설명합니다.
 

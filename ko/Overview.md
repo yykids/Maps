@@ -44,3 +44,5 @@ TOAST Maps 서비스는 오랫동안 내비게이션 기술을 축적해온 아�
 | POI | 관심지점 혹은 POI(Point of Interest)는 네비게이션 등의 전자지도 위에 표시된 건물과 상점 등을 말함 |
 | 하위시설물 | 해당 POI에 속한 시설물 정보(e.g. 에버랜드의 하위 시설물 : 1A 주차장, 1B 주차장) |
 | 경유지 | 경로 탐색 시 출발지와 목적지 사이에 거쳐 지나가는 장소 |
+| KML(Keyhole Markup Language) | 지리 데이터 표시를 위한 XML 표준 기반의 파일 형식 <br> Google Earth 에서 사용하기 위해 개발되어 현재 Google, here map 등 여러 곳에서 지원됨 |
+| GPX(GPS Exchange Format) | 인터넷 상의 애플리케이션과 웹 서비스간의 GPS 데이터 교환을 위한 XML 기반의 파일 형식 <br> waypoint, route, track 으로 나뉘며 지점과 경로 정보를 나타낼 수 있음 |
