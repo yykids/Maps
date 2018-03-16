@@ -96,7 +96,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | thinkware.maps.LineString.drawEnd(target) | target : Object | | 지도 객체 |
 | thinkware.maps.util.getLonLatFromCoordinate(param) | param.twX : number | Coord 좌표<br>Object.lon : WGS84<br>Object.lat : WGS84 | 팅크웨어 X좌표 |
 | | param.twY : number | | 팅크웨어 Y좌표 |
-| thinkware.maps.util.thinkware.maps.util.getCoordinateFromLonLat(param) | param.lon : number | TW 좌표<br>Object.twX: TW X 좌표<br>Object.twY : TW Y 좌표 | 경도 |
+| thinkware.maps.util.getCoordinateFromLonLat(param) | param.lon : number | TW 좌표<br>Object.twX: TW X 좌표<br>Object.twY : TW Y 좌표 | 경도 |
 | | param.lat : number | | 위도 |
 
 
