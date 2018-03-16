@@ -42,8 +42,8 @@ Maps 웹지도를 사용하는 데 필요한 API를 설명합니다.
 
 ### 1. Web 지도
 
-Javascript 기반 TOAST Maps API를 이용하여 웹 브라우저에 지도를 표시하는 방법을 설명합니다. <br><br>
-TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표, TW X좌표, TW Y좌표로 표시합니다.<br>
+Javascript 기반 TOAST Maps API를 이용하여 웹 브라우저에 지도를 표시하는 방법을 설명합니다.
+TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표, TW X좌표, TW Y좌표로 표시합니다.
 메소드에서 옵션 매개변수는 [param]으로 표시합니다. 옵션 매개변수는 생략할 수 있습니다.
 
 > ※ TOAST Maps API에서 사용되고 있는 좌표는 팅크웨어 전용 좌표로만 사용되고 있습니다.
@@ -56,48 +56,48 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 
 | API 명 | Parameter | Returns | 설명 |
 |------|------------------------|---------------|---------------|
-|new thinkware.maps.Map(map_div, option)|map_div : String||지도를 표시할 DOM 엘리먼트 또는 엘리먼트의 ID|
-||option .type : String||지도의 타입 <br> i(일반),<br> m(모바일),<br> s(요약),<br> a(항공배경),<br> m_a(모바일항공),<br> s_a(요약항공),<br> hybrid(항공) <br>default: i|
-||option.center.twX : number||지도의 중심 X 좌표: 팅크웨어 좌표단위|
-||option.center.twY : number||지도의 중심 Y 좌표: 팅크웨어 좌표단위|
-||option.level : number||지도의 레벨|
-||option.callback : function()||초기화 후 실행할 함수|
-||option.logo : String||로고를 표시할 위치 <br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>  bottom-right|
-|changeType(type)|type : String||지도의 타입 <br> i(일반),<br> m(모바일),<br> s(요약),<br> a(항공배경),<br> m_a(모바일항공),<br> s_a(요약항공),<br> hybrid(항공) <br>default: i|
-|thinkware.maps.event.addListener(target, event_type, func_cb)|target : Object||리스너를 추가할 대상 객체|
-||event_type : String||wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown|
-||func_cb : function()||등록할 리스너|
-|thinkware.maps.event.removeListener(target, event_type, func_cb)|target : Object||리스너를 제거할 대상 객체|
-||event_type : String||wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown|
-||func_cb : function()||제거할 리스너|
-|new thinkware.maps.Marker(option)|option.map : Object|thinkware.maps.Marker 마커 객체|지도 객체|
-||option.icon.url : String||아이콘Url|
-||option.icon.size.width : number||아이콘 너비|
-||option.icon.size.heigth : number||아이콘 높이|
-||option.position.twX : number||마커 생성 X좌표(팅크웨어 좌표단위)|
-||option.position.twY : number||마커 생성 Y좌표(팅크웨어 좌표단위)|
-||option.positioning : String||좌표가 위치할 곳<br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>  bottom-right|
-||option.title : String||툴팁 문자열|
-||option.offset.pxX : number||픽셀 단위|
-||option.offset.pxY : number||픽셀 단위|
-||option.visible : boolean||표시 여부|
-||option.draggable : boolean||드래그 가능 여부|
-||option.zIndex : number||z-index 값|
-||option.opacity : number||투명도|
-||option.stopEvent : boolean||마커상에서 지도 이벤트 실행 방지 여부|
-|thinkware.maps.LineString.drawStart(target, option)|target : Object||지도 객체|
-||option.stroke.style : String||선 스타일<br><br> dot : · · · · · · <br>dash : - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid : 일반라인|
-||option.stroke.weight : number||선 굵기(px)|
-||option.stroke.color : String||선 색상|
-||option.stroke.opacity : number||선 투명도|
-||option.callback : function()||그리기 종료 후 실행할 함수|
-||option.measure : boolean||거리 측정 팝업 표시 여부|
-||option.isOnce : boolean||한번 그리기 후 종료 여부|
-|thinkware.maps.LineString.drawEnd(target)|target : Object||지도 객체|
-|thinkware.maps.util.getLonLatFromCoordinate(param)|param.twX : number|Coord 좌표<br>Object.lon : WGS84<br>Object.lat : WGS84|팅크웨어 X좌표|
-||param.twY : number||팅크웨어 Y좌표|
-|thinkware.maps.util.thinkware.maps.util.getCoordinateFromLonLat(param)|param.lon : number|TW 좌표<br>Object.twX: TW X 좌표<br>Object.twY : TW Y 좌표|경도|
-||param.lat : number||위도|
+| new thinkware.maps.Map(map_div, option) | map_div : String | | 지도를 표시할 DOM 엘리먼트 또는 엘리먼트의 ID |
+| | option.type : String | | 지도의 타입 <br> i(일반),<br> m(모바일),<br> s(요약),<br> a(항공배경),<br> m_a(모바일항공),<br> s_a(요약항공),<br> hybrid(항공) <br>default: i |
+| | option.center.twX : number | | 지도의 중심 X 좌표: 팅크웨어 좌표단위 |
+| | option.center.twY : number | | 지도의 중심 Y 좌표: 팅크웨어 좌표단위 |
+| | option.level : number | | 지도의 레벨 |
+| | option.callback : function() | | 초기화 후 실행할 함수 |
+| | option.logo : String | | 로고를 표시할 위치 <br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>  bottom-right |
+| changeType(type) | type : String | | 지도의 타입 <br> i(일반),<br> m(모바일),<br> s(요약),<br> a(항공배경),<br> m_a(모바일항공),<br> s_a(요약항공),<br> hybrid(항공) <br>default: i |
+| thinkware.maps.event.addListener(target, event_type, func_cb) | target : Object | | 리스너를 추가할 대상 객체 |
+| | event_type : String | | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
+| | func_cb : function() | | 등록할 리스너 |
+| thinkware.maps.event.removeListener(target, event_type, func_cb) | target : Object | | 리스너를 제거할 대상 객체 |
+| | event_type : String | | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
+| | func_cb : function() | | 제거할 리스너 |
+| new thinkware.maps.Marker(option) | option.map : Object | thinkware.maps.Marker 마커 객체 | 지도 객체 |
+| | option.icon.url : String | | 아이콘Url |
+| | option.icon.size.width : number | | 아이콘 너비 |
+| | option.icon.size.heigth : number | | 아이콘 높이 |
+| | option.position.twX : number | | 마커 생성 X좌표(팅크웨어 좌표단위) |
+| | option.position.twY : number | | 마커 생성 Y좌표(팅크웨어 좌표단위) |
+| | option.positioning : String | | 좌표가 위치할 곳<br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>bottom-right |
+| | option.title : String | | 툴팁 문자열 |
+| | option.offset.pxX : number | | 픽셀 단위 |
+| | option.offset.pxY : number | | 픽셀 단위 |
+| | option.visible : boolean | | 표시 여부 |
+| | option.draggable : boolean | | 드래그 가능 여부 |
+| | option.zIndex : number | | z-index 값 |
+| | option.opacity : number | | 투명도 |
+| | option.stopEvent : boolean | | 마커상에서 지도 이벤트 실행 방지 여부 |
+| thinkware.maps.LineString.drawStart(target, option) | target : Object | | 지도 객체 |
+| | option.stroke.style : String | | 선 스타일<br><br> dot : · · · · · · <br>dash : - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid : 일반라인 |
+| | option.stroke.weight : number | | 선 굵기(px) |
+| | option.stroke.color : String | | 선 색상 |
+| | option.stroke.opacity : number | | 선 투명도 |
+| | option.callback : function() | | 그리기 종료 후 실행할 함수 |
+| | option.measure : boolean | | 거리 측정 팝업 표시 여부 |
+| | option.isOnce : boolean | | 한번 그리기 후 종료 여부 |
+| thinkware.maps.LineString.drawEnd(target) | target : Object | | 지도 객체 |
+| thinkware.maps.util.getLonLatFromCoordinate(param) | param.twX : number | Coord 좌표<br>Object.lon : WGS84<br>Object.lat : WGS84 | 팅크웨어 X좌표 |
+| | param.twY : number | | 팅크웨어 Y좌표 |
+| thinkware.maps.util.thinkware.maps.util.getCoordinateFromLonLat(param) | param.lon : number | TW 좌표<br>Object.twX: TW X 좌표<br>Object.twY : TW Y 좌표 | 경도 |
+| | param.lat : number | | 위도 |
 
 
 #### TOAST Maps API 사용하기
