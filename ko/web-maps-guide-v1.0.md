@@ -226,3 +226,8 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | level | Integer | 선택 | 지도 레벨 <br> 미입력 시 기본 10 |
 | maptype | String | 선택 | 지도 타입 <br> 미입력 시 기본 일반맵 |
 | label | String | 선택 | 라벨 내용 |
+
+### 3. Mobile Web 지도
+
+Android / IOS WebView로 하이브리드 형태의 앱을 개발 할때 TOAST Maps API를 이용 하여 Javascript 기반의  Web 지도와 동일한 API로 사용 하실 수 있습니다.
+API 관련해서는 [1. Web 지도](#map_guide_web) 를 참고 하시기 바랍니다.
