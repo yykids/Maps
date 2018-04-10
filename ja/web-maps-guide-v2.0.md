@@ -289,4 +289,4 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 ### 3. Mobile Web 지도
 
 Android / iOS WebView로 하이브리드 형태의 앱을 개발할 때 TOAST Maps API를 이용하여 JavaScript 기반의  Web 지도와 동일한 API로 사용하실 수 있습니다.
-API 관련해서는 [1. Web 지도](./web-maps-guide-v2.0/#map_guide_web)를 참고 하시기 바랍니다.
+API 관련해서는 [1. Web 지도](./#1-web)를 참고 하시기 바랍니다.
