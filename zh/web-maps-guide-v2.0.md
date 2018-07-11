@@ -290,3 +290,55 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 
 Android / iOS WebView로 하이브리드 형태의 앱을 개발할 때 TOAST Maps API를 이용하여 JavaScript 기반의  Web 지도와 동일한 API로 사용하실 수 있습니다.
 API 관련해서는 [1. Web 지도](#1-web)를 참고 하시기 바랍니다.
+
+#### TOAST Maps API Mobile에서 사용하기
+```
+<!DOCTYPE html>
+<html>
+    <head>
+		// 모바일 기기에 맞춰 viewport를 설정 합니다.
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+
+		<style>
+			body {
+	    		margin: 0;
+	      	}
+
+  			#div_map {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+			}
+    	</style>
+    
+		// 지도 사용을 위한 js 파일을 선언 합니다.
+		<script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v2.0/map.js"></script>
+		<script>
+			// 지도 사용을 위한 인증을 진행 합니다.
+			Map.authentification("appKey");
+		</script>
+	</head>
+	
+	<body>
+	
+		//지도를 담을 DIV를 생성 합니다.
+		<div id="div_map"></div>
+		<script type="text/javascript">
+		
+			//선언한 DIV에 지도를 표출 합니다. (모바일 지도 타입으로 'm'을 선언 합니다.)
+			var map = new thinkware.maps.Map("div_map", { 
+				center: {
+					twX: 169030, 
+					twY: 517922 
+				}, 
+				level: 12, 
+				type: "m", 
+				callback: success = function() {
+					console.log("map init success!");
+				}
+			});
+		</script>
+	</body>
+	
+</html>
+```
