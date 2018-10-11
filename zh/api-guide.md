@@ -941,6 +941,64 @@ Maps 서비스를 사용하는 데 필요한 API를 설명합니다.
 | subpoi.poi[0].subpoi.count | Integer | subpoi 개수 |
 | subpoi.poi[0].subpoi.poi | Array | POI 정보와 동일 |
 
+### 7\. 좌표변환
+
+* WGS84 <-> TM 좌표간 변환값을 반환합니다.
+
+#### 요청
+
+[URI]
+
+| 메서드 | URI |
+| --- | --- |
+| GET | /maps/v1.0/appkeys/{appkey}/trans-coordinates?coordtype={coordtype}&x={x}&y={y}|
+
+[Path parameter]
+
+| 이름 | 타입 | 필수 여부 | 유효 범위 | 설명 |
+| --- | --- | ----- | ----- | --- |
+| appkey | String | 필수 |  | 고유의 Appkey |
+
+[Query Parameters]
+
+| 이름 | 타입 | 필수 여부 | 유효 범위 | 설명 |
+| --- | --- | ----- | ----- | --- |
+| coordtype | String | 필수 |  | 0 : WGS84 -> TM <br> 1 : TM -> WGS84 |
+| x | double | 필수 | 현위치 또는 지도중심좌표<br>WGS84 좌표 혹은 TM 좌표 |  |
+| y | double | 필수 | 현위치 또는 지도중심좌표<br>WGS84 좌표 혹은 TM 좌표 |  |
+
+#### 응답
+
+##### 응답 본문
+
+```
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": ""
+  },
+  "coordinate": {
+    "x": 207824.82237863893,
+    "y": 431128.41980473,
+    "coordtype": "TM"
+  }
+}
+```
+
+##### 필드
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| header | Object | 헤더 영역 |
+| header.isSuccessful | Boolean | 성공여부 |
+| header.resultCode | Integer | 실패 코드 |
+| header.resultMessage | String | 실패 메시지 |
+| coordinate| Object | 본문 영역 |
+| coordinate.x | Double | 변환x좌표 |
+| coordinate.y | Double | 변환y좌표 |
+| coordinate.coordtype | String | 변환좌표형태 |
+
 ## 탐색
 
 ### 1. 경로 탐색 요약
