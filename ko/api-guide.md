@@ -981,9 +981,9 @@ Maps 서비스를 사용하는 데 필요한 API를 설명합니다.
     "resultMessage": ""
   },
   "coordinate": {
-    "x": 207824.82237863893,
-    "y": 431128.41980473,
-    "coordtype": "TM"
+    "coordtype": "WGS84",
+    "x": "128.662952",
+    "y": "38.058678"
   }
 }
 ```
@@ -997,9 +997,9 @@ Maps 서비스를 사용하는 데 필요한 API를 설명합니다.
 | header.resultCode | Integer | 실패 코드 |
 | header.resultMessage | String | 실패 메시지 |
 | coordinate| Object | 본문 영역 |
-| coordinate.x | Double | 변환x좌표 |
-| coordinate.y | Double | 변환y좌표 |
-| coordinate.coordtype | String | 변환좌표형태 | 
+| coordinate.coordtype | String | 변환좌표형태 |
+| coordinate.x | String | 변환x좌표 |
+| coordinate.y | String | 변환y좌표 |
 
 ## 탐색
 

@@ -1,5 +1,10 @@
 ## Application Service > Maps > Release Notes
 
+### 2018.11.27
+#### 기능 추가
+* [API] 좌표 변환 API 추가
+	* 좌표간 변환 API 추가(WGS84 좌표 <-> TM 좌표)
+
 ### 2018.04.24
 #### 기능 개선/변경
 * [Batch] 통계 Batch 동작 기제 변경
