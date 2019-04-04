@@ -40,7 +40,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 |                                          | level : Number          |                                          | 지도 초기화 레벨<br>- 일반 지도: 1~13<br>- 항공 지도: 1~13 |
 |                                          | init_cb : function()    |                                          | 지도 초기화 이후 호출되는 콜백 함수                     |
 |                                          | arrange_type : Number   |                                          | 지도 레이어 정렬 방식<br>1: 중앙 정렬 방식(resize 효과 있음)<br>2: 전체 로딩 방식(resize 효과 없음)<br> 3: 오른쪽 상단 정렬 방식(resize 효과 있음) |
-|                                          | map_type : String       |                                          | 지도 타입 설정<br>'i': 일반 맵<br>'a': 항공 맵<br>'s': 요약 맵<br>'m': 모바일 |
+|                                          | map_type : String       |                                          | 지도 타입 설정<br>'i': 일반 맵<br>'a': 항공 맵<br>'s': 요약 맵<br>'m': 모바일 맵 |
 | THINKMAP.imageMap()                      |                         |                                          | 지도를 일반 지도로 전환합니다.                        |
 | THINKMAP.aerialMap()                     |                         |                                          | 지도를 항공 지도로 전환합니다.                        |
 | THINKMAP.setAerialHybrid(active)         | active: Boolean        |                                          | 항공 주기 표출 여부  <br>true: 지도 위에 항공 주기를 표출   <br>false: 지도 위에 항공 주기 표출 안 함<br><br>지도 위에 항공 지도 주기 표출 여부를 설정합니다. |
@@ -123,7 +123,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 #### 지도 마커 추가
 ```
 <script type="text/javascript">
-	//지도에 마커를 객체를 초기화한다.
+	//지도의 마커 객체를 초기화한다.
 	var marker = null;
 	function createMarker(){
 		if(!marker){

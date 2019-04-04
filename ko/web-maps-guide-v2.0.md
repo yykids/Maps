@@ -5,7 +5,7 @@ Maps 웹 지도를 사용하는 데 필요한 API를 설명합니다.
 ## v2.0 개선 사항
 * 지도 표준 관련 기능 확대
   * HTML5 기반 지도의 주요 기능을 사용할 수 있습니다.
-  * 지도 내 픽처, 마커 등 모든 피처를 객체화하여 사용성 및 성능을 개선하였습니다.
+  * 지도 내 이미지, 마커 등 모든 사물(Feature)을 객체화하여 사용성 및 성능을 개선하였습니다.
 * 지도 회전 가능
   * 모바일에서는 손가락 두 개로 지도를 회전할 수 있습니다.
   * PC 버전에서는 Shift+Alt+드래그하거나 원하는 각도를 설정해 지도를 회전할 수 있습니다.
@@ -56,13 +56,13 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | API 명                                    | Parameter                        | Returns                                  | 설명                                       |
 | ---------------------------------------- | -------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | new thinkware.maps.Map(map_div, option)  | map_div : String                 |                                          | 지도를 표시할 DOM 요소(element) 또는 요소의 ID             |
-|                                          | option.type : String             |                                          | 지도의 타입 <br> i(일반),<br> m(모바일),<br> s(요약),<br> a(항공 배경),<br> m_a(모바일 항공),<br> s_a(요약 항공),<br> hybrid(항공) <br>default: i |
+|                                          | option.type : String             |                                          | 지도의 타입 <br> 'i' : 일반 맵,<br> 'm' : 모바일 맵,<br> 's' : 요약 맵,<br> 'a' : 항공 맵,<br> 'm_a' : 모바일 항공 맵,<br> 's_a' : 요약 항공 맵,<br> 'hybrid' : 항공 <br>default: 'i' |
 |                                          | option.center.twX : number       |                                          | 지도의 중심 X 좌표: 팅크웨어 좌표 단위                   |
 |                                          | option.center.twY : number       |                                          | 지도의 중심 Y 좌표: 팅크웨어 좌표 단위                   |
 |                                          | option.level : number            |                                          | 지도의 레벨                                   |
 |                                          | option.callback : function()     |                                          | 초기화 후 실행할 함수                             |
 |                                          | option.logo : String             |                                          | 로고를 표시할 위치 <br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>  bottom-right |
-| changeType(type)                         | type : String                    |                                          | 지도의 타입 <br> i(일반),<br> m(모바일),<br> s(요약),<br> a(항공 배경),<br> m_a(모바일 항공),<br> s_a(요약 항공),<br> hybrid(항공) <br>default: i |
+| changeType(type)                         | type : String                    |                                          | 지도의 타입 <br> 'i' : 일반 맵,<br> 'm' : 모바일 맵,<br> 's' : 요약 맵,<br> 'a' : 항공 맵,<br> 'm_a' : 모바일 항공 맵,<br> 's_a' : 요약 항공 맵,<br> 'hybrid' : 항공 <br>default: 'i' |
 | thinkware.maps.event.addListener(target, event_type, func_cb) | target : Object                  |                                          | 리스너를 추가할 대상 객체                           |
 |                                          | event_type : String              |                                          | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
 |                                          | func_cb : function()             |                                          | 등록할 리스너                                  |
