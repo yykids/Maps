@@ -1,136 +1,135 @@
-## Application Service > Maps > Web map v1.0 Guide
+﻿## Application Service > Maps > Webマップv1.0ガイド
 
-Maps 웹지도를 사용하는 데 필요한 API를 설명합니다.
+Maps Webマップを使用するのに必要なAPIを説明します。
 
-## API 공통 정보
+## API共通情報
 
-### 사전 준비
-- API 사용을 위해서는 앱키가 필요합니다.
-- 앱 키는 Console 상단 "URL & Appkey" 메뉴에서 확인 가능합니다.
+### 事前準備
+- APIを使用するにはアプリケーションキーが必要です。
+- アプリケーションキーは、**TOAST Console**上部にある**URL & Appkey**メニューで確認できます。
 
-### 요청 공통 정보
+### リクエスト共通情報
 
-#### URL 정보
+#### URL情報
 
-| 항목 | URL |
-| --- | --- |
-| 지도 | https://api-maps.cloud.toast.com/maps/js/v1.0/map.js |
-| Static 지도 | https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js |
+| 項目 | URL                                      |
+| --------- | ---------------------------------------- |
+| マップ | https://api-maps.cloud.toast.com/maps/js/v1.0/map.js |
+| 静的(static)マップ | https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js |
 
-## Web 지도
+## Webマップ
 
-### 1. Web 지도
+### 1. Webマップ
 
-JavaScript 기반 TOAST Maps API를 이용하여 웹 브라우저에 지도를 표시하는 방법을 설명합니다.
-TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표, TW X좌표, TW Y좌표로 표시합니다.
-메소드에서 옵션 매개변수는 [param]으로 표시합니다. 옵션 매개변수는 생략할 수 있습니다.
+JavaScript基盤のTOAST Maps APIを利用して、Webブラウザにマップを表示する方法を説明します。
+TOAST Maps APIは、THINKWARE座標を使用します。縮約してTW座標、TW X座標、TW Y座標で表示します。
+メソッドでオプションのパラメータは[param]と表示します。オプションのパラメータは省略できます。
 
-> ※ TOAST Maps API에서 사용되고 있는 좌표는 팅크웨어 전용 좌표로만 사용되고 있습니다.
-<br>팅크웨어 좌표를 위경도 좌표(WGS84)로 변환하기 위해서는 THINKMAP.tw_Wgs84() 함수를 이용하여 변경하시고,
-반대로 위경도 좌표(WGS84)를 팅크웨어 좌표로 변환하기 위해서는 THINKMAP.wgs84_Tw() 함수를 이용하시기 바랍니다.
+> ※ TOAST Maps APIで使用する座標は、THINKWARE専用座標にのみ使用されます。
+> <br>THINKWARE座標を経緯度座標(WGS84)に変換するには、THINKMAP.tw_Wgs84()関数を利用します。
+> 反対に経緯度座標(WGS84)をTHINKWARE座標に変換するには、THINKMAP.wgs84_Tw()関数を利用します。
+
+#### 主要TOAST Maps API案内
+##### TOAST Maps APIの詳細な使用方法は、<a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">Thinkware API Center</a>を参照してください。
+
+| API名                                  | Parameter               | Returns                                  | 説明                                |
+| ---------------------------------------- | ----------------------- | ---------------------------------------- | ---------------------------------------- |
+| THINKMAP.initMap(map_div_name, twX, twY, level, init_cb, arrange_type, map_type) | map_div : String        |                                          | マップ入れるdivタグID<br>マップを使用するために、最初に呼び出す必要がある初期化関数です。 |
+|                                          | twX : Number            |                                          | マップ初期化TW X座標                    |
+|                                          | twY : Number            |                                          | マップ初期化TW Y座標                    |
+|                                          | level : Number          |                                          | マップ初期化レベル<br>- 一般マップ：1～13<br>- 航空写真：1～13 |
+|                                          | init_cb : function()    |                                          | マップ初期化後に呼び出されるコールバック関数               |
+|                                          | arrange_type : Number   |                                          | マップレイヤーソート方式<br>1：中央ソート方式(resize効果あり)<br>2：全体ローディング方式(resize効果なし)<br> 3：右上ソート方式(resize効果あり) |
+|                                          | map_type : String       |                                          | マップタイプ設定<br>'i'：一般マップ<br>'a'：航空写真<br>'s'：要約マップ<br>'m'：モバイルマップ |
+| THINKMAP.imageMap()                      |                         |                                          | マップを一般マップに切り替えます。                        |
+| THINKMAP.aerialMap()                     |                         |                                          | マップを航空写真に切り替えます。                        |
+| THINKMAP.setAerialHybrid(active)         | active: Boolean        |                                          | 航空周期を表示するかどうか <br>true：マップ上に航空周期を表示<br>false：マップ上に航空周期を表示しない<br><br>マップ上に航空写真周期を表示するかどうかを設定します。 |
+| THINKMAP.addMapListener(event_name, func_cb) | event_name : String<br> |                                          | マップに登録するイベント名<br>'movestart'<br>- マップが動き始めた時<br>'move'<br> - マップが動く時<br>'moveend'<br>- マップの動きが終わった時<br>'zoomend'<br>- マップの拡大、縮小が終わった時<br>'mouseover'<br>- マップ上にマウスを移動させた時<br>'mouseout'<br>- マップの外にマウスを移動させた時<br> 'mousemove'<br>- マップでマウスが動く時<br><br>マップにイベントを登録します。<br>(マップに関連したイベント、拡大/縮小、動きなど) |
+|                                          | func_cb : function()    |                                          | マップでイベントが発生した時に呼び出されるコールバック関数<br>(コールバック関数にパラメータとしてMapオブジェクトが渡されます) |
+| THINKMAP.removeMapListener(event_name)   | event_name : String     |                                          | マップから削除するイベント名<br>'movestart'<br>- マップが動き始めた時<br>'move'<br> - マップが動く時<br>'moveend'<br>- マップの動きが終わった時<br>'zoomend'<br>- マップ拡大、縮小が終わった時<br>'mouseover'<br>- マップ上にマウスを移動させた時<br>'mouseout'<br>- マップの外にマウスを移動させた時<br> 'mousemove'<br>- マップでマウスが動く時<br><br>マップに登録したイベントを削除します。 <br>THINKMAP.addMapListenerメソッドに登録したevent_nameに該当するすべてのコールバック関数を削除するので注意してください。 |
+| THINKMAP.createMarker(twX, twY, width, height, iconUrl, [param]) | twX : Number            |                                          | <br>Markerオブジェクト位置TW X座標 <br><br>Markerオブジェクトを作成します。 <br>作成したMarkerオブジェクトをマップに表示するには、THINKMAP.addMarkerメソッドでマップにMarkerオブジェクトを追加する必要があります。 |
+|                                          | twY : Number            |                                          | Markerオブジェクト位置TW Y座標              |
+|                                          | width : Number          |                                          | Markerイメージの幅                          |
+|                                          | height : Number         |                                          | Markerイメージの高さ                         |
+|                                          | iconURL : String        |                                          | MarkerイメージのURL                          |
+|                                          | param : String          |                                          | Markerオブジェクトのユーザー変数                 |
+| THINKMAP.addMarker(marker)               | marker : Marker         |                                          | マップに追加する対象Markerオブジェクト<br><br>マップにMarkerオブジェクトを追加します。 |
+| THINKMAP.featureDrawing(draw_type, style, func_cb) | draw_type : String      |                                          | ユーザーが描写するFeatureオブジェクトタイプ<br>'lineDraw'：線<br>'polygonDraw'：多角形<br> 'regularPolygonDraw'：形が決まっている多角形<br><br>ユーザーがマップにマウスでPolyline、Polygonを直接描写できる描写モードに切り替えます。<br>マップをクリックした時、オブジェクトの描写が始まり、マウスをダブルクリックすると描写が完了します。 <br>描写完了時、コールバック関数に描写したFeatureオブジェクトを渡します。 |
+|                                          | style : Object          |                                          | <br> Polygon, Polylineのスタイルを指定するためのObject<br>strokeColor：線の色<br>- 'red', '#fff123' <br> strokeWidth：線の太さ<br> - 10<br> strokeOpacity：線の透明度<br>fillColor：塗りつぶしの色<br>fillOpacity：塗りつぶしの透明度<br>strokeDashstyle：線のスタイル<br>dot：· · · · · · <br>dash: - - - - - -<br>dashdot：- · - · - · - <br>longdashdot:ㅡ·ㅡ·ㅡ<br> solid：実線 <br> |
+|                                          | func_cb : function()    |                                          | ユーザーがマップをダブルクリックして<br>Featureオブジェクトの描写が完了した時に呼び出されるコールバック関数 |
+| THINKMAP.featureDrawingCancel()          |                         |                                          | マップにユーザーがマウスでPolyline、Polygonを直接描写できる描写モードを終了します。 |
+| THINKMAP.tw_Wgs84(twX, twY)              | twX：Number            | coord：Object<br>変換されたWGS84座標<br>- coord.curx：WGS84 X座標<br>- coord.cury：WGS84 Y座標 | 変換するTW X座標<br><br>TW座標をWGS84座標に変換します。 |
+|                                          | twY : Number            |                                          | 変換するTW Y座標                       |
+| THINKMAP.wgs84_Tw(wgs_lon, wgs_lat)      | wgs_lon：Number        | coord：Object<br>変換されたTW座標 <br>- coord.curx：TW X座標<br>- coord.cury：TW Y座標 | 変換するWGS84経度座標<br><br>WGS84座標をTW座標に変換します。 |
+|                                          | wgs_lat : Number        |                                          | 変換するWGS84緯度座標                   |
 
 
-#### 주요 TOAST Maps API 안내
-##### 추가적인 TOAST Maps API 사용법은 해당 <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">링크</a>를 참조하시기 바랍니다.
-
-| API 명 | Parameter | Returns | 설명 |
-|------|------------------------|---------------|---------------|
-| THINKMAP.initMap(map_div_name, twX, twY, level, init_cb, arrange_type, map_type) | map_div : String || 지도를 담을 div 태그 ID<br>지도를 사용하기 위해서 최초에 반드시 호출해야 하는 초기화 함수입니다. |
-||twX : Number	||지도 초기화 TW X 좌표|
-||twY : Number	||지도 초기화 TW Y 좌표|
-||level : Number||지도 초기화 Level<br>- 일반지도 : 1~13<br>- 항공지도 : 1~13|
-||init_cb : function()||지도 초기화 이후 호출되는 콜백함수|
-||arrange_type : Number	||지도 레이어 정렬방식<br>1 : 중앙정렬방식(resize효과 있음)<br>2 : 전체로딩방식(resize효과 없음)<br> 3 : 우상단정렬방식(resize효과 있음)|
-||map_type : String	||지도 타입 설정<br>'i' : 일반맵<br>'a' : 항공맵<br>'s' : 요약맵<br>'m' : 모바일|
-|THINKMAP.imageMap()|||지도를 일반 지도로 전환합니다.|
-|THINKMAP.aerialMap()|||지도를 항공 지도로 전환합니다.|
-|THINKMAP.setAerialHybrid(active)|active : Boolean||항공주기 표시 여부  <br>true : 지도위에 항공주기를 표출   <br>false : 지도위에 항공주기 표출안함<br><br>지도 위에 항공지도 주기 표출여부를 설정합니다.|
-|THINKMAP.addMapListener(event_name, func_cb)|event_name : String<br> ||지도에 등록할 이벤트 이름<br>'movestart'<br>- 지도가 움직이기 시작했을 때<br>'move'<br> - 지도가 움직일 때<br>'moveend'<br>- 지도 움직임이 끝났을 때<br>'zoomend'<br>- 지도가 확대, 축소가 끝났을 때<br>'mouseover'<br>- 지도위에 마우스가 들어왔을 때<br>'mouseout'<br>- 지도에서 마우스가 나갔을 때<br> 'mousemove'<br>- 지도에서 마우스가 움직일 때<br><br>지도에 이벤트를 등록합니다.<br>(지도에 관련된 이벤트, 확대/축소, 움직임 등)|
-||func_cb : function()||지도에서 이벤트가 발생했을 때 호출되는 콜백 함수<br>(콜백함수에 매개변수로 Map 객체가 전달됩니다)|
-|THINKMAP.removeMapListener(event_name)|event_name : String||지도에 제거할 이벤트 이름<br>'movestart'<br>- 지도가 움직이기 시작했을 때<br>'move'<br> - 지도가 움직일 때<br>'moveend'<br>- 지도 움직임이 끝났을 때<br>'zoomend'<br>- 지도가 확대, 축소가 끝났을 때<br>'mouseover'<br>- 지도위에 마우스가 들어왔을 때<br>'mouseout'<br>- 지도에서 마우스가 나갔을 때<br> 'mousemove'<br>- 지도에서 마우스가 움직일 때<br><br>지도에 등록한 이벤트를 제거합니다. <br>THINKMAP.addMapListener 메소드로 등록한 event_name에 해당하는 모든 콜백함수를 삭제하므로 주의가 필요합니다.|
-|THINKMAP.createMarker(twX, twY, width, height, iconUrl, [param])|twX : Number||<br>Marker 객체 위치 TW X 좌표 <br><br>Marker 객체를 생성합니다. <br>생성한 Marker 객체를 지도에 표출하기 위해서는 THINKMAP.addMarker 메소드로 지도에 Marker 객체를 추가해야합니다.|
-||twY : Number	||Marker 객체 위치 TW Y 좌표|
-||width : Number||Marker 이미지 너비|
-||height : Number ||Marker 이미지의 높이|
-||iconURL : String ||Marker 이미지의 URL|
-||param : String||Marker 객체의 사용자 변수||
-|THINKMAP.addMarker(marker)|marker : Marker||지도에 추가할 대상 Marker 객체<br><br>지도에 Marker 객체를 추가합니다.|
-|THINKMAP.featureDrawing(draw_type, style, func_cb)|draw_type : String||사용자가 그릴 Feature 객체 타입<br>'lineDraw' : 선<br>'polygonDraw' : 다각형<br> 'regularPolygonDraw' :   형태가 정해진 다각형<br><br>사용자가 지도에 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드로 전환합니다.<br>지도 마우스 클릭 시 객체 그리기가 시작되고 마우스를 더블클릭하면 그리기가 완료됩니다. <br>그리기 완료 시 콜백함수로 그려진 Feature 객체를 넘겨줍니다. |
-||style : Object||<br> Polygon, Polyline의 스타일을 지정하기 위한 Object<br>strokeColor : 선 색<br>- 'red', '#fff123' <br> strokeWidth : 선 두께<br> - 10<br> strokeOpacity : 선 투명도<br>fillColor : 채우기 색<br>fillOpacity : 채우기 투명도 <br>strokeDashstyle : 선 스타일<br>dot : · · · · · · <br>dash : - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid : 일반라인  <br> |
-||func_cb : function()||사용자가 지도를 더블클릭하여<br>Feature 객체 그리기가 완료되었을 때 호출되는 콜백함수|
-|THINKMAP.featureDrawingCancel()|||지도에 사용자가 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드를 종료합니다. |
-|THINKMAP.tw_Wgs84(twX, twY)|twX : Number|coord : Object<br>변환된 WGS84 좌표<br>- coord.curx : WGS84 X 좌표<br>- coord.cury  : WGS84 Y 좌표|변환할 TW X 좌표<br><br>TW 좌표를 WGS84 좌표로 변환합니다. |
-||twY : Number||변환할 TW Y 좌표|
-|THINKMAP.wgs84_Tw(wgs_lon, wgs_lat)|wgs_lon : Number|coord : Object<br>변환된 TW 좌표 <br>- coord.curx  : TW X 좌표<br>- coord.cury  : TW Y 좌표 |변환할 WGS84 경도 좌표<br><br>WGS84 좌표를 TW 좌표로 변환합니다.|
-||wgs_lat : Number||변환할 WGS84 위도 좌표|
-
-
-#### TOAST Maps API 사용하기
+#### TOAST Maps APIの使用
 ```
-// 지도 사용을 위한 js 파일을 선언 합니다.
+// マップを使用するためのjsファイルを宣言します。
 <script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v1.0/map.js"></script>
 <script>
-	// 지도 사용을 위한 인증을 진행 합니다.
+	// マップを使用するための認証を進行します。
 	Map.authentification("appKey");
 </script>
 
-//지도를 담을 DIV를 생성 합니다.
+//マップを入れるDIVを作成します。
 <div id="div_map"></div>
 <script type="text/javascript">
 
-	//선언한 DIV에 지도를 표출 합니다.
+	//宣言したDIVにマップを表示します。
 	THINKMAP.initMap("div_map", 165406, 500198, 12, init, 2, 'i');
 
-	// 지도 init 후 콜백 함수가 실행 됩니다.
+	// マップinit後、コールバック関数が実行されます。
 	function init(){
 		alert('init!');
 	}
 </script>
 ```
 
-#### 지도 모드  변경 하기
+#### マップモードの変更
 ```
 <script type="text/javascript">
-	//지도를 일반 지도로 전환
+	//マップを一般マップに切り替え
 	THINKMAP.imageMap();
 
-	//지도를 항공 지도로 전환
+	//マップを航空写真に切り替え
 	THINKMAP.aerialMap();
 
-	//지도 위에 항공주기 표출여부 설정
+	//マップ上に航空周期を表示するかどうかを設定
 	THINKMAP.setAerialHybrid(active);
 </script>
 ```
-#### 지도 이벤트 등록 하기
+#### マップにイベントを登録
 ```
 <script type="text/javascript">
-	//지도에 move 이벤트를 등록 한다.
+	//マップにmoveイベントを登録する。
 	THINKMAP.addMapListener('move', mapEvent_cb);
 
-	//지도 이벤트 발생 시 콜백 함수
+	//マップイベント発生時のコールバック関数
 	function mapEvent_cb(map){
 	    console.log("event callback!");
 	}
 </script>
 ```
-#### 지도 이벤트 제거 하기
+#### マップのイベントを削除
 ```
 <script type="text/javascript">
-	//지도에 move 이벤트를 제거 한다.
+	//マップからmoveイベントを削除する。
 	THINKMAP.removeMapListener('move');
 </script>
 ```
 
-#### 지도 마커 추가 하기
+#### マップマーカーの追加
 ```
 <script type="text/javascript">
-	//지도에 마커를 객체를 초기화 한다.
+	//マップのマーカーオブジェクトを初期化する。
 	var marker = null;
 	function createMarker(){
 		if(!marker){
-			//마커 객체를 생성 한다.
+			//マーカーオブジェクトを作成する。
 			marker = THINKMAP.createMarker(163670, 526934, 47, 46, '../img/img.png', 'my_marker');
-			//마커를 지도에 추가 한다.
+			//マーカーをマップに追加する。
 			THINKMAP.addMarker(marker);
 			console.log('id : ' + marker._feature_id + ', param : ' + marker._param);
 		}
@@ -139,10 +138,10 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 ```
 
 
-#### 지도 그리기 모드로 전환 하기
+#### マップ描写モードに切り替え
 ```
 <script type="text/javascript">
-	//지도를 그리기 모드로 전환 한다.
+	//マップを描写モードに切り替える。
 	var style = {
 		strokeColor: '#fff123',
 		strokeWidth: 5,
@@ -155,26 +154,26 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 	THINKMAP.featureDrawing("lineDraw", style, drawEvent_cb);
 
 	function drawEvent_cb(){
-		alert("그리기 모드 전환!");
+		alert("描写モードに切り替え！");
 	}
 </script>
 ```
 
-#### 지도 그리기 모드 종료 하기
+#### マップ描写モードの終了
 ```
 <script type="text/javascript">
-	//지도 그리기 모드를 종료 한다.
+	//マップ描写モードを終了する。
 	THINKMAP.featureDrawingCancel();
 </script>
 ```
 
 
-#### TW 좌표를 WGS 좌표로 변환 하기
+#### TW座標をWGS座標に変換
 ```
 <script type="text/javascript">
 	var wgs;
 
-	// TW 좌표를 WGS좌표로 변환 한다.
+	// TW座標をWGS座標に変換する。
 	wgs = THINKMAP.tw_Wgs84(165406, 500198);
 
 	console.log(wgs.curx);
@@ -183,12 +182,12 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 ```
 
 
-#### WGS 좌표를 TW 좌표로 변환 하기
+#### WGS座標をTW座標に変換
 ```
 <script type="text/javascript">
 	var tw;
 
-	// WGS 좌표를 TW좌표로 변환 한다.
+	// WGS座標をTW座標に変換する。
 	wgs = THINKMAP.wgs84_Tw(127.28976653131843, 37.56515136725675);
 
 	console.log(tw.curx);
@@ -196,48 +195,48 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 </script>
 ```
 
-### 2. Static 지도
+### 2. 静的(static)マップ
 
-#### TOAST Maps API Static 지도 사용하기
+#### TOAST Maps API静的(static)マップ使用
 ```
-// Static 지도 사용을 위한 js 파일을 선언 합니다.
+// 静的(static)マップを使用するためのjsファイルを宣言します。
 <script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js"></script>
 
-// 지도를 담을 IMG를 생성 합니다.
+// マップを入れるIMGを作成します。
 <img id='staticMapImg' alt="" src="">
 
 <script>
 
-	// Static 지도 사용을 위한 인증 및 파라미터를 전달 합니다. 	
+	// 静的(static)マップを使用するための認証およびパラメータを渡します。 	
 	StaticMap.authentification('staticMapImg',"appkey",'x=157423&y=266836&width=970&height=300&level=10&maptype=i&mx=158323&my=266836&txt=');
 
 </script>
 ```
 
-| 이름 | 타입	| 필수 여부 | 설명 |
-|---|---|---|---|
-| x | Integer | 필수 | 지도 중심 X좌표 |
-| y | Integer | 필수 | 지도 중심 Y좌표 |
-| mx | Integer | 필수 | 마커 X좌표 |
-| my | Integer | 필수 | 마커 Y좌표 |
-| width	| Integer | 선택 | 지도 넓이 <br> 미입력 시 기본 600px |
-| height | Integer | 선택 | 지도 높이 <br> 미입력 시 기본 600px |
-| imgurl | String | 선택 | 마커 이미지 url<br> 미입력 시 기본 마커 사용 |
-| level | Integer | 선택 | 지도 레벨 <br> 미입력 시 기본 10 |
-| maptype | String | 선택 | 지도 타입 <br> 미입력 시 기본 일반맵 |
-| label | String | 선택 | 라벨 내용 |
+| 名前 | タイプ | 必須かどうか | 説明                     |
+| ------- | ------- | ----- | ----------------------------- |
+| x       | Integer | 必須 | マップ中心のX座標             |
+| y       | Integer | 必須 | マップ中心のY座標             |
+| mx      | Integer | 必須 | マーカーのX座標                |
+| my      | Integer | 必須 | マーカーのY座標                |
+| width   | Integer | 任意 | マップの幅<br>未入力時は基本600px     |
+| height  | Integer | 任意 | マップの高さ<br>未入力時は基本600px     |
+| imgurl  | String  | 任意 | マーカーイメージURL<br> 未入力時は基本マーカーを使用 |
+| level   | Integer | 任意 | マップレベル <br> 未入力時は基本10        |
+| maptype | String  | 任意 | マップタイプ <br> 未入力時は基本一般マップ    |
+| label   | String  | 任意 | ラベルの内容                  |
 
-### 3. Mobile Web 지도
+### 3. モバイルWebマップ
 
-Android / iOS WebView로 하이브리드 형태의 앱을 개발할 때 TOAST Maps API를 이용하여 JavaScript 기반의  Web 지도와 동일한 API로 사용하실 수 있습니다.
-API 관련해서는 [1. Web 지도](#1-web)를 참고 하시기 바랍니다.
+Android/iOS WebViewで使用できるハイブリッド型のアプリを開発する時、TOAST Maps APIを利用し、JavaScript基盤のWebマップと同じAPIで使用できます。
+APIの詳細は、[1. Webマップ](#1-web)を参照してください。
 
-#### TOAST Maps API Mobile에서 사용하기
+#### TOAST Maps APIをMobileで使用
 ```
 <!DOCTYPE html>
 <html>
     <head>
-		// 모바일 기기에 맞춰 viewport를 설정 합니다.
+		// モバイル端末に合わせてviewportを設定します。
         <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 
 		<style>
@@ -251,29 +250,29 @@ API 관련해서는 [1. Web 지도](#1-web)를 참고 하시기 바랍니다.
 				height: 100%;
 			}
     	</style>
-    
-		// 지도 사용을 위한 js 파일을 선언 합니다.
+
+		// マップを使用するためのjsファイルを宣言します。
 		<script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v1.0/map.js"></script>
 		<script>
-			// 지도 사용을 위한 인증을 진행 합니다.
+			// マップを使用するための認証を進行します。
 			Map.authentification("appKey");
 		</script>
 	</head>
-	
+
 	<body>
-		//지도를 담을 DIV를 생성 합니다.
+		//マップを入れるDIVを作成します。
 		<div id="div_map"></div>
 		<script type="text/javascript">
-		
-			//선언한 DIV에 지도를 표출 합니다. (모바일 지도 타입으로 'm'을 선언 합니다.)
+
+			//宣言したDIVにマップを表示します。(モバイルマップタイプの'm'を宣言します。)
 			THINKMAP.initMap("div_map", 165406, 500198, 12, init, 2, 'm');
-		
-			// 지도 init 후 콜백 함수가 실행 됩니다.
+
+			// マップinit後、コールバック関数が実行されます。
 			function init(){
 				alert('init!');
 			}
 		</script>
 	</body>
-	
+
 </html>
 ```
