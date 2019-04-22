@@ -1,27 +1,27 @@
-## Application Service > Maps > Console Guide
+## Application Service > Maps > コンソール使用ガイド
 
-Maps 서비스를 사용하기 위해서 먼저 서비스를 활성화해야 하며, 서비스가 활성화되면 지도, 검색, 탐색 API를 사용할 수 있습니다.
+Mapsサービスを使用するには、先にサービスを有効にする必要があります。サービスを有効にした後、マップ、検索、探索APIを使用できます。
 
-본 문서에서는 콘솔을 이용하여 서비스 활성화/비활성화 하는 방법 및 통계 확인 방법에 대해 설명합니다.
+ここでは**TOAST Console**でサービスを有効化、無効化する方法と統計を確認する方法を説明します。
 
-### 서비스 활성화
+### サービス有効化
 
-Maps 서비스를 사용하기 위해서는 [서비스 선택]에서 [Application Service] > [Maps]를 클릭하여 서비스를 활성화합니다.
+Mapsサービスを使用するには、**サービス選択**で**Application Service > Maps**をクリックします。
 
-### URL & Appkey 확인
-서비스를 활성화하면 자동으로 생성된 Maps API의 URL과 Appkey를 [URL & Appkey] 항목에서 확인할 수 있습니다.<br>
-URL과 Appkey 값은 Maps API(지도/검색/탐색)를 호출할 때 URI로 사용합니다.
+### URL & Appkeyの確認
+サービスを有効にすると、自動的に作成されたMaps APIのURLとアプリケーションキーを**URL & Appkey**で確認できます。<br>
+URLとアプリケーションキーは、Maps API(マップ、検索、探索)を呼び出す時にURIに使用します。
 
-###  API 통계 확인
-API 호출에 대한 시간별/일별/월별 통계를 Maps API의 세부 API 별로 확인할 수 있습니다.
-(10분 단위로 통계 데이터가 업데이트 됩니다.)
+###  API統計確認
+APIを呼び出した時間別、日別、月別統計をMaps APIの詳細API別に確認できます。
+統計データは10分単位でアップデートされます。
 
 ![](http://static.toastoven.net/prod_maps/img_02.JPG)
 
-### 종별코드 검색
-통합검색 API 사용 시 검색 옵션으로 사용 가능한 종별코드에 대하여 조회할 수 있습니다.
+### 種別コード検索
+統合検索API使用時に、検索オプションとして使用できる種別コードを確認できます。
 
 ![](http://static.toastoven.net/prod_maps/img_03.JPG)
 
-### 서비스 비활성화
-Maps 서비스 사용을 중지하기 위해서는 [서비스 선택]에서 [Application Service] > [Maps]를 클릭하여 서비스를 비활성화합니다.
+### サービスの無効化
+Mapsサービスの使用を中止するには、**サービス選択**で**Application Service > Maps**をクリックしてサービスを無効化します。

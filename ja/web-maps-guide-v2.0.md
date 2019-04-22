@@ -1,124 +1,123 @@
-## Application Service > Maps > Web map v2.0 Guide
+## Application Service > Maps > Webマップv2.0ガイド
 
-Maps 웹지도를 사용하는 데 필요한 API를 설명합니다.
+Maps Webマップを使用するのに必要なAPIを説明します。
 
-## v2.0 개선 사항
-* 지도 표준 관련 기능 확대
-	* Html5 기반의 지도 주요 기능을 사용 가능합니다.
-	* 지도 내 픽쳐, 마커 등 모든 피처를 객체화하여 사용성 및 성능을 개선하였습니다.
-* 지도 회전 가능
-	* 모바일에서는 투 핑거를 통해 지도 회전이 가능합니다.
-	* PC 버전에서는 Shift+alt+드래그 하거나 원하는 각도를 설정하여 지도 회전이 가능합니다.
-* 피처 클러스터(도형 제외)
-	* 지도 축소 시에는 근접한 피처를 병합하여 보여주거나 확대 시에는 상세히 나누어서 보여줍니다.
-* 지도 이미지 다운로드
-	* 지도를 이미지 파일로 다운받을 수 있는 function을 제공합니다.
-* 오버뷰
-	* 지도를 화면에 하나 이상 표시할 수 있습니다.
-* 지도 로드 이벤트 및 애니메이션 효과 추가
-	* 타일 이미지에 로드 이벤트를 추가하는 기능을 제공합니다.
-	* 이미지 로드에 따른 progress bar 효과 등에 활용할 수 있습니다.
-* Preload 타일
-	* 한 번 확인했던 영역의 이미지를 캐싱 하여 표시합니다.
-* KML/GPX 파일 타입 처리
-	* KML/GPX 파일을 불러와 지도에 표시하고, 지도에 표시된 데이터를 KML/GPX 타입으로 반환 가능합니다.
+## v2.0改善事項
+* マップの標準関連機能を拡大
+  * HTML5基盤マップの主な機能を使用できます。
+  * マップ内イメージ、マーカーなど、すべての事物(Feature)をオブジェクト化してユーザビリティおよび性能を改善しました。
+* マップの回転が可能
+  * モバイルでは、2本の指でマップを回転できます。
+  * PCでは、Shift+Alt+ドラッグか、任意の角度を設定してマップを回転できます。
+* フィーチャークラスター(図形除外)
+  * マップ縮小時には近接したフィーチャーを平行して表示し、拡大時には詳しく分けて表示します。
+* マップのイメージをダウンロード
+  * マップをイメージファイルでダウンロードできる関数(function)を提供します。
+* オーバービュー
+  * マップを画面に1つ以上表示できます。
+* マップロードイベントおよびアニメーション効果の追加
+  * タイルイメージにロードイベントを追加する機能を提供します。
+  * イメージロードに伴うプログレスバー(progress bar)効果などに活用できます。
+* プリロードタイル
+  * 一度確認した領域のイメージをキャッシュして表示します。
+* KML/GPX形式ファイルの処理
+  * KML/GPXファイルを読み込んでマップに表示し、マップに表示されたデータをKML/GPX形式で返すことができます。
 
-## API 공통 정보
+## API共通情報
 
-### 사전 준비
-- API 사용을 위해서는 앱키가 필요합니다.
-- 앱 키는 Console 상단 "URL & Appkey" 메뉴에서 확인 가능합니다.
+### 事前準備
+- APIを使用するにはアプリケーションキーが必要です。
+- アプリケーションキーは、**TOAST Console**上部にある**URL & Appkey**メニューで確認できます。
 
-### 요청 공통 정보
+### リクエスト共通情報
 
-#### URL 정보
+#### URL情報
 
-| 항목 | URL |
-| --- | --- |
-| 지도 | https://api-maps.cloud.toast.com/maps/js/v2.0/map.js |
-| Static 지도 | https://api-maps.cloud.toast.com/maps/js/v2.0/staticMap.js |
+| 項目 | URL                                      |
+| --------- | ---------------------------------------- |
+| マップ | https://api-maps.cloud.toast.com/maps/js/v2.0/map.js |
+| 静的(static)マップ | https://api-maps.cloud.toast.com/maps/js/v2.0/staticMap.js |
 
-## Web 지도
+## Webマップ
 
-### 1. Web 지도
+### 1. Webマップ
 
-JavaScript 기반 TOAST Maps API를 이용하여 웹 브라우저에 지도를 표시하는 방법을 설명합니다.
-TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표, TW X좌표, TW Y좌표로 표시합니다.
-메소드에서 옵션 매개변수는 [param]으로 표시합니다. 옵션 매개변수는 생략할 수 있습니다.
+JavaScript基盤のTOAST Maps APIを利用して、Webブラウザにマップを表示する方法を説明します。
+TOAST Maps APIは、THINKWARE座標を使用します。縮約してTW座標、TW X座標、TW Y座標で表示します。
+メソッドでオプションのパラメータは[param]と表示します。オプションのパラメータは省略できます。
 
-> ※ TOAST Maps API에서 사용되고 있는 좌표는 팅크웨어 전용 좌표로만 사용되고 있습니다.
-<br>팅크웨어 좌표를 위경도 좌표(WGS84)로 변환하기 위해서는 THINKMAP.tw_Wgs84() 함수를 이용하여 변경하시고,
-반대로 위경도 좌표(WGS84)를 팅크웨어 좌표로 변환하기 위해서는 THINKMAP.wgs84_Tw() 함수를 이용하시기 바랍니다.
+> ※ TOAST Maps APIで使用する座標は、THINKWARE専用座標にのみ使用されます。
+> <br>THINKWARE座標を経緯度座標(WGS84)に変換するには、THINKMAP.tw_Wgs84()関数を利用します。
+> 反対に経緯度座標(WGS84)をTHINKWARE座標に変換するには、THINKMAP.wgs84_Tw()関数を利用します。
+
+#### 主要TOAST Maps API案内
+##### TOAST Maps APIの詳細な使用方法は、<a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">Thinkware API Center</a>を参照してください。
+
+| API名                                   | Parameter                        | Returns                                  | 説明                                |
+| ---------------------------------------- | -------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| new thinkware.maps.Map(map_div, option)  | map_div : String                 |                                          | マップを表示するDOM要素(element)または要素のID             |
+|                                          | option.type：String             |                                          | マップのタイプ <br> 'i'：一般マップ、<br> 'm'：モバイルマップ、<br> 's'：要約マップ、<br> 'a'：航空写真、<br> 'm_a'：モバイル航空写真、<br> 's_a'：要約航空写真、<br> 'hybrid'：航空<br>default：'i' |
+|                                          | option.center.twX：number       |                                          | マップ中心のX座標：THINKWARE座標単位            |
+|                                          | option.center.twY：number       |                                          | マップ中心のY座標：THINKWARE座標単位            |
+|                                          | option.level : number            |                                          | マップのレベル                            |
+|                                          | option.callback : function()     |                                          | 初期化後に実行する関数                       |
+|                                          | option.logo : String             |                                          | ロゴを表示する位置<br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>  bottom-right |
+| changeType(type)                         | type : String                    |                                          | マップのタイプ <br> 'i'：一般マップ、<br> 'm'：モバイルマップ、<br> 's'：要約マップ、<br> 'a'：航空写真、<br> 'm_a'：モバイル航空写真、<br> 's_a'：要約航空写真、<br> 'hybrid'：航空<br>default：'i' |
+| thinkware.maps.event.addListener(target, event_type, func_cb) | target : Object                  |                                          | リスナーを追加する対象オブジェクト                    |
+|                                          | event_type : String              |                                          | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
+|                                          | func_cb : function()             |                                          | 登録するリスナー                           |
+| thinkware.maps.event.removeListener(target, event_type, func_cb) | target : Object                  |                                          | リスナーを削除する対象オブジェクト                    |
+|                                          | event_type : String              |                                          | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
+|                                          | func_cb : function()             |                                          | 削除するリスナー                           |
+| new thinkware.maps.Marker(option)        | option.map : Object              | thinkware.maps.Markerマーカーオブジェクト       | マップオブジェクト                             |
+|                                          | option.icon.url : String         |                                          | アイコンURL                                   |
+|                                          | option.icon.size.width : number  |                                          | アイコンの幅                                  |
+|                                          | option.icon.size.heigth : number |                                          | アイコンの高さ                                  |
+|                                          | option.position.twX : number     |                                          | マーカー作成X座標(THINKWARE座標単位)                     |
+|                                          | option.position.twY : number     |                                          | マーカー作成Y座標(THINKWARE座標単位)                     |
+|                                          | option.positioning : String      |                                          | 座標が位置する場所<br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>bottom-right |
+|                                          | option.title : String            |                                          | ツールチップ文字列                            |
+|                                          | option.offset.pxX : number       |                                          | pixel単位                             |
+|                                          | option.offset.pxY : number       |                                          | pixel単位                             |
+|                                          | option.visible : boolean         |                                          | 表示するかどうか                                   |
+|                                          | option.draggable : boolean       |                                          | ドラッグ可能かどうか                               |
+|                                          | option.zIndex : number           |                                          | z-index値                         |
+|                                          | option.opacity : number          |                                          | 透明度                                     |
+|                                          | option.stopEvent : boolean       |                                          | マーカー上でマップイベントの実行を防止するかどうか                   |
+| thinkware.maps.LineString.drawStart(target, option) | target : Object                  |                                          | マップオブジェクト                             |
+|                                          | option.stroke.style：String     |                                          | 線のスタイル<br><br> dot：· · · · · · <br>dash：- - - - - -<br>dashdot：- · - · - · - <br>longdashdot：ㅡ·ㅡ·ㅡ<br> solid：実線 |
+|                                          | option.stroke.weight : number    |                                          | 線の太さ(px)                                 |
+|                                          | option.stroke.color : String     |                                          | 線の色                                    |
+|                                          | option.stroke.opacity : number   |                                          | 線の透明度                                   |
+|                                          | option.callback : function()     |                                          | 描写終了後に実行する関数                    |
+|                                          | option.measure : boolean         |                                          | 距離測定ポップアップを表示するかどうか                          |
+|                                          | option.isOnce : boolean          |                                          | 1回描写後に終了するかどうか                          |
+| thinkware.maps.LineString.drawEnd(target) | target : Object                  |                                          | マップオブジェクト                             |
+| thinkware.maps.util.getLonLatFromCoordinate(param) | param.twX : number               | Coord座標<br>Object.lon : WGS84<br>Object.lat : WGS84 | THINKWARE  X座標                          |
+|                                          | param.twY : number               |                                          | THINKWARE  Y座標                          |
+| thinkware.maps.util.getCoordinateFromLonLat(param) | param.lon : number               | TW座標<br>Object.twX: TW X座標<br>Object.twY : TW Y座標 | 経度                                 |
+|                                          | param.lat : number               |                                          | 緯度                                 |
 
 
-#### 주요 TOAST Maps API 안내
-##### 추가적인 TOAST Maps API 사용법은 해당 <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">링크</a>를 참조하시기 바랍니다.
-
-| API 명 | Parameter | Returns | 설명 |
-|------|------------------------|---------------|---------------|
-| new thinkware.maps.Map(map_div, option) | map_div : String | | 지도를 표시할 DOM 엘리먼트 또는 엘리먼트의 ID |
-| | option.type : String | | 지도의 타입 <br> i(일반),<br> m(모바일),<br> s(요약),<br> a(항공배경),<br> m_a(모바일항공),<br> s_a(요약항공),<br> hybrid(항공) <br>default: i |
-| | option.center.twX : number | | 지도의 중심 X 좌표: 팅크웨어 좌표단위 |
-| | option.center.twY : number | | 지도의 중심 Y 좌표: 팅크웨어 좌표단위 |
-| | option.level : number | | 지도의 레벨 |
-| | option.callback : function() | | 초기화 후 실행할 함수 |
-| | option.logo : String | | 로고를 표시할 위치 <br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>  bottom-right |
-| changeType(type) | type : String | | 지도의 타입 <br> i(일반),<br> m(모바일),<br> s(요약),<br> a(항공배경),<br> m_a(모바일항공),<br> s_a(요약항공),<br> hybrid(항공) <br>default: i |
-| thinkware.maps.event.addListener(target, event_type, func_cb) | target : Object | | 리스너를 추가할 대상 객체 |
-| | event_type : String | | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
-| | func_cb : function() | | 등록할 리스너 |
-| thinkware.maps.event.removeListener(target, event_type, func_cb) | target : Object | | 리스너를 제거할 대상 객체 |
-| | event_type : String | | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
-| | func_cb : function() | | 제거할 리스너 |
-| new thinkware.maps.Marker(option) | option.map : Object | thinkware.maps.Marker 마커 객체 | 지도 객체 |
-| | option.icon.url : String | | 아이콘Url |
-| | option.icon.size.width : number | | 아이콘 너비 |
-| | option.icon.size.heigth : number | | 아이콘 높이 |
-| | option.position.twX : number | | 마커 생성 X좌표(팅크웨어 좌표단위) |
-| | option.position.twY : number | | 마커 생성 Y좌표(팅크웨어 좌표단위) |
-| | option.positioning : String | | 좌표가 위치할 곳<br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>bottom-right |
-| | option.title : String | | 툴팁 문자열 |
-| | option.offset.pxX : number | | 픽셀 단위 |
-| | option.offset.pxY : number | | 픽셀 단위 |
-| | option.visible : boolean | | 표시 여부 |
-| | option.draggable : boolean | | 드래그 가능 여부 |
-| | option.zIndex : number | | z-index 값 |
-| | option.opacity : number | | 투명도 |
-| | option.stopEvent : boolean | | 마커상에서 지도 이벤트 실행 방지 여부 |
-| thinkware.maps.LineString.drawStart(target, option) | target : Object | | 지도 객체 |
-| | option.stroke.style : String | | 선 스타일<br><br> dot : · · · · · · <br>dash : - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid : 일반라인 |
-| | option.stroke.weight : number | | 선 굵기(px) |
-| | option.stroke.color : String | | 선 색상 |
-| | option.stroke.opacity : number | | 선 투명도 |
-| | option.callback : function() | | 그리기 종료 후 실행할 함수 |
-| | option.measure : boolean | | 거리 측정 팝업 표시 여부 |
-| | option.isOnce : boolean | | 한번 그리기 후 종료 여부 |
-| thinkware.maps.LineString.drawEnd(target) | target : Object | | 지도 객체 |
-| thinkware.maps.util.getLonLatFromCoordinate(param) | param.twX : number | Coord 좌표<br>Object.lon : WGS84<br>Object.lat : WGS84 | 팅크웨어 X좌표 |
-| | param.twY : number | | 팅크웨어 Y좌표 |
-| thinkware.maps.util.getCoordinateFromLonLat(param) | param.lon : number | TW 좌표<br>Object.twX: TW X 좌표<br>Object.twY : TW Y 좌표 | 경도 |
-| | param.lat : number | | 위도 |
-
-
-#### TOAST Maps API 사용하기
+#### TOAST Maps APIの使用
 ```
 <script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v2.0/map.js"></script>
 <script>
-	//지도 사용을 위한 인증을 진행 합니다.
+	//マップを使用するための認証を進行します。
 	Map.authentification("appKey");
 </script>
 
 <div id="div_map"></div>
 <script type="text/javascript">
 
-	//선언한 DIV에 지도를 표출 합니다.
-	var map = new thinkware.maps.Map("div_map", { 
+	//宣言したDIVにマップを表示します。
+	var map = new thinkware.maps.Map("div_map", {
 		center: {
-			twX: 169030, 
-			twY: 517922 
-		}, 
-		level: 12, 
-		type: "i", 
+			twX: 169030,
+			twY: 517922
+		},
+		level: 12,
+		type: "i",
 		callback: success = function() {
 			console.log("map init success!");
 		}
@@ -126,26 +125,26 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 </script>
 ```
 
-#### 지도 모드 변경 하기
+#### マップモードの変更
 ```
 <script type="text/javascript">
 
- 	// 생성된 지도 객체의 지도 Type을 변경 합니다.
- 	// 일반: i, 모바일: m, 요약: s, 항공배경: a, 모바일항공: m_a, 요약항공: s_a, 항공: hybrid
-	// 항공배경지도로 변경 합니다.
+ 	// 作成されたマップオブジェクトのマップTypeを変更します。
+ 	// 一般：i、モバイル：m、要約：s、航空写真：a、モバイル航空：m_a、要約航空：s_a、航空：hybrid
+	// 航空写真に変更します。
 	map.changeType('i');
 
 </script>
 ```
 
-#### 지도 이벤트 등록 하기
+#### マップにイベントを登録
 ```
 <script type="text/javascript">
 
-	//지도에 move 이벤트를 등록 합니다.
+	//マップにmoveイベントを登録します。
 	thinkware.maps.event.addListener(map, 'click', mapEvent_cb)
-	
-	 //지도 이벤트 발생 시 콜백 함수
+
+	 //マップイベント発生時のコールバック関数
     function mapEvent_cb(event){
         console.log("event callback!");
     }
@@ -153,53 +152,53 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 </script>
 ```
 
-#### 지도 이벤트 제거 하기
+#### マップのイベントを削除
 ```
 <script type="text/javascript">
-	
-	//지도에 move 이벤트를 제거 합니다.
+
+	//マップからmoveイベントを削除します。
 	thinkware.maps.event.removeListener(map, 'move', mapEvent_cb)
 
 </script>
 ```
 
-#### 지도 마커 추가 하기
+#### マップマーカーの追加
 ```
 <script type="text/javascript">
-	
-	// 지도에 마커 객체를 추가 합니다.
+
+	// マップにマーカーオブジェクトを追加します。
 	var marker = new thinkware.maps.Marker({
 	    map: map,
 	    position: {
-	        twX: 169030, 
+	        twX: 169030,
 	        twY: 517922
 	    },
 	    stopEvent: false
 	});
-	
-	// 지도에 마커 객체를 이동 시킵니다.
+
+	// マップにマーカーオブジェクトを移動させます。
 	marker.setPosition({twX: 169030, twY: 517922});
 
 </script>
 ```
 
-#### 지도 그리기 모드로 전환 하기
+#### マップ描写モードに切り替え
 ```
 <script type="text/javascript">
-	
-	// 그리기 모드로 전환 합니다.
+
+	// 描写モードに切り替えます。
 	var strokeOpt = {
-		style : 'longdash'	// 선 스타일(solid, dash, longdash, ... 또는 segments 를 반환하는 함수 참고) default: "solid"
-		, weight : 5		// 선 굵기(px) (default: 3)
-		, color : '#3399ff'	//선 색상(default: #3399ff)
-		, opacity : 1		//선 투명도(default: 1)
+		style : 'longdash'	// 線のスタイル(solid, dash, longdash, ... またはsegmentsを返す関数を参照) default: "solid"
+		, weight : 5		// 線の太さ(px) (default: 3)
+		, color : '#3399ff'	//線の色(default: #3399ff)
+		, opacity : 1		//線の透明度(default: 1)
     };
-	
+
 	var drawOpt = {
 		stroke : strokeOpt
-		, callback : mapDraw_cb // 그리기 종료 후 실행할 함수(default: undefined)
-		, measure : true 		// 거리 측정 팝업 표시 여부(default: false)
-		, isOnce : false		// 한 번 그린 후 종료 여부(default: false)
+		, callback : mapDraw_cb // 描写終了後に実行する関数(default: undefined)
+		, measure : true 		// 距離測定ポップアップを表示するかどうか(default: false)
+		, isOnce : false		// 1回描写後に終了するかどうか(default: false)
 	};
 
 	//thinkware.maps.LineString.drawStart(map, drawOpt);
@@ -210,93 +209,93 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 </script>
 ```
 
-#### 지도 그리기 모드 종료 하기
+#### マップ描写モードの終了
 ```
 <script type="text/javascript">
-	
-	// 그리기 모드를 종료 합니다.
+
+	// 描写モードを終了します。
 	thinkware.maps.LineString.drawEnd(map);
 
 </script>
 ```
 
-#### TW 좌표를 WGS 좌표로 변환 하기
+#### TW座標をWGS座標に変換
 ```
 <script type="text/javascript">
-	
- 	// TW 좌표를 WGS좌표로 변환 합니다.
+
+ 	// TW座標をWGS座標に変換します。
  	var tws = {
 		twX : 169030
 		, twY: 517922
  	};
- 	
+
  	var wgs84 = thinkware.maps.util.getLonLatFromCoordinate(tws);
  	console.log(wgs84.lon);
  	console.log(wgs84.lat);
- 	
+
 </script>
 ```
 
-#### WGS 좌표를 TW 좌표로 변환 하기
+#### WGS座標をTW座標に変換
 ```
 <script type="text/javascript">
-	
- 	 // WGS 좌표를 TW좌표로 변환 합니다.
+
+ 	 // WGS座標をTW座標に変換します。
 	 var wgs84 = {
 		lon: 127.11074994024005
 		, lat: 37.40215870673785
 	};
- 	 
+
 	 var tws = thinkware.maps.util.getCoordinateFromLonLat(wgs84);
- 	 
+
  	console.log(tws.twX);
  	console.log(tws.twY);
-	
+
 </script>
 ```
 
-### 2. Static 지도
+### 2. 静的(static)マップ
 
-#### TOAST Maps API Static 지도 사용하기
+#### TOAST Maps APIで静的マップの使用
 ```
-// Static 지도 사용을 위한 js 파일을 선언 합니다.
+// 静的マップを使用するためのjsファイルを宣言します。
 <script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v2.0/staticMap.js"></script>
 
-// 지도를 담을 IMG를 생성 합니다.
+// マップを入れるIMGを作成します。
 <img id='staticMapImg' alt="" src="">
 
 <script>
 
-	// Static 지도 사용을 위한 인증 및 파라미터를 전달 합니다. 	
+	// 静的マップを使用するための認証およびパラメータを渡します。 	
 	StaticMap.authentification('staticMapImg',"appkey",'x=157423&y=266836&width=970&height=300&level=10&maptype=i&mx=158323&my=266836&txt=');
 
 </script>
 ```
 
-| 이름 | 타입	| 필수 여부 | 설명 |
-|---|---|---|---|
-| x | Integer | 필수 | 지도 중심 X좌표 |
-| y | Integer | 필수 | 지도 중심 Y좌표 |
-| mx | Integer | 필수 | 마커 X좌표 |
-| my | Integer | 필수 | 마커 Y좌표 |
-| width	| Integer | 선택 | 지도 넓이 <br> 미입력 시 기본 600px |
-| height | Integer | 선택 | 지도 높이 <br> 미입력 시 기본 600px |
-| imgurl | String | 선택 | 마커 이미지 url<br> 미입력 시 기본 마커 사용 |
-| level | Integer | 선택 | 지도 레벨 <br> 미입력 시 기본 10 |
-| maptype | String | 선택 | 지도 타입 <br> 미입력 시 기본 일반맵 |
-| label | String | 선택 | 라벨 내용 |
+| 名前 | タイプ | 必須かどうか | 説明                     |
+| ------- | ------- | ----- | ----------------------------- |
+| x       | Integer | 必須 | マップ中心のX座標              |
+| y       | Integer | 必須 | マップ中心のY座標              |
+| mx      | Integer | 必須 | マーカーのX座標                 |
+| my      | Integer | 必須 | マーカーのY座標                 |
+| width   | Integer | 任意 | マップの幅<br>未入力時は基本600px     |
+| height  | Integer | 任意 | マップの高さ<br>未入力時は基本600px     |
+| imgurl  | String  | 任意 | マーカーイメージURL<br> 未入力時は基本マーカーを使用 |
+| level   | Integer | 任意 | マップレベル <br> 未入力時は基本10        |
+| maptype | String  | 任意 | マップタイプ <br> 未入力の時は基本一般マップ      |
+| label   | String  | 任意 | ラベルの内容                  |
 
-### 3. Mobile Web 지도
+### 3. モバイルWebマップ
 
-Android / iOS WebView로 하이브리드 형태의 앱을 개발할 때 TOAST Maps API를 이용하여 JavaScript 기반의  Web 지도와 동일한 API로 사용하실 수 있습니다.
-API 관련해서는 [1. Web 지도](#1-web)를 참고 하시기 바랍니다.
+Android/iOS WebViewで使用できるハイブリッド型のアプリを開発する時、TOAST Maps APIを利用し、JavaScript基盤のWebマップと同じAPIで使用できます。
+APIの詳細は、[1. Webマップ](#1-web)を参照してください。
 
-#### TOAST Maps API Mobile에서 사용하기
+#### TOAST Maps APIをMobileで使用
 ```
 <!DOCTYPE html>
 <html>
     <head>
-		// 모바일 기기에 맞춰 viewport를 설정 합니다.
+		// モバイル端末に合わせてviewportを設定します。
         <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 
 		<style>
@@ -310,35 +309,35 @@ API 관련해서는 [1. Web 지도](#1-web)를 참고 하시기 바랍니다.
 				height: 100%;
 			}
     	</style>
-    
-		// 지도 사용을 위한 js 파일을 선언 합니다.
+
+		// マップを使用するためのjsファイルを宣言します。
 		<script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v2.0/map.js"></script>
 		<script>
-			// 지도 사용을 위한 인증을 진행 합니다.
+			// マップを使用するための認証を進行します。
 			Map.authentification("appKey");
 		</script>
 	</head>
-	
+
 	<body>
-	
-		//지도를 담을 DIV를 생성 합니다.
+
+		//マップを入れるDIVを作成します。
 		<div id="div_map"></div>
 		<script type="text/javascript">
-		
-			//선언한 DIV에 지도를 표출 합니다. (모바일 지도 타입으로 'm'을 선언 합니다.)
-			var map = new thinkware.maps.Map("div_map", { 
+
+			//宣言したDIVにマップを表示します。(モバイルマップタイプで'm'を宣言します。)
+			var map = new thinkware.maps.Map("div_map", {
 				center: {
-					twX: 169030, 
-					twY: 517922 
-				}, 
-				level: 12, 
-				type: "m", 
+					twX: 169030,
+					twY: 517922
+				},
+				level: 12,
+				type: "m",
 				callback: success = function() {
 					console.log("map init success!");
 				}
 			});
 		</script>
 	</body>
-	
+
 </html>
 ```
