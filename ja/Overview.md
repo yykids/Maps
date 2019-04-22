@@ -1,4 +1,4 @@
-﻿## Application Service > Maps > 概要
+## Application Service > Maps > 概要
 
 TOAST Mapsサービスは、長年ナビゲーション技術を蓄積してきたinaviサービスをHTTP RESTful APIで提供します。
 お手軽で正確なマップ、検索、道検索など、多様な機能を使用できます。
