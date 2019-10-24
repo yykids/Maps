@@ -923,7 +923,7 @@
 
 
 
-## Reverse GeoCoding API
+## Reverse Geocoding API
 
 ### 1\. 좌표검색\(좌표 \-\> 주소\)
 
