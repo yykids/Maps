@@ -1,4 +1,4 @@
-## Application Service > Maps > API v3.0 가이드
+## Application Service > Maps > API Guide
 
 아이나비의 오랜 내비 엔진 기술을 이용한 검색, Geocoding, Reverse Geocoding, 경로 탐색(길찾기), Static Map API 사용에 대해 설명합니다. 
 

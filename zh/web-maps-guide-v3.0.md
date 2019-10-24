@@ -1,4 +1,4 @@
-## Application Service > Maps > 웹 지도 가이드
+## Application Service > Maps > Web maps Guide
 
 Maps 웹 지도를 사용하는 데 필요한 JavaScript 기반 웹 API를 설명합니다.
 
