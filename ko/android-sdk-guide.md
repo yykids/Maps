@@ -154,13 +154,12 @@ inaviMap.moveCamera(cameraUpdate)
 ## 주요 iNavi Maps SDK 안내
 추가적인 Maps SDK 사용법은 [iNavi Maps API 센터](http://imapsapi.inavi.com/)를 참고하시기 바랍니다.
 
+[InaviMapSdk] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.html)
+[InaviMap] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMap.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMap.html)
+[InvMapView] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapView.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapView.html)
+[InvMapFragment] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapFragment.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapFragment.html)
+[AuthFailureCallback] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.AuthFailureCallback.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.AuthFailureCallback.html)
+[CameraUpdate] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdate.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdate.html)
+[CameraUpdateBuilder] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html)
 
-   [InaviMapSdk] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.html)
-   [InaviMap] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMap.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMap.html)
-   [InvMapView] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapView.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapView.html)
-   [InvMapFragment] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapFragment.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapFragment.html)
-   [AuthFailureCallback] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.AuthFailureCallback.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.AuthFailureCallback.html)
-   [CameraUpdate] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdate.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdate.html)
-   [CameraUpdateBuilder] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html)
-
-   [NHN TOAST Console] : [https://console.toast.com/](https://console.toast.com/)
+[NHN TOAST Console] : [https://console.toast.com/](https://console.toast.com/)
