@@ -52,20 +52,20 @@ pod install --repo-update
 </plist>
 ```
 
-#### 2. INVAccountManager API 호출로 설정
-Application 생성 시점에 동적으로 [INVAccountManager] 싱글턴 객체의 함수를 호출하여 Appkey를 설정할 수 있습니다.
+#### 2. INVMapSdk API 호출로 설정
+Application 생성 시점에 동적으로 [INVMapSdk] 싱글턴 객체의 함수를 호출하여 Appkey를 설정할 수 있습니다.
 
 ```swift
 // Swift
-INVAccountManager.sharedInstance().iNaviAppKey = "YOUR_APP_KEY"
+INVMapSdk.sharedInstance().appKey = "YOUR_APP_KEY"
 ```
 
 #### 인증 실패
 지도 초기화 단계에 인증이 실패하면 SDK 내부에서 등록된 Callback으로 에러 코드와 메시지를 전달합니다.\
-실패에 대한 Callback을 받으려면 [INVAccountManager] 싱글턴 객체에 [INVAccountManagerDelegate]을 아래와 같이 설정해야 합니다.
+실패에 대한 Callback을 받으려면 [INVMapSdk] 싱글턴 객체에 [INVMapSdkDelegate]을 아래와 같이 설정해야 합니다.
 ```swift
 // Swift
-INVAccountManager.sharedInstance().delegate = self
+INVMapSdk.sharedInstance().delegate = self
 
 func authFailure(_ errorCode: Int, message: String) {
     // 인증 실패 처리
@@ -152,8 +152,8 @@ mapView.moveCamera(camUpdate)
 ## 주요 Maps SDK 안내
 추가적인 Maps SDK 사용법은 [iNavi Maps API 센터](http://imapsapi.inavi.com/)를 참고하시기 바랍니다.
 
-[INVAccountManager] : [http://imapsapi.inavi.com/iOS/Classes/INVAccountManager.html](http://imapsapi.inavi.com/iOS/Classes/INVAccountManager.html)
-[INVAccountManagerDelegate] : [http://imapsapi.inavi.com/iOS/Protocols/INVAccountManagerDelegate.html](http://imapsapi.inavi.com/iOS/Protocols/INVAccountManagerDelegate.html)
+[INVMapSdk] : [http://imapsapi.inavi.com/iOS/Classes/INVMapSdk.html](http://imapsapi.inavi.com/iOS/Classes/INVMapSdk.html)
+[INVMapSdkDelegate] : [http://imapsapi.inavi.com/iOS/Protocols/INVMapSdkDelegate.html](http://imapsapi.inavi.com/iOS/Protocols/INVMapSdkDelegate.html)
 
 [InaviMapView] : [http://imapsapi.inavi.com/iOS/Classes/InaviMapView.html](http://imapsapi.inavi.com/iOS/Classes/InaviMapView.html)
 
