@@ -14,7 +14,7 @@ iOS 플랫폼에서 아이나비 지도를 사용하기 위한 프로젝트 기�
 ### Project 환경 구성
 다음과 같이 Podfile을 생성하여 아이나비 지도 SDK에 대한 Pod 의존성을 설정합니다.
 
-> `아이나비 지도 iOS SDK는 CocoaPods를 통해 배포되며, Beta 기간 종료 후에는 정책에 맞춰 변경될 수 있습니다. (사전 공지 예정)`
+> 아이나비 지도 iOS SDK는 CocoaPods를 통해 배포되며, Beta 기간 종료 후에는 정책에 맞춰 변경될 수 있습니다. (사전 공지 예정)
 
 ```ruby
 # Podfile
@@ -34,7 +34,7 @@ pod install --repo-update
 ### Appkey 설정
 발급받은 Appkey를 설정할 수 있도록 아래의 두 가지 방법을 제공합니다. 
 
-> `Appkey가 설정되지 않으면 지도 초기화 단계에서 인증 오류가 발생합니다.`
+> Appkey가 설정되지 않으면 지도 초기화 단계에서 인증 오류가 발생합니다.
 
 #### 1. 프로젝트 info.plist에서 설정
 `info.plist`파일 내부에 Appkey를 설정할 수 있습니다.
@@ -52,20 +52,20 @@ pod install --repo-update
 </plist>
 ```
 
-#### 2. INVAccountManager API 호출로 설정
-Application 생성 시점에 동적으로 [INVAccountManager] 싱글턴 객체의 함수를 호출하여 Appkey를 설정할 수 있습니다.
+#### 2. INVMapSdk API 호출로 설정
+Application 생성 시점에 동적으로 [INVMapSdk] 싱글턴 객체의 함수를 호출하여 Appkey를 설정할 수 있습니다.
 
 ```swift
 // Swift
-INVAccountManager.sharedInstance().iNaviAppKey = "YOUR_APP_KEY"
+INVMapSdk.sharedInstance().appKey = "YOUR_APP_KEY"
 ```
 
 #### 인증 실패
-지도 초기화 단계에 인증이 실패하면 SDK 내부에서 등록된 Callback으로 에러 코드와 메시지를 전달합니다.\
-실패에 대한 Callback을 받으려면 [INVAccountManager] 싱글턴 객체에 [INVAccountManagerDelegate]을 아래와 같이 설정해야 합니다.
+지도 초기화 단계에 인증이 실패하면 SDK 내부에서 등록된 Callback으로 에러 코드와 메시지를 전달합니다.
+실패에 대한 Callback을 받으려면 [INVMapSdk] 싱글턴 객체에 [INVMapSdkDelegate]을 아래와 같이 설정해야 합니다.
 ```swift
 // Swift
-INVAccountManager.sharedInstance().delegate = self
+INVMapSdk.sharedInstance().delegate = self
 
 func authFailure(_ errorCode: Int, message: String) {
     // 인증 실패 처리
@@ -101,7 +101,7 @@ override func viewDidLoad() {
     view.addSubview(mapView)
 }
 ```
-Interface Builder를 사용하여 지도를 추가하려면 XIB나 Storyboard에 UIView를 추가한 다음\
+Interface Builder를 사용하여 지도를 추가하려면 XIB나 Storyboard에 UIView를 추가한 다음
 Identity Inspector패널의 Custom Class 항목을 [InaviMapView]로 설정하면 됩니다.
 
 #### 지도 이벤트 설정
@@ -137,7 +137,7 @@ marker.mapView = nil
 ```
 
 #### 카메라 이동
-[INVCameraUpdate]의 팩토리 메서드 또는 [INVCameraUpdateParams]를 통해 [INVCameraUpdate] 객체를 생성한 다음\
+[INVCameraUpdate]의 팩토리 메서드 또는 [INVCameraUpdateParams]를 통해 [INVCameraUpdate] 객체를 생성한 다음
 [moveCamera()] 함수에 파라미터를 전달하여 호출하면 카메라가 이동됩니다.
 
 애니메이션과 카메라 이벤트에 대한 콜백을 지원하므로, 카메라 이동을 원하는 대로 구현할 수 있습니다.
@@ -152,8 +152,8 @@ mapView.moveCamera(camUpdate)
 ## 주요 Maps SDK 안내
 추가적인 Maps SDK 사용법은 [iNavi Maps API 센터](http://imapsapi.inavi.com/)를 참고하시기 바랍니다.
 
-[INVAccountManager] : [http://imapsapi.inavi.com/iOS/Classes/INVAccountManager.html](http://imapsapi.inavi.com/iOS/Classes/INVAccountManager.html)
-[INVAccountManagerDelegate] : [http://imapsapi.inavi.com/iOS/Protocols/INVAccountManagerDelegate.html](http://imapsapi.inavi.com/iOS/Protocols/INVAccountManagerDelegate.html)
+[INVMapSdk] : [http://imapsapi.inavi.com/iOS/Classes/INVMapSdk.html](http://imapsapi.inavi.com/iOS/Classes/INVMapSdk.html)
+[INVMapSdkDelegate] : [http://imapsapi.inavi.com/iOS/Protocols/INVMapSdkDelegate.html](http://imapsapi.inavi.com/iOS/Protocols/INVMapSdkDelegate.html)
 
 [InaviMapView] : [http://imapsapi.inavi.com/iOS/Classes/InaviMapView.html](http://imapsapi.inavi.com/iOS/Classes/InaviMapView.html)
 

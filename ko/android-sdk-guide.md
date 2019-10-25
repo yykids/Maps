@@ -14,7 +14,7 @@ Android 플랫폼에서 아이나비 지도를 사용하기 위한 프로젝트 
 ### Project 환경 구성
 다음과 같이 Project 및 App 모듈 레벨의 build.gradle 파일에 아이나비 지도 저장소를 추가하고, 의존성을 설정합니다.
 
-> `아이나비 지도 Android SDK는 Bintray를 통해 배포되며, Beta 기간 종료 후에는 정책에 맞춰 변경될 수 있습니다. (사전 공지 예정)`
+> 아이나비 지도 Android SDK는 Bintray를 통해 배포되며, Beta 기간 종료 후에는 정책에 맞춰 변경될 수 있습니다. (사전 공지 예정)
 
 ```gradle
 /* Root Project build.gradle */
@@ -43,7 +43,7 @@ dependencies {
 ### Appkey 설정
 발급받은 Appkey를 설정할 수 있도록 아래의 두 가지 방법을 제공합니다. 
 
-> `Appkey가 설정되지 않으면 지도 초기화 단계에서 인증 오류가 발생합니다.`
+> Appkey가 설정되지 않으면 지도 초기화 단계에서 인증 오류가 발생합니다.
 
 #### 1. AndroidManifest.xml에서 설정
 `AndroidManifest.xml`에 `<meta-data>`를 추가하여 Appkey를 설정할 수 있습니다.
@@ -67,7 +67,7 @@ InaviMapSdk.getInstance(context).appKey = "YOUR_APP_KEY"
 ```
 
 #### 인증 실패
-지도 초기화 단계에 인증이 실패하면 SDK 내부에서 등록된 Callback으로 에러 코드와 메시지를 전달합니다.\
+지도 초기화 단계에 인증이 실패하면 SDK 내부에서 등록된 Callback으로 에러 코드와 메시지를 전달합니다.
 실패에 대한 Callback을 받으려면 [InaviMapSdk] 싱글턴 객체에 [AuthFailureCallback]을 아래와 같이 설정해야 합니다.
 ```kotlin
 InaviMapSdk.getInstance(context).authFailureCallback =
@@ -101,8 +101,8 @@ InaviMapSdk.getInstance(context).authFailureCallback =
 ```
 
 #### 지도 객체 접근
-지도와 관련된 모든 조작은 [InaviMap] 객체를 통해 이루어집니다.\
-[InaviMap] 객체에 접근하기 위해서는 우선 [InvMapFragment] 객체의 getMapAsync() 함수를 호출해야 합니다.\
+지도와 관련된 모든 조작은 [InaviMap] 객체를 통해 이루어집니다.
+[InaviMap] 객체에 접근하기 위해서는 우선 [InvMapFragment] 객체의 getMapAsync() 함수를 호출해야 합니다.
 지도 초기화가 완료되면 onMapReady() 콜백 함수를 통해 [InaviMap] 객체가 전달됩니다.
 ```kotlin
 val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment)
@@ -140,7 +140,7 @@ marker.map = null
 ```
 
 #### 카메라 이동
-[CameraUpdate]의 팩토리 메서드 또는 [CameraUpdateBuilder]를 통해 [CameraUpdate] 객체를 생성한 다음\
+[CameraUpdate]의 팩토리 메서드 또는 [CameraUpdateBuilder]를 통해 [CameraUpdate] 객체를 생성한 다음
 moveCamera() 함수에 파라미터를 전달하여 호출하면 카메라가 이동됩니다.
 
 애니메이션과 카메라 이벤트에 대한 콜백을 지원하므로, 카메라 이동을 원하는 대로 구현할 수 있습니다.
