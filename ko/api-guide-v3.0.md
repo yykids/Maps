@@ -1041,7 +1041,7 @@
 | via5Y    | String | 선택    |       | 경유지 5 Y 좌표                               |
 | option   | String | 필수    |       | 경로 탐색 옵션<br>탐색 옵션 하나만 가능<br>예) option=real_traffic<br>real_traffic : 실시간 추천1<br>real\_traffic\_freeroad : 실시간 \(무료\)<br>real_traffic2 : 실시간 추천2<br>short\_distance\_priority : 단거리<br>motorcycle: 이륜차 |
 | carType   | Integer | 선택    |       | 톨게이트비 계산을 위한 차종(1~6), default : 1 |
-| coordType   | String | 필수    |       | input, output 좌표 타입, 하나만 입력가능 (TW, WGS84) |
+| coordType   | String | 필수    |       | input, output 좌표 타입, 하나만 입력가능 (tw, wgs84) |
 |guideTop	|Integer| 선택 ||표출할 안내정보 개수 |
 |groupByTrafficColor	| Boolean| 선택| |세부경로목록 (paths) 정보를 교통색상별로 그룹핑하여 반환할지 여부	|
 |saveFile	| Boolean| 선택| |경로 주변 POI 검색을 위한 binary 파일 저장 여부	|
@@ -1189,7 +1189,7 @@
 | via5X    | String | 선택    |       | 경유지 5 X 좌표                               |
 | via5Y    | String | 선택    |       | 경유지 5 Y 좌표                               |
 | option   | String | 필수    |       | 경로 탐색 옵션<br>탐색 옵션 하나만 가능<br>예) option=real_traffic<br>real_traffic : 실시간 추천1<br>real\_traffic\_freeroad : 실시간 \(무료\)<br>real_traffic2 : 실시간 추천2<br>short\_distance\_priority : 단거리<br>motorcycle: 이륜차 |
-| coordType   | String | 필수    |       | input, output 좌표 타입, 하나만 입력가능 (TW, WGS84) |
+| coordType   | String | 필수    |       | input, output 좌표 타입, 하나만 입력가능 (tw, wgs84) |
 
 
 #### 응답
@@ -1259,7 +1259,7 @@
 | endX     | String | 필수    |       | 도착지 X 좌표                                 |
 | endY     | String | 필수    |       | 도착지 Y 좌표                                 |
 | orderby    | String | 필수    |       | 정렬기준 (<br> 0 : distance_desc<br>1 : distance_asc<br>2 : time_desc <br>3 : time_asc<br>)                               |
-| coordType    | String | 필수    |       | 좌표 타입(TW, WGS84)
+| coordType    | String | 필수    |       | 좌표 타입(tw, wgs84)
 | resultCount    | Integer | 선택    |       | 결과 표출 개수                               |
 
 
@@ -1341,7 +1341,7 @@
 | startX     | String | 필수    |       | 출발지 X 좌표                                 |
 | startY     | String | 필수    |       | 출발지 Y 좌표                                 |
 | orderby    | String | 필수    |       | 정렬기준 (<br> 0 : distance_desc<br>1 : distance_asc<br>2 : time_desc <br>3 : time_asc<br>)                               |
-| coordType    | String | 필수    |       | 좌표 타입(TW, WGS84)
+| coordType    | String | 필수    |       | 좌표 타입(tw, wgs84)
 | resultCount    | Integer | 선택    |       | 결과 표출 개수                               |
 
 
