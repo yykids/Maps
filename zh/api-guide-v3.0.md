@@ -1,6 +1,6 @@
-## Application Service > Maps > API Guide
+## Application Service > Maps > API v3.0 Guide
 
-아이나비의 오랜 내비 엔진 기술을 이용한 검색, Geocoding, Reverse Geocoding, 경로 탐색(길찾기), Static Map API 사용에 대해 설명합니다. 
+아이나비의 오랜 내비 엔진 기술을 이용한 검색, Geocoding, Reverse Geocoding, 경로 탐색(길찾기), Static Map API 사용에 대해 설명합니다.
 
 ## API 공통 정보
 
@@ -439,11 +439,11 @@
     "count": 2,
     "poiinfo": [
       {
-        "poiid": 510835,
-        "dpx": "164939",
-        "dpy": "530708",
-        "rpx": "164929",
-        "rpy": "530731",
+				"poiid": 510835.0,
+        "dpx": "127.059664",
+        "dpy": "37.508629",
+        "rpx": "127.059089",
+        "rpy": "37.508779",
         "name1": "현대백화점(무역센터점)",
         "name2": "현대백화점무역센터점",
         "name3": "무역센터현대백화점",
@@ -630,78 +630,53 @@
     "resultCode": 0,
     "resultMessage": ""
   },
-  "subpoi": {
-    "result": true,
-    "totalcount": 5,
-    "count": 5,
-    "poi": [
-      {
-        "poiid": 4521976,
-        "depth": 1,
-        "dpx": "169172",
-        "dpy": "517030",
-        "rpx": "169172",
-        "rpy": "517030",
-        "name1": "환승주차장",
-        "name2": "",
-        "name3": "",
-        "name4": "",
-        "admcode": "4113511000",
-        "jibun": "",
-        "address": "경기도 성남시 분당구 백현동",
-        "roadname": "",
-        "roadjibun": "",
-        "detailaddress": "",
-        "catecode": "161701",
-        "catename": "주차장",
-        "dp_catecode": "360",
-        "userid": "",
-        "imagecount": 0,
-        "userimagecount": 0,
-        "badgeflag": false,
-        "distance": 0,
-        "tel": "",
-        "islandmark": false,
-        "updateTS": "1970-01-01 09:00:00",
-        "hasoildata": false,
-        "hasdetailinfo": false,
-        "hassubpoi": false
-      },
-      {
-        "poiid": 4521977,
-        "depth": 1,
-        "dpx": "169088",
-        "dpy": "517090",
-        "rpx": "169088",
-        "rpy": "517090",
-        "name1": "1번출구",
-        "name2": "",
-        "name3": "",
-        "name4": "",
-        "admcode": "4113511000",
-        "jibun": "",
-        "address": "경기도 성남시 분당구 백현동",
-        "roadname": "",
-        "roadjibun": "",
-        "detailaddress": "",
-        "catecode": "173000",
-        "catename": "지하철",
-        "dp_catecode": "370",
-        "userid": "",
-        "imagecount": 0,
-        "userimagecount": 0,
-        "badgeflag": false,
-        "distance": 0,
-        "tel": "",
-        "islandmark": false,
-        "updateTS": "1970-01-01 09:00:00",
-        "hasoildata": false,
-        "hasdetailinfo": false,
-        "hassubpoi": false
-      },
-      ...
-    ]
-  }
+	"subpoi": {
+        "result": true,
+        "totalcount": 1,
+        "count": 1,
+        "poi": [
+            {
+                "poiid": 1415980,
+                "depth": 1,
+                "dpx": "127.110862",
+                "dpy": "37.402334",
+                "rpx": "127.110862",
+                "rpy": "37.402334",
+                "name1": "정문",
+                "name2": "팅크웨어정문",
+                "name3": "",
+                "name4": "",
+                "admcode": "4113510900",
+                "jibun": "678",
+                "address": "경기도 성남시 분당구 삼평동",
+                "roadname": "경기도 성남시 분당구 판교역로",
+                "roadjibun": "240",
+                "detailaddress": "",
+                "catecode": "181100",
+                "catename": "도로시설",
+                "dp_catecode": "000",
+                "userid": "",
+                "imagecount": 0,
+                "userimagecount": 0,
+                "badgeflag": false,
+                "distance": 12164030,
+                "tel": "",
+                "islandmark": false,
+                "visitscore": "0",
+                "landmarkscore": "0",
+                "popularity": false,
+                "pop_tv": false,
+                "pop_sns": false,
+                "pop_hot": false,
+                "pop_hit": false,
+                "pop_top": "",
+                "updateTS": "1970-01-01 09:00:00",
+                "hasoildata": false,
+                "hasdetailinfo": false,
+                "hassubpoi": false
+            }...
+    		]
+  	}
 }
 ```
 
@@ -865,37 +840,51 @@
     "resultCode": 0,
     "resultMessage": ""
   },
-  "address": {
-    "result": true,
-    "totalcount": 2,
-    "admtotalcount": 2,
-    "admcount": 2,
-    "res_type": "NNYN",
-    "adm": [
-      {
-        "type": 2,
-        "posx": "168425",
-        "posy": "516725",
-        "admcode": "4113510800",
-        "jibun": "",
-        "address": "경기도 성남시 분당구 판교동",
-        "roadname": "",
-        "roadjibun": "",
-        "accuracy": 3
-      },
-      {
-        "type": 2,
-        "posx": "167300",
-        "posy": "515526",
-        "admcode": "4113511000",
-        "jibun": "",
-        "address": "경기도 성남시 분당구 백현동(판교동)",
-        "roadname": "",
-        "roadjibun": "",
-        "accuracy": 3
-      }
-    ]
-  }
+	"address": {
+        "result": true,
+        "totalcount": 6.0,
+        "admtotalcount": 6.0,
+        "admcount": 3.0,
+        "res_type": "NNYN",
+        "adm": [
+            {
+                "type": 2.0,
+                "posx": "126.689009",
+                "posy": "36.157903",
+                "admcode": "4477038000",
+                "jibun": "",
+                "address": "충청남도 서천군 판교면",
+                "roadname": "",
+                "roadjibun": "",
+                "accuracy": 3.0,
+                "distance": 1.2081825E7
+            },
+            {
+                "type": 2.0,
+                "posx": "126.521977",
+                "posy": "36.547422",
+                "admcode": "4480037030",
+                "jibun": "",
+                "address": "충청남도 홍성군 서부면 판교리",
+                "roadname": "",
+                "roadjibun": "",
+                "accuracy": 3.0,
+                "distance": 1.2082085E7
+            },
+            {
+                "type": 2.0,
+                "posx": "126.699108",
+                "posy": "36.167844",
+                "admcode": "4477038021",
+                "jibun": "",
+                "address": "충청남도 서천군 판교면 판교리",
+                "roadname": "",
+                "roadjibun": "",
+                "accuracy": 3.0,
+                "distance": 1.2083048E7
+            }
+        ]
+    }
 }
 ```
 
@@ -957,24 +946,24 @@
 
 ```
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": ""
-  },
-  "location": {
-    "result": true,
-    "adm": {
-      "posx": "168434",
-      "posy": "516700",
-      "admcode": "4113511000",
-      "address": "경기도 성남시 분당구 백현동",
-      "jibun": "519-7",
-      "roadname": "",
-      "roadjibun": "",
-      "distance": 25
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": ""
+    },
+    "location": {
+        "result": true,
+        "adm": {
+            "posx": "126.947090",
+            "posy": "37.384075",
+            "admcode": "4117310400",
+            "jibun": "911-2",
+            "address": "경기도 안양시 동안구 호계동",
+            "roadname": "경기도 안양시 동안구 시민대로98번길",
+            "roadjibun": "61",
+            "distance": 36.0
+        }
     }
-  }
 }
 ```
 
@@ -1123,32 +1112,32 @@
 | header.resultCode           | Integer | 실패 코드                                    |
 | header.resultMessage        | String  | 실패 메시지                                   |
 | route			                  | Object  | 본문 영역                                    |
-| data                   | Object  | 경로 정보                                    |
-| data.file_name          | String | 경로 주변 POI 검색을 위한 binary 파일명                |
-| data.option              | String | 탐색옵션                        |
-| data.spend_time           | Integer | 소요시간(초)                              |
-| data.distance           | Integer | 거리(m)                          |
-| data.total_fee    | Integer | 톨게이트 요금                             |
-| data.paths	 | Array | 세부 경로 목록                             |
-| data.paths[0].coords | Array | 상세좌표 목록                            |
-| data.paths[0].coords[0].x   | Double | X좌표                             |
-| data.paths[0].coords[0].y         | Double | Y좌표                         |
-| data.paths[0].speed          | Integer | 속도                                   |
-| data.paths[0].spend_time          | Integer | 소요시간(초)                                   |
-| data.paths[0].distance             | Integer | 거리(m)                        |
-| data.paths[0].road_code             | Integer | 도로 종별 코드                        |
-| data.paths[0].traffic_color       | String | 도로 교통 색상                        |
-| data.guides       | Array | 주요도로정보 목록                        |
-| data.guides[0].coords       | Array | 상세좌표 목록                        |
-| data.guides[0].coords[0].x       | Array | X좌표                        |
-| data.guides[0].coords[0].y       | Array | Y좌표                        |
-| data.guides[0].distance       | Integer | 거리(m)                        |
-| data.guides[0].name       | String | 도로명                        |
-| data.guides[0].road_code       | Integer | 도로 종별 코드                        |
-| data.guides[0].score       | Integer | 비중                        |
-| data.guides[0].speed       | Integer | 속도(km)                       |
-| data.guides[0].type       | String | 도로 타입                        |
-| data.guides[0].traffic_color       | String | 도로 교통 색상                        |
+| route.data                   | Object  | 경로 정보                                    |
+| route.data.file_name          | String | 경로 주변 POI 검색을 위한 binary 파일명                |
+| route.data.option              | String | 탐색옵션                        |
+| route.data.spend_time           | Integer | 소요시간(초)                              |
+| route.data.distance           | Integer | 거리(m)                          |
+| route.data.total_fee    | Integer | 톨게이트 요금                             |
+| route.data.paths	 | Array | 세부 경로 목록                             |
+| route.data.paths[0].coords | Array | 상세좌표 목록                            |
+| route.data.paths[0].coords[0].x   | Double | X좌표                             |
+| route.data.paths[0].coords[0].y         | Double | Y좌표                         |
+| route.data.paths[0].speed          | Integer | 속도                                   |
+| route.data.paths[0].spend_time          | Integer | 소요시간(초)                                   |
+| route.data.paths[0].distance             | Integer | 거리(m)                        |
+| route.data.paths[0].road_code             | Integer | 도로 종별 코드                        |
+| route.data.paths[0].traffic_color       | String | 도로 교통 색상                        |
+| route.data.guides       | Array | 주요도로정보 목록                        |
+| route.data.guides[0].coords       | Array | 상세좌표 목록                        |
+| route.data.guides[0].coords[0].x       | Array | X좌표                        |
+| route.data.guides[0].coords[0].y       | Array | Y좌표                        |
+| route.data.guides[0].distance       | Integer | 거리(m)                        |
+| route.data.guides[0].name       | String | 도로명                        |
+| route.data.guides[0].road_code       | Integer | 도로 종별 코드                        |
+| route.data.guides[0].score       | Integer | 비중                        |
+| route.data.guides[0].speed       | Integer | 속도(km)                       |
+| route.data.guides[0].type       | String | 도로 타입                        |
+| route.data.guides[0].traffic_color       | String | 도로 교통 색상                        |
 
 
 
@@ -1224,10 +1213,10 @@
 | header.resultCode           | Integer | 실패 코드                                    |
 | header.resultMessage        | String  | 실패 메시지                                   |
 | route			                  | Object  | 본문 영역                                    |
-| data                   | Array  | 경로 정보                                    |
-| data[0].option              | String | 탐색옵션                        |
-| data[0].spend_time           | Integer | 소요시간(초)                              |
-| data[0].distance           | Integer | 거리(m)                          |
+| route.data                   | Array  | 경로 정보                                    |
+| route.data[0].option              | String | 탐색옵션                        |
+| route.data[0].spend_time           | Integer | 소요시간(초)                              |
+| route.data[0].distance           | Integer | 거리(m)                          |
 
 
 ### 3\. 다중 출발지 경로 탐색 요약
@@ -1303,12 +1292,12 @@
 | header.resultCode           | Integer | 실패 코드                                    |
 | header.resultMessage        | String  | 실패 메시지                                   |
 | route			                  | Object  | 본문 영역                                    |
-| data                   | Array  | 경로 정보                                    |
-| data[0].spend_time           | Integer | 소요시간(초)                              |
-| data[0].distance           | Integer | 거리(m)                          |
-| data[0].startX           | String | 출발지 X좌표                          |
-| data[0].startY           | String | 출발지 Y좌표                          |
-| data[0].startIdx           | String | 출발지 식별 ID                          |
+| route.data                   | Array  | 경로 정보                                    |
+| route.data[0].spend_time           | Integer | 소요시간(초)                              |
+| route.data[0].distance           | Integer | 거리(m)                          |
+| route.data[0].startX           | String | 출발지 X좌표                          |
+| route.data[0].startY           | String | 출발지 Y좌표                          |
+| route.data[0].startIdx           | String | 출발지 식별 ID                          |
 
 
 
@@ -1385,12 +1374,313 @@
 | header.resultCode           | Integer | 실패 코드                                    |
 | header.resultMessage        | String  | 실패 메시지                                   |
 | route			                  | Object  | 본문 영역                                    |
-| data                   | Array  | 경로 정보                                    |
-| data[0].spend_time           | Integer | 소요시간(초)                              |
-| data[0].distance           | Integer | 거리(m)                          |
-| data[0].endX           | String | 도착지 X좌표                          |
-| data[0].endY           | String | 도착지 Y좌표                          |
-| data[0].endIdx           | String | 도착지 식별 ID                          |
+| route.data                   | Array  | 경로 정보                                    |
+| route.data[0].spend_time           | Integer | 소요시간(초)                              |
+| route.data[0].distance           | Integer | 거리(m)                          |
+| route.data[0].endX           | String | 도착지 X좌표                          |
+| route.data[0].endY           | String | 도착지 Y좌표                          |
+| route.data[0].endIdx           | String | 도착지 식별 ID                          |
+
+
+
+### 5\. 일반 경로 통계 탐색
+
+* 출발,도착 예정시간을 기준으로 예측 도착시간 및 출발지와 목적지 (경유지 옵션) 좌표를 이용하여 탐색된 상세 정보와 경로 정보를 반환합니다 .
+
+#### 요청
+
+[URI]
+
+| 메서드  | URI                                      |
+| ---- | ---------------------------------------- |
+| POST  | /maps/v3.0/appkeys/{appkey}/route-time|
+
+[Path parameter]
+
+| 이름     | 타입     | 필수 여부 | 유효 범위 | 설명     |
+| ------ | ------ | ----- | ----- | ------ |
+| appkey | String | 필수    |       | 고유의 앱키 |
+
+[Request Parameters]
+
+| 이름       | 타입     | 필수 여부 | 유효 범위 | 설명                                       |
+| -------- | ------ | ----- | ----- | ---------------------------------------- |
+| startX    | String | 필수   |       | 출발지 X 좌표
+| startY    | String | 필수   |       | 출발지 Y 좌표
+| endX   | String | 필수    |       | 도착지 X 좌표                                 |
+| endY   | String | 필수    |       | 도착지 Y 좌표                                 |
+| type     | String | 필수    |       | 기준시간 (출발,도착)<br> start : 출발시간 기준<br>end : 도착시간 기준                                 |
+| year     | Integer | 필수    |       | 기준년(ex.2019)                                 |
+| month     | Integer | 필수    |       | 기준월                                 |
+| day    | Integer | 필수    |       | 기준일 		|
+| hour     | Integer | 필수    |       | 기준시간(시)                                 |
+| minutes    | Integer | 필수    |       | 기준시간(분) 		|
+| via1X   | String | 선택    |       |  경유지 1 X 좌표                               |
+| via1Y   | String | 선택    |       |  경유지 1 Y 좌표                               |
+| via2X   | String | 선택    |       |  경유지 2 X 좌표                               |
+| via2Y   | String | 선택    |       |  경유지 2 Y 좌표                               |
+| via3X   | String | 선택    |       |  경유지 3 X 좌표                               |
+| via3Y   | String | 선택    |       |  경유지 3 Y 좌표                               |
+| via4X   | String | 선택    |       |  경유지 4 X 좌표                               |
+| via4Y   | String | 선택    |       |  경유지 4 Y 좌표                               |
+| via5X   | String | 선택    |       |  경유지 5 X 좌표                               |
+| via5Y   | String | 선택    |       |  경유지 5 Y 좌표                               |
+| coordType    | String | 선택    |       | 좌표 타입(tw, wgs84)<br> default : wgs84
+| carType   | Integer | 선택    |       | 톨게이트비 계산을 위한 차종(1~6), default : 1 |
+| useTrafficColor   | Boolean | 선택    |       | 도로 교통 색상 반환 유무(true, false)<br> defaut : false |
+| guideTop   | Integer | 선택    |       | 표출할 안내 정보 개수 |
+| carType   | Integer | 선택    |       | 톨게이트비 계산을 위한 차종(1~6), default : 1 |
+|groupByTrafficColor	| Boolean| 선택| |세부경로목록 (paths) 정보를 교통색상별로 그룹핑하여 반환할지 여부	|
+| beforeCount   | Integer | 선택    |       | 기준 시간 이전전시간 탐색 개수 |
+| afterCount   | Integer | 선택    |       | 기준 시간 이후시간 탐색 개수 |
+| interval   | Integer | 선택    |       | 기준 시간 이전/이후 시간 Interval(분) |
+
+#### 응답
+
+##### 응답 본문
+```
+{
+    "route": {
+        "data": {
+            "distance": 22621.0,
+            "spend_time": 1620.0,
+            "toll_fee": 0.0,
+            "times": [
+                {
+                    "index": -2.0,
+                    "spend_time": 1620.0,
+                    "distance": 0.0,
+                    "start_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 16.0,
+                        "minutes": 0.0
+                    },
+                    "end_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 16.0,
+                        "minutes": 27.0
+                    }
+                },
+                {
+                    "index": -1.0,
+                    "spend_time": 1620.0,
+                    "distance": 0.0,
+                    "start_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 16.0,
+                        "minutes": 30.0
+                    },
+                    "end_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 16.0,
+                        "minutes": 57.0
+                    }
+                },
+                {
+                    "index": 0.0,
+                    "spend_time": 1620.0,
+                    "distance": 0.0,
+                    "start_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 17.0,
+                        "minutes": 0.0
+                    },
+                    "end_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 17.0,
+                        "minutes": 27.0
+                    }
+                },
+                {
+                    "index": 1.0,
+                    "spend_time": 1620.0,
+                    "distance": 0.0,
+                    "start_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 17.0,
+                        "minutes": 30.0
+                    },
+                    "end_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 17.0,
+                        "minutes": 57.0
+                    }
+                },
+                {
+                    "index": 2.0,
+                    "spend_time": 1620.0,
+                    "distance": 0.0,
+                    "start_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 18.0,
+                        "minutes": 0.0
+                    },
+                    "end_time": {
+                        "year": 2019.0,
+                        "month": 11.0,
+                        "day": 22.0,
+                        "hour": 18.0,
+                        "minutes": 27.0
+                    }
+                }
+            ],
+            "paths": [
+                {
+                    "coords": [
+                        {
+                            "x": 126.94730280056565,
+                            "y": 37.38419119654106
+                        },
+                        {
+                            "x": 126.94700283437736,
+                            "y": 37.38395788491522
+                        }
+                    ],
+                    "speed": -1.0,
+                    "distance": 36.0,
+                    "spend_time": 10.0,
+                    "road_code": 5.0,
+                    "traffic_color": "#989898"
+                },
+                {
+                    "coords": [
+                        {
+                            "x": 126.94700283437736,
+                            "y": 37.38395788491522
+                        },
+                        {
+                            "x": 126.94650289104105,
+                            "y": 37.383557922382955
+                        }
+                    ],
+                    "speed": -1.0,
+                    "distance": 63.0,
+                    "spend_time": 20.0,
+                    "road_code": 5.0,
+                    "traffic_color": "#989898"
+                },
+                ...
+            ],
+            "guides": [
+                {
+                    "name": "경수대로",
+                    "distance": 2401.0,
+                    "speed": 53.0,
+                    "road_code": 3.0,
+                    "score": 14406.0,
+                    "type": "ROAD",
+                    "coords": [
+                        {
+                            "x": 126.95508976578816,
+                            "y": 37.37800871915593
+                        },
+                        {
+                            "x": 126.95518976229994,
+                            "y": 37.37780874413099
+                        },
+                        ...
+                    ],
+                    "traffic_color": "#00ff60"
+                },
+                {
+                    "name": "봉담과천로",
+                    "distance": 13369.0,
+                    "speed": 83.0,
+                    "road_code": 2.0,
+                    "score": 106952.0,
+                    "type": "ROAD",
+                    "coords": [
+                        {
+                            "x": 126.97727624066877,
+                            "y": 37.34261321883654
+                        },
+                        {
+                            "x": 126.97736373901714,
+                            "y": 37.342388246474925
+                        },
+                        ...
+                    ],
+                    "traffic_color": "#00ff60"
+                }
+            ]
+        }
+    },
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": ""
+    }
+}
+```
+
+##### 필드
+
+| 이름                          | 타입      | 설명                                       |
+| --------------------------- | ------- | ---------------------------------------- |
+| header                      | Object  | 헤더 영역                                    |
+| header.isSuccessful         | Boolean | 성공 여부                                    |
+| header.resultCode           | Integer | 실패 코드                                    |
+| header.resultMessage        | String  | 실패 메시지                                   |
+| route			                  | Object  | 본문 영역                                    |
+| route.data                   | Object  | 경로 정보                                    |
+| route.data.file_name          | String | 경로 주변 POI 검색을 위한 binary 파일명                |
+| route.data.option              | String | 탐색옵션                        |
+| route.data.spend_time           | Integer | 소요시간(초)                              |
+| route.data.distance           | Integer | 거리(m)                          |
+| route.data.total_fee    | Integer | 톨게이트 요금                             |
+| route.data.times	 | Array | 세부 경로 목록                             |
+| route.data.times[0].index	 | Integer | 기준시간 대비 Index(0 이면 기준시간)       |
+| route.data.times[0].spend_time	 | Integer | 소요시간(초)       |
+| route.data.times[0].start_time	 | Object | 출발시간       |
+| route.data.times[0].start_time.year	 | Object | 년       |
+| route.data.times[0].start_time.month	 | Object | 월       |
+| route.data.times[0].start_time.day	 | Object | 일       |
+| route.data.times[0].start_time.hour	 | Object | 시       |
+| route.data.times[0].start_time.minutes	 | Object | 분       |
+| route.data.times[0].end_time	 | Object | 도착시간       |
+| route.data.times[0].end_time.year	 | Object | 년       |
+| route.data.times[0].end_time.month	 | Object | 월       |
+| route.data.times[0].end_time.day	 | Object | 일       |
+| route.data.times[0].end_time.hour	 | Object | 시       |
+| route.data.times[0].end_time.minutes	 | Object | 분       |
+| route.data.paths	 | Array | 세부 경로 목록                             |
+| route.data.paths[0].coords | Array | 상세좌표 목록                            |
+| route.data.paths[0].coords[0].x   | Double | X좌표                             |
+| route.data.paths[0].coords[0].y         | Double | Y좌표                         |
+| route.data.paths[0].speed          | Integer | 속도                                   |
+| route.data.paths[0].spend_time          | Integer | 소요시간(초)                                   |
+| route.data.paths[0].distance             | Integer | 거리(m)                        |
+| route.data.paths[0].road_code             | Integer | 도로 종별 코드                        |
+| route.data.paths[0].traffic_color       | String | 도로 교통 색상                        |
+| route.data.guides       | Array | 주요도로정보 목록                        |
+| route.data.guides[0].coords       | Array | 상세좌표 목록                        |
+| route.data.guides[0].coords[0].x       | Array | X좌표                        |
+| route.data.guides[0].coords[0].y       | Array | Y좌표                        |
+| route.data.guides[0].distance       | Integer | 거리(m)                        |
+| route.data.guides[0].name       | String | 도로명                        |
+| route.data.guides[0].road_code       | Integer | 도로 종별 코드                        |
+| route.data.guides[0].score       | Integer | 비중                        |
+| route.data.guides[0].speed       | Integer | 속도(km)                       |
+| route.data.guides[0].type       | String | 도로 타입                        |
+| route.data.guides[0].traffic_color       | String | 도로 교통 색상                        |
 
 
 ## Static Map
@@ -1429,7 +1719,7 @@
 | mx    | String | 선택    |       | 마커를 표현할 좌표(longitude)   |
 | my    | String | 선택    |       | 마커를 표현할 좌표(latitude)   |
 | imgUrl    | String | 선택    |       | 마커를 표현할 이미지URL   |
-
+| imgFile    | Boolean | 선택    |       | 이미지파일요청 여부(default false)   |
 
 
 #### 응답
