@@ -1393,7 +1393,7 @@
 
 | 메서드  | URI                                      |
 | ---- | ---------------------------------------- |
-| POST  | /maps/v3.0/appkeys/{appkey}/route-time|
+| GET  | /maps/v3.0/appkeys/{appkey}/route-time?startX={startX}&startY={startY}&endX={endX}&endY={endY}&type={type}&year={year}&month={month}&day={day}&hour={hour}&minutes={minutes}&via1X={via1X}&via1Y={via1Y}&via2X={via2X}&via2Y={via2Y}&via3X={via3X}&via3Y={via3Y}&via4X={via4X}&via4Y={via4Y}&via5X={via5X}&via5Y={via5Y}&coordType={coordType}&carType={carType}&useTrafficColor={useTrafficColor}&guideTop={guideTop}&groupByTrafficColor={groupByTrafficColor}&beforeCount={beforeCount}&afterCount={afterCount}&interval={interval}|
 
 [Path parameter]
 
@@ -1686,7 +1686,7 @@
 
 ### 1\. Static Map
 
-* 사용자가 지정한 지도 범위에 대해 정적 지도 이미지 URL을 반환합니다.
+* 사용자가 지정한 지도 범위에 대해 정적 지도 이미지를 반환합니다.
 
 #### 요청
 
@@ -1717,25 +1717,12 @@
 | mx    | String | 선택    |       | 마커를 표현할 좌표(longitude)   |
 | my    | String | 선택    |       | 마커를 표현할 좌표(latitude)   |
 | imgUrl    | String | 선택    |       | 마커를 표현할 이미지URL   |
-| imgFile    | Boolean | 선택    |       | 이미지파일요청 여부(default false)   |
 
 
 #### 응답
 
 ##### 응답 본문
-```
-{
-    "result": {
-        "url": "http://vmagent.inavi.com/staticmap?reqX=127.11317&reqY=37.40119&reqZ=14&bearing=16&pitch=10&width=400&height=400&quality=hdquality&markX=127.11&markY=37.40119&iconUrl=http://web2.fivepin.co.kr/resources/images/MyStory/marker_plog_around_center.png"
-    },
-    "header": {
-        "isSuccessful": true,
-        "resultCode": 0,
-        "resultMessage": ""
-    }
-}
-```
-
+<img src="http://static.toastoven.net/toastcloud/notice/20191029_Maps_new/map_static.png">
 ##### 필드
 
 | 이름                          | 타입      |    설명                                                  |
