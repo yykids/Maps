@@ -63,6 +63,7 @@ dependencies {
 Application 생성 시점에 동적으로 [InaviMapSdk] 싱글턴 객체의 함수를 호출하여 Appkey를 설정할 수 있습니다.
 
 ```kotlin
+// Kotlin
 InaviMapSdk.getInstance(context).appKey = "YOUR_APP_KEY"
 ```
 
@@ -70,6 +71,7 @@ InaviMapSdk.getInstance(context).appKey = "YOUR_APP_KEY"
 지도 초기화 단계에 인증이 실패하면 SDK 내부에서 등록된 Callback으로 에러 코드와 메시지를 전달합니다.
 실패에 대한 Callback을 받으려면 [InaviMapSdk] 싱글턴 객체에 [AuthFailureCallback]을 아래와 같이 설정해야 합니다.
 ```kotlin
+// Kotlin
 InaviMapSdk.getInstance(context).authFailureCallback =
     InaviMapSdk.AuthFailureCallback { errCode: Int, msg: String ->
         // 인증 실패 처리
@@ -105,7 +107,8 @@ InaviMapSdk.getInstance(context).authFailureCallback =
 [InaviMap] 객체에 접근하기 위해서는 우선 [InvMapFragment] 객체의 getMapAsync() 함수를 호출해야 합니다.
 지도 초기화가 완료되면 onMapReady() 콜백 함수를 통해 [InaviMap] 객체가 전달됩니다.
 ```kotlin
-val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment)
+// Kotlin
+val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as InvMapFragment
 mapFragment.getMapAsync(object : OnMapReadyCallback {
     override fun onMapReady(inaviMap: InaviMap) {
         // InaviMap 객체 접근 가능
@@ -116,17 +119,19 @@ mapFragment.getMapAsync(object : OnMapReadyCallback {
 #### 지도 이벤트 설정
 지도 클릭, 더블 클릭, 롱 클릭 등 지도와 사용자간 상호작용에 대한 이벤트를 설정할 수 있습니다.
 ```kotlin
+// Kotlin
 inaviMap.setOnMapClickListener { pointF, latLng ->
     // pointF : 클릭한 지점의 화면상 좌표
     // latLng : 클릭한 지점의 지도상 좌표
-    Toast.makeText(MainActivity.this, "지도 클릭", Toast.LENGTH_SHORT).show()
+    Toast.makeText(context, "지도 클릭", Toast.LENGTH_SHORT).show()
 }
 ```
 
 #### 마커 표출
 마커 객체를 생성하고 `position` 속성과 `map` 속성을 설정하면 마커가 표출됩니다.
 ```kotlin
-InvMarker().apply {
+// Kotlin
+val marker = InvMarker().apply {
     position = LatLng(37.40219, 127.11077)
     title = "타이틀"
     map = inaviMap
@@ -136,6 +141,7 @@ InvMarker().apply {
 #### 마커 제거
 마커 객체의 map 속성을 `null`로 설정하시면 마커가 제거됩니다.
 ```kotlin
+// Kotlin
 marker.map = null
 ```
 
@@ -145,8 +151,9 @@ moveCamera() 함수에 파라미터를 전달하여 호출하면 카메라가 �
 
 애니메이션과 카메라 이벤트에 대한 콜백을 지원하므로, 카메라 이동을 원하는 대로 구현할 수 있습니다.
 ```kotlin
-val cameraUpdate = CameraUpdate.targetTo(LatLng(37.40219, 127.11077))
-cameraUpdate.setAnimationType(CameraAnimationType.Fly, 2000)
+// Kotlin
+val cameraUpdate = CameraUpdate.targetTo(LatLng(36.99473, 127.81832))
+cameraUpdate.setAnimationType(CameraAnimationType.Fly, 3000)
 inaviMap.moveCamera(cameraUpdate)
 ```
 

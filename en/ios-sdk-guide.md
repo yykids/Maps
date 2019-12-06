@@ -91,9 +91,13 @@ func authFailure(_ errorCode: Int, message: String) {
 앱 화면에 아이나비 지도를 표출하는 방법을 설명합니다.
 
 #### 지도 표시
+
+#### 지도 표시
 UIViewController에서 직접 [InaviMapView]를 생성하고 추가하는 예제입니다.
 ```swift
 // Swift
+import iNaviMaps
+
 override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -111,7 +115,7 @@ Identity Inspector패널의 Custom Class 항목을 [InaviMapView]로 설정하�
 override func viewDidLoad() {
     super.viewDidLoad()
     ...
-    inaviMapView.delegate = self
+    mapView.delegate = self
 }
 
 func didTapMapView(_ point: CGPoint, latLng latlng: INVLatLng) {
@@ -143,9 +147,9 @@ marker.mapView = nil
 애니메이션과 카메라 이벤트에 대한 콜백을 지원하므로, 카메라 이동을 원하는 대로 구현할 수 있습니다.
 ```swift
 // Swift
-let camUpdate = INVCameraUpdate.init(scrollTo: INVLatLng(lat: 37.40219, lng : 127.11077))
+let camUpdate = INVCameraUpdate.init(targetTo: INVLatLng(lat: 36.99473, lng : 127.81832))
 camUpdate.animation = .fly
-camUpdate.animationDuration = 2
+camUpdate.animationDuration = 3
 mapView.moveCamera(camUpdate)
 ```
 

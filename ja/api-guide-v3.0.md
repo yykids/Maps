@@ -690,8 +690,8 @@
 | header.resultMessage             | String  | 실패 메시지                                   |
 | subpoi                           | Object  | 본문 영역                                    |
 | subpoi.result                    | Boolean | 성공 여부                                    |
-| subpoi.totalcount                | String  | 전체 검색결과 대상 개수                            |
-| subpoi.count                     | String  | 검색 결과 개수                                 |
+| subpoi.totalcount                | Integer  | 전체 검색결과 대상 개수                            |
+| subpoi.count                     | Integer  | 검색 결과 개수                                 |
 | subpoi.poi                       | Array   | POI 검색 결과 목록                             |
 | subpoi.poi[0].poiid              | Integer | POI ID                                   |
 | subpoi.poi[0].depth              | String  | POI depth                                |
@@ -763,8 +763,8 @@
 | 이름        | 타입     | 필수 여부 | 유효 범위                                 | 설명                                   |
 | --------- | ------ | ----- | ------------------------------------- | ------------------------------------ |
 | coordtype | String | 필수    |                                       | 0 : WGS84 -> TM <br> 1 : TM -> WGS84 |
-| x         | double | 필수    | 현 위치 또는 지도 중심 좌표<br>WGS84 좌표 혹은 TM 좌표 |                                      |
-| y         | double | 필수    | 현 위치 또는 지도 중심 좌표<br>WGS84 좌표 혹은 TM 좌표 |                                      |
+| x         | String | 필수    | 현 위치 또는 지도 중심 좌표<br>WGS84 좌표 혹은 TM 좌표 |                                      |
+| y         | String | 필수    | 현 위치 또는 지도 중심 좌표<br>WGS84 좌표 혹은 TM 좌표 |                                      |
 
 #### 응답
 
@@ -924,7 +924,7 @@
 
 | 메서드  | URI                                      |
 | ---- | ---------------------------------------- |
-| GET  | /maps/v3.0/appkeys/{appkey}/addresses?query={query}&posX={posX}&posY={posY}&coordtype={coordtype} |
+| GET  | /maps/v3.0/appkeys/{appkey}/addresses?posX={posX}&posY={posY}&coordtype={coordtype} |
 
 [Path parameter]
 
@@ -986,13 +986,13 @@
 | location.adm.roadname  | String  | 새주소 도로명                                  |
 | location.adm.roadjibun | String  | 새주소 지번                                   |
 | location.adm.distance  | Integer | 좌표와의 거리(해당될 때만)                          |
-| location.adm.accuracy  | String  | 지번 정확도<br>0 : 정확 검색<br>1 : 호지번 확장<br>예) 963-2 검색 시 963-X 검색 결과 반환<br>2 : 모지번 확장<br>예) 963-2 검색 시 96X 검색 결과 반환<br>3 : 법정동 동좌표<br>예) 삼평동까지만 입력 되는 경우<br>4 : 동 단위 이상 좌표 또는 법정동 좌표<br>예) 분당구까지만 입력되는 경우 |
+| location.adm.accuracy  | Integer  | 지번 정확도<br>0 : 정확 검색<br>1 : 호지번 확장<br>예) 963-2 검색 시 963-X 검색 결과 반환<br>2 : 모지번 확장<br>예) 963-2 검색 시 96X 검색 결과 반환<br>3 : 법정동 동좌표<br>예) 삼평동까지만 입력 되는 경우<br>4 : 동 단위 이상 좌표 또는 법정동 좌표<br>예) 분당구까지만 입력되는 경우 |
 
 
 
 ## 탐색
 
-### 1\. 일반 경로 탐색
+### 1\. 경로 탐색
 
 * 출발지와 목적지 (경유지 옵션) 좌표를 이용하여 탐색된 상세 정보와 경로 정보를 반환합니다.
 
@@ -1141,7 +1141,7 @@
 
 
 
-### 2\. 일반 경로 탐색 요약
+### 2\. 경로 탐색 요약
 
 * 출발지와 목적지(경유지 옵션) 좌표를 이용하여 탐색된 요약 정보(거리, 시간, 탐색옵션) 정보를 반환합니다.
 
@@ -1383,7 +1383,7 @@
 
 
 
-### 5\. 일반 경로 통계 탐색
+### 5\. 경로 예측 탐색
 
 * 출발,도착 예정시간을 기준으로 예측 도착시간 및 출발지와 목적지 (경유지 옵션) 좌표를 이용하여 탐색된 상세 정보와 경로 정보를 반환합니다 .
 
@@ -1426,7 +1426,6 @@
 | via5X   | String | 선택    |       |  경유지 5 X 좌표                               |
 | via5Y   | String | 선택    |       |  경유지 5 Y 좌표                               |
 | coordType    | String | 선택    |       | 좌표 타입(tw, wgs84)<br> default : wgs84
-| carType   | Integer | 선택    |       | 톨게이트비 계산을 위한 차종(1~6), default : 1 |
 | useTrafficColor   | Boolean | 선택    |       | 도로 교통 색상 반환 유무(true, false)<br> defaut : false |
 | guideTop   | Integer | 선택    |       | 표출할 안내 정보 개수 |
 | carType   | Integer | 선택    |       | 톨게이트비 계산을 위한 차종(1~6), default : 1 |
@@ -1695,7 +1694,7 @@
 
 | 메서드  | URI                                      |
 | ---- | ---------------------------------------- |
-| GET  | /maps/v3.0/appkeys/{appkey}/static-maps?styleId={styleId}&lon={lon}&lat{lat}&zoom={zoom}&bearing={bearing}&pitch={pitch}&width={width}&height={height}&x2={x2}&mx={mx}&my={my}&imgUrl={imgUrl}|
+| GET  | /maps/v3.0/appkeys/{appkey}/static-maps?lon={lon}&lat{lat}&zoom={zoom}&bearing={bearing}&pitch={pitch}&width={width}&height={height}&x2={x2}&mx={mx}&my={my}&imgUrl={imgUrl}&imgFile={imgFile}|
 
 [Path parameter]
 
@@ -1707,15 +1706,14 @@
 
 | 이름       | 타입     | 필수 여부 | 유효 범위 | 설명                                       |
 | -------- | ------ | ----- | ----- | ---------------------------------------- |
-| styleId    | String |  필수    |       | 스타일ID                               |
 | lon   | String | 필수    |       | 요청할 longitude(경도) 좌표           |
 | lat   | String | 필수    |       | 요청할 latitude(위도)좌표             |
-| zoom   | String | 필수    |       | 요청할 좌표의 확대레벨                                 |
-| bearing     | String | 필수    |       | 요청할 좌표의 회전율                                 |
-| pitch     | String | 필수    |       | 요청할 좌표의 기울기(0~30)   |
-| width    | String | 필수    |       | 요청할 이미지 width 값  |
-| height    | String | 필수    |       | 요청할 이미지 height 값 |
-| x2    | String | 선택    |       | 이미지 512사이즈 적용(default 256)   |
+| zoom   | String | 선택    |       | 요청할 좌표의 확대레벨                                 |
+| bearing     | String | 선택    |       | 요청할 좌표의 회전율                                 |
+| pitch     | String | 선택    |       | 요청할 좌표의 기울기(0~30)   |
+| width    | String | 선택    |       | 요청할 이미지 width 값   |
+| height    | String | 선택    |       | 요청할 이미지 height 값 |
+| x2    | String | 선택    |       | 이미지 사이즈 * 2 반환 여부  |
 | mx    | String | 선택    |       | 마커를 표현할 좌표(longitude)   |
 | my    | String | 선택    |       | 마커를 표현할 좌표(latitude)   |
 | imgUrl    | String | 선택    |       | 마커를 표현할 이미지URL   |
@@ -1728,7 +1726,7 @@
 ```
 {
     "result": {
-        "url": "http://dev.vectortiles.inavi.kr/styles/test1/static/127.11317,37.40119,14@16,10/400X400.png?marker=null,null&imgurl=https://www.fivepin.co.kr/resources/images/MyStory/marker_plog_around_center.png"
+        "url": "http://vmagent.inavi.com/staticmap?reqX=127.11317&reqY=37.40119&reqZ=14&bearing=16&pitch=10&width=400&height=400&quality=hdquality&markX=127.11&markY=37.40119&iconUrl=http://web2.fivepin.co.kr/resources/images/MyStory/marker_plog_around_center.png"
     },
     "header": {
         "isSuccessful": true,
@@ -1747,4 +1745,4 @@
 | header.resultCode           | Integer | 실패 코드                                    |
 | header.resultMessage        | String  | 실패 메시지                                   |
 | result			                  | Object  | 본문 영역                                    |
-| url                   | String  | Static Map URL                                   |
+| result.url                   | String  | Static Map URL                                   |
