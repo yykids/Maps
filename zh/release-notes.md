@@ -1,5 +1,20 @@
 ## Application Service > Maps > Release Notes
 
+### 2019.12.24
+#### 기능  개선
+* [API] 숫자데이터 8자리 초과시 깨지는 버그 해결
+* [API] ReverseGeocoding 엔진변경
+* [API] StaticMap IE 버그 해결
+* [SDK] 지도 이동 영역을 제한하는 인터페이스 추가
+* [SDK] 로고 클릭 이벤트 활성화 여부 설정 I/F 추가
+* [SDK] 오픈소스 라이선스, 법적 공지 Activity 호출 Intent 인터페이스 추가 (Android)
+* [SDK] 오픈소스 라이선스, 법적 공지 ViewController 호출 인터페이스 추가 (iOS)
+* [SDK] 마커 아이콘과 타이틀 사이의 여백을 설정하는 기능 추가.
+* [SDK] INVLatLng, INVLatLngBounds의 property readonly 속성으로 변경 (iOS)
+* [SDK] INVCameraUpdateParams#scrollTo Deprecated 적용 (targetTo로 대체) (iOS)
+* [SDK] INVCameraUpdateParams#scrollBy Deprecated 적용 (targetBy로 대체) (iOS)
+* [SDK] INVLatLngBounds#latLngBoundsSouthWest Deprecated 적용 (boundsWithSouthWest로 대체) (iOS)
+
 ### 2019.11.26
 #### 기능 추가
 * [API] 일반 경로 예측 탐색 추가
