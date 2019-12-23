@@ -953,15 +953,29 @@
     },
     "location": {
         "result": true,
-        "adm": {
-            "posx": "126.947090",
-            "posy": "37.384075",
-            "admcode": "4117310400",
-            "jibun": "911-2",
+        "posx": "126.947265",
+        "posy": "37.384033",
+        "roadname": "경기도 안양시 동안구 귀인로",
+        "roadjibun": "59",
+        "adm_address": {
+            "address": "경기도 안양시 동안구 범계동",
+            "admcode": "4117361000",
+            "address_category3": "범계동",
+            "address_category4": "",
+            "jibun": "921",
+            "address_category1": "경기도",
+            "address_category2": "안양시 동안구",
+            "cut_address": "경기 안양시 동안구 범계동"
+        },
+        "legal_address": {
             "address": "경기도 안양시 동안구 호계동",
-            "roadname": "경기도 안양시 동안구 시민대로98번길",
-            "roadjibun": "61",
-            "distance": 36.0
+            "admcode": "4117310400",
+            "address_category3": "호계동",
+            "address_category4": "",
+            "jibun": "921",
+            "address_category1": "경기도",
+            "address_category2": "안양시 동안구",
+            "cut_address": "경기 안양시 동안구 호계동"
         }
     }
 }
@@ -977,16 +991,30 @@
 | header.resultMessage   | String  | 실패 메시지                                   |
 | location               | Object  | 본문 영역                                    |
 | location.result        | Boolean | 성공 여부                                    |
-| location.adm           | Object  | 검색 결과                                    |
-| location.adm.posx      | String  | X 좌표                                     |
-| location.adm.posy      | String  | Y 좌표                                     |
-| location.adm.admcode   | String  | 행정코드                                    |
-| location.adm.address   | String  | 주소                                       |
-| location.adm.jibun     | String  | 지번                                       |
-| location.adm.roadname  | String  | 새주소 도로명                                  |
-| location.adm.roadjibun | String  | 새주소 지번                                   |
-| location.adm.distance  | Integer | 좌표와의 거리(해당될 때만)                          |
-| location.adm.accuracy  | Integer  | 지번 정확도<br>0 : 정확 검색<br>1 : 호지번 확장<br>예) 963-2 검색 시 963-X 검색 결과 반환<br>2 : 모지번 확장<br>예) 963-2 검색 시 96X 검색 결과 반환<br>3 : 법정동 동좌표<br>예) 삼평동까지만 입력 되는 경우<br>4 : 동 단위 이상 좌표 또는 법정동 좌표<br>예) 분당구까지만 입력되는 경우 |
+| location.posx      | String  | X 좌표                                     |
+| location.posy      | String  | Y 좌표                                     |
+| location.roadname  | String  | 새주소 도로명                                  |
+| location.roadjibun | String  | 새주소 지번                                   |
+| location.adm_address           | Object  | 행정동 주소 정보                           |
+| location.adm_address.admcode   | String  | 행정코드                                    |
+| location.adm_address.address   | String  | 주소                                       |
+| location.adm_address.jibun     | String  | 지번                                       |
+| location.adm_address.address_category1     | String  |   도/시                      |
+| location.adm_address.address_category2     | String  |   시/군/구                   |
+| location.adm_address.address_category3     | String  |   읍/면/동                 |
+| location.adm_address.address_category4     | String  |   리                  |
+| location.adm_address.cut_address     | String  |                         |
+| location.legal_address           | Object  | 행정동 주소 정보                           |
+| location.legal_address.admcode   | String  | 행정코드                                    |
+| location.legal_address.address   | String  | 주소                                       |
+| location.legal_address.jibun     | String  | 지번                                       |
+| location.legal_address.address_category1     | String  |  도/시                       |
+| location.legal_address.address_category2     | String  |  시/군/구                      |
+| location.legal_address.address_category3     | String  |  읍/면/동                      |
+| location.legal_address.address_category4     | String  |  리                       |
+| location.legal_address.cut_address     | String  |                         |
+
+
 
 
 
@@ -1694,7 +1722,7 @@
 
 | 메서드  | URI                                      |
 | ---- | ---------------------------------------- |
-| GET  | /maps/v3.0/appkeys/{appkey}/static-maps?lon={lon}&lat{lat}&zoom={zoom}&bearing={bearing}&pitch={pitch}&width={width}&height={height}&x2={x2}&mx={mx}&my={my}&imgUrl={imgUrl}&imgFile={imgFile}|
+| GET  | /maps/v3.0/appkeys/{appkey}/static-maps?lon={lon}&lat{lat}&zoom={zoom}&bearing={bearing}&pitch={pitch}&width={width}&height={height}&x2={x2}&mx={mx}&my={my}&imgUrl={imgUrl}|
 
 [Path parameter]
 
@@ -1723,13 +1751,3 @@
 
 ##### 응답 본문
 <img src="http://static.toastoven.net/toastcloud/notice/20191029_Maps_new/map_static.png">
-##### 필드
-
-| 이름                          | 타입      |    설명                                                  |
-| --------------------------- | ------- | ---------------------------------------- |
-| header                      | Object  | 헤더 영역                                    |
-| header.isSuccessful         | Boolean | 성공 여부                                    |
-| header.resultCode           | Integer | 실패 코드                                    |
-| header.resultMessage        | String  | 실패 메시지                                   |
-| result			                  | Object  | 본문 영역                                    |
-| result.url                   | String  | Static Map URL                                   |
