@@ -827,7 +827,7 @@
 | coordtype     | String | 선택    |       | 좌표 형식<br>0 : TW 좌표<br>1 : WGS84 좌표<br>2 : TM 좌표 |
 | startposition | String | 선택    |       | 검색 시작 위치<br>0 : 첫번째 위치<br>미입력 시 0으로 조회   |
 | reqcount      | String | 선택    |       | 검색 요청 개수<br>0으로 설정 시 Max Count 반환        |
-| admcode       | String | 선택    |       | 행정코드                                    |
+| admcode       | String | 선택    |       | 법정/행정 코드 <br>예 : 법정주소 입력시 법정코드     |
 
 #### 응답
 
@@ -835,55 +835,79 @@
 
 ```
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": ""
-  },
-	"address": {
+    "address": {
         "result": true,
         "totalcount": 6.0,
         "admtotalcount": 6.0,
-        "admcount": 3.0,
+        "admcount": 6.0,
         "res_type": "NNYN",
         "adm": [
             {
                 "type": 2.0,
-                "posx": "126.689009",
-                "posy": "36.157903",
+                "posx": "200693",
+                "posy": "232976",
+                "admcode": "4615032033",
+                "jibun": "",
+                "address": "전라남도 순천시 서면 판교리",
+                "roadname": "",
+                "roadjibun": "",
+                "accuracy": 3.0,
+                "distance": 311934.0
+            },
+            {
+                "type": 2.0,
+                "posx": "135285",
+                "posy": "368595",
                 "admcode": "4477038000",
                 "jibun": "",
                 "address": "충청남도 서천군 판교면",
                 "roadname": "",
                 "roadjibun": "",
                 "accuracy": 3.0,
-                "distance": 1.2081825E7
+                "distance": 373142.0
             },
             {
                 "type": 2.0,
-                "posx": "126.521977",
-                "posy": "36.547422",
-                "admcode": "4480037030",
-                "jibun": "",
-                "address": "충청남도 홍성군 서부면 판교리",
-                "roadname": "",
-                "roadjibun": "",
-                "accuracy": 3.0,
-                "distance": 1.2082085E7
-            },
-            {
-                "type": 2.0,
-                "posx": "126.699108",
-                "posy": "36.167844",
+                "posx": "136093",
+                "posy": "369788",
                 "admcode": "4477038021",
                 "jibun": "",
                 "address": "충청남도 서천군 판교면 판교리",
                 "roadname": "",
                 "roadjibun": "",
                 "accuracy": 3.0,
-                "distance": 1.2083048E7
+                "distance": 374519.0
+            },
+            {
+                "type": 2.0,
+                "posx": "121922",
+                "posy": "415343",
+                "admcode": "4480037030",
+                "jibun": "",
+                "address": "충청남도 홍성군 서부면 판교리",
+                "roadname": "",
+                "roadjibun": "",
+                "accuracy": 3.0,
+                "distance": 407683.0
+            },
+            {
+                "type": 2.0,
+                "posx": "168425",
+                "posy": "516725",
+                "admcode": "4113510800",
+                "jibun": "",
+                "address": "경기도 성남시 분당구 판교동",
+                "roadname": "",
+                "roadjibun": "",
+                "accuracy": 3.0,
+                "distance": 513831.0
             }
         ]
+    },
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": ""
     }
 }
 ```
@@ -904,7 +928,7 @@
 | address.adm[0].type      | String  | 검색 type<br>1 : 행정계 검색<br>2 : 지번 검색<br>3 : 새주소 검색 |
 | address.adm[0].posx      | String  | X 좌표                                     |
 | address.adm[0].posy      | String  | Y 좌표                                     |
-| address.adm[0].admcode   | String  | 행정코드                                    |
+| address.adm[0].admcode   | String  | 법정/행정 코드                                    |
 | address.adm[0].address   | String  | 주소                                       |
 | address.adm[0].roadname  | String  | 새주소 도로명                                  |
 | address.adm[0].roadjibun | String  | 새주소 지번                                   |
@@ -938,7 +962,7 @@
 | --------- | ------ | ----- | ----- | ---------------------------------------- |
 | posX      | String | 필수    |       | X 좌표                                     |
 | posY      | String | 필수    |       | Y 좌표                                     |
-| coordtype | String | 선택    |       | 요청 좌표 형식<br>0 : TW 좌표<br>1 : WGS84 좌표<br>미 입력 시 TW 좌표 기준 검색 |
+| coordtype | String | 선택    |       | 요청 좌표 형식<br>0 : TW 좌표<br>1 : WGS84 좌표<br>미 입력 시 WGS84 좌표 기준 검색 |
 
 #### 응답
 
@@ -953,10 +977,17 @@
     },
     "location": {
         "result": true,
-        "posx": "126.947265",
-        "posy": "37.384033",
-        "roadname": "경기도 안양시 동안구 귀인로",
-        "roadjibun": "59",
+        "hasAdmAddress": true,
+        "adm": {
+            "posx": "126.947265",
+            "posy": "37.384033",
+            "address": "경기도 안양시 동안구 호계동",
+            "distance": 0,
+            "admcode": "4117310400",
+            "jibun": "921",
+            "roadname": "경기도 안양시 동안구 귀인로",
+            "roadjibun": "59"
+        },
         "adm_address": {
             "address": "경기도 안양시 동안구 범계동",
             "admcode": "4117361000",
@@ -991,10 +1022,16 @@
 | header.resultMessage   | String  | 실패 메시지                                   |
 | location               | Object  | 본문 영역                                    |
 | location.result        | Boolean | 성공 여부                                    |
-| location.posx      | String  | X 좌표                                     |
-| location.posy      | String  | Y 좌표                                     |
-| location.roadname  | String  | 새주소 도로명                                  |
-| location.roadjibun | String  | 새주소 지번                                   |
+| location.hasAdmAddress        | Boolean | 행정 주소 반환 여부                                    |
+| location.adm           | Object  | 법정 주소 정보                           |
+| location.adm.posx      | String  | X 좌표                                     |
+| location.adm.posy      | String  | Y 좌표                                     |
+| location.adm.admcode  | String  | 법정코드                                  |
+| location.adm.address  | String  | 주소                                  |
+| location.adm.jibun  | String  | 지번                                  |
+| location.adm.roadname  | String  | 새주소 도로명                                  |
+| location.adm.roadjibun | String  | 새주소 지번                                   |
+| location.adm.distance  | Integer  | 좌표와의 거리(해당될 때만)                              |
 | location.adm_address           | Object  | 행정동 주소 정보                           |
 | location.adm_address.admcode   | String  | 행정코드                                    |
 | location.adm_address.address   | String  | 주소                                       |
@@ -1004,8 +1041,8 @@
 | location.adm_address.address_category3     | String  |   읍/면/동                 |
 | location.adm_address.address_category4     | String  |   리                  |
 | location.adm_address.cut_address     | String  |                         |
-| location.legal_address           | Object  | 행정동 주소 정보                           |
-| location.legal_address.admcode   | String  | 행정코드                                    |
+| location.legal_address           | Object  | 법정동 주소 정보                           |
+| location.legal_address.admcode   | String  | 법정코드                                    |
 | location.legal_address.address   | String  | 주소                                       |
 | location.legal_address.jibun     | String  | 지번                                       |
 | location.legal_address.address_category1     | String  |  도/시                       |
