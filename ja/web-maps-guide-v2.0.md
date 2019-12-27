@@ -1,4 +1,4 @@
-## Application Service > Maps > Webマップv2.0ガイド
+﻿## Application Service > Maps > Webマップv2.0ガイド
 
 Maps Webマップを使用するのに必要なAPIを説明します。
 
@@ -53,50 +53,50 @@ TOAST Maps APIは、THINKWARE座標を使用します。縮約してTW座標、T
 #### 主要TOAST Maps API案内
 ##### TOAST Maps APIの詳細な使用方法は、<a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">Thinkware API Center</a>を参照してください。
 
-| API名                                   | Parameter                        | Returns                                  | 説明                                |
+| API名                                 | Parameter                        | Returns                                  | 説明                              |
 | ---------------------------------------- | -------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | new thinkware.maps.Map(map_div, option)  | map_div : String                 |                                          | マップを表示するDOM要素(element)または要素のID             |
 |                                          | option.type：String             |                                          | マップのタイプ <br> 'i'：一般マップ、<br> 'm'：モバイルマップ、<br> 's'：要約マップ、<br> 'a'：航空写真、<br> 'm_a'：モバイル航空写真、<br> 's_a'：要約航空写真、<br> 'hybrid'：航空<br>default：'i' |
-|                                          | option.center.twX：number       |                                          | マップ中心のX座標：THINKWARE座標単位            |
-|                                          | option.center.twY：number       |                                          | マップ中心のY座標：THINKWARE座標単位            |
-|                                          | option.level : number            |                                          | マップのレベル                            |
-|                                          | option.callback : function()     |                                          | 初期化後に実行する関数                       |
+|                                          | option.center.twX：number       |                                          | マップ中心のX座標：THINKWARE座標単位          |
+|                                          | option.center.twY：number       |                                          | マップ中心のY座標：THINKWARE座標単位          |
+|                                          | option.level : number            |                                          | マップのレベル                          |
+|                                          | option.callback : function()     |                                          | 初期化後に実行する関数                     |
 |                                          | option.logo : String             |                                          | ロゴを表示する位置<br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>  bottom-right |
 | changeType(type)                         | type : String                    |                                          | マップのタイプ <br> 'i'：一般マップ、<br> 'm'：モバイルマップ、<br> 's'：要約マップ、<br> 'a'：航空写真、<br> 'm_a'：モバイル航空写真、<br> 's_a'：要約航空写真、<br> 'hybrid'：航空<br>default：'i' |
-| thinkware.maps.event.addListener(target, event_type, func_cb) | target : Object                  |                                          | リスナーを追加する対象オブジェクト                    |
+| thinkware.maps.event.addListener(target, event_type, func_cb) | target : Object                  |                                          | リスナーを追加する対象オブジェクト                  |
 |                                          | event_type : String              |                                          | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
-|                                          | func_cb : function()             |                                          | 登録するリスナー                           |
-| thinkware.maps.event.removeListener(target, event_type, func_cb) | target : Object                  |                                          | リスナーを削除する対象オブジェクト                    |
+|                                          | func_cb : function()             |                                          | 登録するリスナー                         |
+| thinkware.maps.event.removeListener(target, event_type, func_cb) | target : Object                  |                                          | リスナーを削除する対象オブジェクト                  |
 |                                          | event_type : String              |                                          | wheelup, <br> wheeldown, <br> wheel, <br>zoomend, <br>movestart, <br>move, <br>moveend, <br>tileloadstart, <br>tileloadend, <br>tileloaderror, <br>click, <br>dblclick, <br>rightclick, <br>mousemove, <br>mouseup, <br>mousedown |
-|                                          | func_cb : function()             |                                          | 削除するリスナー                           |
-| new thinkware.maps.Marker(option)        | option.map : Object              | thinkware.maps.Markerマーカーオブジェクト       | マップオブジェクト                             |
+|                                          | func_cb : function()             |                                          | 削除するリスナー                         |
+| new thinkware.maps.Marker(option)        | option.map : Object              | thinkware.maps.Markerマーカーオブジェクト     | マップオブジェクト                           |
 |                                          | option.icon.url : String         |                                          | アイコンURL                                   |
-|                                          | option.icon.size.width : number  |                                          | アイコンの幅                                  |
-|                                          | option.icon.size.heigth : number |                                          | アイコンの高さ                                  |
+|                                          | option.icon.size.width : number  |                                          | アイコンの幅                                |
+|                                          | option.icon.size.heigth : number |                                          | アイコンの高さ                                |
 |                                          | option.position.twX : number     |                                          | マーカー作成X座標(THINKWARE座標単位)                     |
 |                                          | option.position.twY : number     |                                          | マーカー作成Y座標(THINKWARE座標単位)                     |
 |                                          | option.positioning : String      |                                          | 座標が位置する場所<br> top-left,<br>  top-center,<br>  top-right,<br>  center-left,<br>  center-center,<br>  center-right,<br>  bottom-left,<br>  bottom-center,<br>bottom-right |
-|                                          | option.title : String            |                                          | ツールチップ文字列                            |
-|                                          | option.offset.pxX : number       |                                          | pixel単位                             |
-|                                          | option.offset.pxY : number       |                                          | pixel単位                             |
-|                                          | option.visible : boolean         |                                          | 表示するかどうか                                   |
-|                                          | option.draggable : boolean       |                                          | ドラッグ可能かどうか                               |
-|                                          | option.zIndex : number           |                                          | z-index値                         |
-|                                          | option.opacity : number          |                                          | 透明度                                     |
-|                                          | option.stopEvent : boolean       |                                          | マーカー上でマップイベントの実行を防止するかどうか                   |
-| thinkware.maps.LineString.drawStart(target, option) | target : Object                  |                                          | マップオブジェクト                             |
+|                                          | option.title : String            |                                          | ツールチップ文字列                          |
+|                                          | option.offset.pxX : number       |                                          | pixel単位                           |
+|                                          | option.offset.pxY : number       |                                          | pixel単位                           |
+|                                          | option.visible : boolean         |                                          | 表示するかどうか                                 |
+|                                          | option.draggable : boolean       |                                          | ドラッグ可否                             |
+|                                          | option.zIndex : number           |                                          | z-index値                       |
+|                                          | option.opacity : number          |                                          | 透明度                                   |
+|                                          | option.stopEvent : boolean       |                                          | マーカー上でマップイベントの実行を防止するかどうか                 |
+| thinkware.maps.LineString.drawStart(target, option) | target : Object                  |                                          | マップオブジェクト                           |
 |                                          | option.stroke.style：String     |                                          | 線のスタイル<br><br> dot：· · · · · · <br>dash：- - - - - -<br>dashdot：- · - · - · - <br>longdashdot：ㅡ·ㅡ·ㅡ<br> solid：実線 |
 |                                          | option.stroke.weight : number    |                                          | 線の太さ(px)                                 |
-|                                          | option.stroke.color : String     |                                          | 線の色                                    |
-|                                          | option.stroke.opacity : number   |                                          | 線の透明度                                   |
-|                                          | option.callback : function()     |                                          | 描写終了後に実行する関数                    |
-|                                          | option.measure : boolean         |                                          | 距離測定ポップアップを表示するかどうか                          |
-|                                          | option.isOnce : boolean          |                                          | 1回描写後に終了するかどうか                          |
-| thinkware.maps.LineString.drawEnd(target) | target : Object                  |                                          | マップオブジェクト                             |
-| thinkware.maps.util.getLonLatFromCoordinate(param) | param.twX : number               | Coord座標<br>Object.lon : WGS84<br>Object.lat : WGS84 | THINKWARE  X座標                          |
-|                                          | param.twY : number               |                                          | THINKWARE  Y座標                          |
-| thinkware.maps.util.getCoordinateFromLonLat(param) | param.lon : number               | TW座標<br>Object.twX: TW X座標<br>Object.twY : TW Y座標 | 経度                                 |
-|                                          | param.lat : number               |                                          | 緯度                                 |
+|                                          | option.stroke.color : String     |                                          | 線の色                                  |
+|                                          | option.stroke.opacity : number   |                                          | 線の透明度                                 |
+|                                          | option.callback : function()     |                                          | 描写終了後に実行する関数                  |
+|                                          | option.measure : boolean         |                                          | 距離測定ポップアップを表示するかどうか                        |
+|                                          | option.isOnce : boolean          |                                          | 1回描写後に終了するかどうか                        |
+| thinkware.maps.LineString.drawEnd(target) | target : Object                  |                                          | マップオブジェクト                           |
+| thinkware.maps.util.getLonLatFromCoordinate(param) | param.twX : number               | Coord座標<br>Object.lon : WGS84<br>Object.lat : WGS84 | THINKWARE  X座標                        |
+|                                          | param.twY : number               |                                          | THINKWARE  Y座標                        |
+| thinkware.maps.util.getCoordinateFromLonLat(param) | param.lon : number               | TW座標<br>Object.twX: TW X座標<br>Object.twY : TW Y座標 | 経度                               |
+|                                          | param.lat : number               |                                          | 緯度                               |
 
 
 #### TOAST Maps APIの使用
@@ -272,18 +272,18 @@ TOAST Maps APIは、THINKWARE座標を使用します。縮約してTW座標、T
 </script>
 ```
 
-| 名前 | タイプ | 必須かどうか | 説明                     |
+| 名前 | タイプ | 必須かどうか | 説明                   |
 | ------- | ------- | ----- | ----------------------------- |
-| x       | Integer | 必須 | マップ中心のX座標              |
-| y       | Integer | 必須 | マップ中心のY座標              |
-| mx      | Integer | 必須 | マーカーのX座標                 |
-| my      | Integer | 必須 | マーカーのY座標                 |
+| x       | Integer | 必須 | マップ中心のX座標            |
+| y       | Integer | 必須 | マップ中心のY座標            |
+| mx      | Integer | 必須 | マーカーのX座標               |
+| my      | Integer | 必須 | マーカーのY座標               |
 | width   | Integer | 任意 | マップの幅<br>未入力時は基本600px     |
 | height  | Integer | 任意 | マップの高さ<br>未入力時は基本600px     |
 | imgurl  | String  | 任意 | マーカーイメージURL<br> 未入力時は基本マーカーを使用 |
 | level   | Integer | 任意 | マップレベル <br> 未入力時は基本10        |
-| maptype | String  | 任意 | マップタイプ <br> 未入力の時は基本一般マップ      |
-| label   | String  | 任意 | ラベルの内容                  |
+| maptype | String  | 任意 | マップタイプ <br> 未入力の時は基本一般マップ    |
+| label   | String  | 任意 | ラベルの内容                |
 
 ### 3. モバイルWebマップ
 
@@ -341,3 +341,4 @@ APIの詳細は、[1. Webマップ](#1-web)を参照してください。
 
 </html>
 ```
+

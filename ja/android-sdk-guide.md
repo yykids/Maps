@@ -1,20 +1,20 @@
-## Application Service > Maps > Android SDKガイド
-Android 플랫폼에서 아이나비 지도를 사용하기 위한 프로젝트 기본 설정 방법을 설명합니다.
+﻿## Application Service > Maps > AndroidマップSDKガイド
+Androidプラットフォームでinaviマップを使用するためのプロジェクト基本設定方法を説明します。
 
-### 사전 준비
-- 아이나비 지도를 사용하기 위해서는 인증을 위한 **Appkey**가 필요합니다.
+### 事前準備
+- inaviマップを使用するには、認証用の**Appkey**が必要です。
 
-#### 서비스 활성화
-- **[NHN TOAST Console]** 에서 서비스 선택 후 Application Service > Maps를 클릭합니다
+#### サービス有効化
+- **[NHN TOAST Console]**でサービスを選択し、Application Service > Mapsをクリックします。
 
-#### Appkey 확인
-- **Appkey**는 **TOAST Console** 상단 **URL & Appkey** 메뉴에서 확인할 수 있습니다.
+#### Appkey確認
+- **Appkey**は、**TOAST Console**上部の**URL & Appkey**メニューで確認できます。
 
 
-### Project 환경 구성
-다음과 같이 Project 및 App 모듈 레벨의 build.gradle 파일에 아이나비 지도 저장소를 추가하고, 의존성을 설정합니다.
+### Project環境構成
+次のようにProjectおよびAppモジュールレベルのbuild.gradleファイルにinaviマップ保存場所を追加し、依存性を設定します。
 
-> 아이나비 지도 Android SDK는 Bintray를 통해 배포되며, Beta 기간 종료 후에는 정책에 맞춰 변경될 수 있습니다. (사전 공지 예정)
+> inaviマップAndroid SDKはBintrayを通して配布され、Beta期間終了後はポリシーに合わせて変更される場合があります。(事前告知予定)
 
 ```gradle
 /* Root Project build.gradle */
@@ -23,7 +23,7 @@ allprojects {
     repositories {
         google()
         ...
-        // 아이나비 지도 저장소
+        // inaviマップ保存場所
         maven {
             url 'https://dl.bintray.com/inavi-systems/maps/'
         }
@@ -40,13 +40,13 @@ dependencies {
 ```
 
 
-### Appkey 설정
-발급받은 Appkey를 설정할 수 있도록 아래의 두 가지 방법을 제공합니다. 
+### Appkey設定
+発行したAppkeyを設定する方法は下記のとおりです。
 
-> Appkey가 설정되지 않으면 지도 초기화 단계에서 인증 오류가 발생합니다.
+> Appkeyが設定されていない場合、マップ初期化段階で認証エラーが発生します。
 
-#### 1. AndroidManifest.xml에서 설정
-`AndroidManifest.xml`에 `<meta-data>`를 추가하여 Appkey를 설정할 수 있습니다.
+#### 1. AndroidManifest.xmlで設定
+`AndroidManifest.xml`に`<meta-data>`を追加してAppkeyを設定できます。
 ```xml
 <!-- AndroidManifext.xml -->
 
@@ -59,41 +59,41 @@ dependencies {
 </manifest>
 ```
 
-#### 2. InaviMapSdk API 호출로 설정
-Application 생성 시점에 동적으로 [InaviMapSdk] 싱글턴 객체의 함수를 호출하여 Appkey를 설정할 수 있습니다.
+#### 2. InaviMapSdk APIを呼び出して設定
+Application作成時点で動的に[InaviMapSdk]シングルトンオブジェクトの関数を呼び出してAppkeyを設定できます。
 
 ```kotlin
 // Kotlin
 InaviMapSdk.getInstance(context).appKey = "YOUR_APP_KEY"
 ```
 
-#### 인증 실패
-지도 초기화 단계에 인증이 실패하면 SDK 내부에서 등록된 Callback으로 에러 코드와 메시지를 전달합니다.
-실패에 대한 Callback을 받으려면 [InaviMapSdk] 싱글턴 객체에 [AuthFailureCallback]을 아래와 같이 설정해야 합니다.
+#### 認証失敗
+マップ初期化段階で認証に失敗した場合、SDK内部に登録されたCallbackでエラーコードとメッセージを伝達します。
+失敗のCallbackを受けるには[InaviMapSdk]シングルトンオブジェクトに[AuthFailureCallback]を下記のように設定する必要があります。
 ```kotlin
 // Kotlin
 InaviMapSdk.getInstance(context).authFailureCallback =
     InaviMapSdk.AuthFailureCallback { errCode: Int, msg: String ->
-        // 인증 실패 처리
+        // 認証失敗処理
 }
 ```
->인증 실패 Callback을 별도로 설정하지 않으면 기본적으로 에러 코드와 메시지가 팝업 형태로 표출됩니다.
+>認証失敗Callbackを別途設定していない場合は、エラーコードとメッセージがポップアップ表示されます。
 
-#### 인증 에러 코드
+#### 認証エラーコード
 | Code | Description |
 | ------ | ------ |
-| 300 | APP KEY 유효하지 않음
-| 401 | APP KEY 설정되지 않음 |
-| 503 | 서버 연결 실패 |
-| 504 | 서버 연결 시간 초과 |
-| 500 | 알 수 없는 에러 |
-| 그 외 | 서버 에러 (추후 정의 시 업데이트) |
+| 300 | APP KEYが無効
+| 401 | APP KEYが未設定 |
+| 503 | サーバー接続失敗 |
+| 504 | サーバー接続時間超過 |
+| 500 | 不明なエラー |
+| その他 | サーバーエラー(今後定義したらアップデート) |
 
-### 지도 생성하기
-앱 화면에 아이나비 지도를 표출하는 방법을 설명합니다.
+### マップを作成する
+アプリ画面にinaviマップを表示する方法を説明します。
 
-#### 지도 표시
-액티비티 레이아웃 파일에 아래와 같이 `<fragment>` 태그를 추가하고 [InvMapFragment]를 정의하면 지도를 표출할 수 있습니다.
+#### マップ表示
+アクティビティレイアウトファイルに下記のように`<fragment>`タグを追加して[InvMapFragment]を定義するとマップを表示できます。
 ```xml
 <fragment
     android:id="@+id/map_fragment"
@@ -102,54 +102,54 @@ InaviMapSdk.getInstance(context).authFailureCallback =
     android:name="com.inavi.mapsdk.maps.InvMapFragment" />
 ```
 
-#### 지도 객체 접근
-지도와 관련된 모든 조작은 [InaviMap] 객체를 통해 이루어집니다.
-[InaviMap] 객체에 접근하기 위해서는 우선 [InvMapFragment] 객체의 getMapAsync() 함수를 호출해야 합니다.
-지도 초기화가 완료되면 onMapReady() 콜백 함수를 통해 [InaviMap] 객체가 전달됩니다.
+#### マップオブジェクトにアクセス
+マップに関するすべての操作は[InaviMap]オブジェクトを通して行われます。
+[InaviMap]オブジェクトにアクセスするには、まず[InvMapFragment]オブジェクトのgetMapAsync()関数を呼び出す必要があります。
+マップの初期化が完了したら、onMapReady()コールバック関数を通して[InaviMap]オブジェクトが伝達されます。
 ```kotlin
 // Kotlin
 val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as InvMapFragment
 mapFragment.getMapAsync(object : OnMapReadyCallback {
     override fun onMapReady(inaviMap: InaviMap) {
-        // InaviMap 객체 접근 가능
+        // InaviMapオブジェクトアクセス可能
     }
 })
 ```
 
-#### 지도 이벤트 설정
-지도 클릭, 더블 클릭, 롱 클릭 등 지도와 사용자간 상호작용에 대한 이벤트를 설정할 수 있습니다.
+#### マップイベント設定
+マップクリック、ダブルクリック、長押しなど、マップとユーザー間のインタラクションに対するイベントを設定できます。
 ```kotlin
-// Kotlin
+
 inaviMap.setOnMapClickListener { pointF, latLng ->
-    // pointF : 클릭한 지점의 화면상 좌표
-    // latLng : 클릭한 지점의 지도상 좌표
-    Toast.makeText(context, "지도 클릭", Toast.LENGTH_SHORT).show()
+    // pointF：クリックした地点の画面上の座標
+    // latLng：クリックした地点のマップ上の座標
+    Toast.makeText(context, "マップクリック", Toast.LENGTH_SHORT).show()
 }
 ```
 
-#### 마커 표출
-마커 객체를 생성하고 `position` 속성과 `map` 속성을 설정하면 마커가 표출됩니다.
+#### マーカー表示
+マーカーオブジェクトを作成し、`position`プロパティと`map`プロパティを設定すると、マーカーが表示されます。
 ```kotlin
 // Kotlin
 val marker = InvMarker().apply {
     position = LatLng(37.40219, 127.11077)
-    title = "타이틀"
+    title = "タイトル"
     map = inaviMap
 }
 ```
 
-#### 마커 제거
-마커 객체의 map 속성을 `null`로 설정하시면 마커가 제거됩니다.
+#### マーカー削除
+マーカーオブジェクトのmapプロパティを`null`に設定すると、マーカーが削除されます。
 ```kotlin
 // Kotlin
 marker.map = null
 ```
 
-#### 카메라 이동
-[CameraUpdate]의 팩토리 메서드 또는 [CameraUpdateBuilder]를 통해 [CameraUpdate] 객체를 생성한 다음
-moveCamera() 함수에 파라미터를 전달하여 호출하면 카메라가 이동됩니다.
+#### カメラ移動
+[CameraUpdate]のFactory Methodまたは[CameraUpdateBuilder]を通して[CameraUpdate]オブジェクトを作成した後
+moveCamera()関数にパラメータを伝達して呼び出すと、カメラが移動します。
 
-애니메이션과 카메라 이벤트에 대한 콜백을 지원하므로, 카메라 이동을 원하는 대로 구현할 수 있습니다.
+アニメーションとカメライベントに対するコールバックをサポートするため、カメラ移動を自由に実装できます。
 ```kotlin
 // Kotlin
 val cameraUpdate = CameraUpdate.targetTo(LatLng(36.99473, 127.81832))
@@ -158,8 +158,8 @@ inaviMap.moveCamera(cameraUpdate)
 ```
 
 
-## 주요 iNavi Maps SDK 안내
-추가적인 Maps SDK 사용법은 [iNavi Maps API 센터](http://imapsapi.inavi.com/)를 참고하시기 바랍니다.
+## 主要iNavi Maps SDK案内
+Maps SDKの使用方法は[iNavi Maps APIセンター](http://imapsapi.inavi.com/)を参照してください。
 
 [InaviMapSdk] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.html)
 [InaviMap] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMap.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMap.html)
@@ -170,3 +170,4 @@ inaviMap.moveCamera(cameraUpdate)
 [CameraUpdateBuilder] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html)
 
 [NHN TOAST Console] : [https://console.toast.com/](https://console.toast.com/)
+

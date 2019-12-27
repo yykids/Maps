@@ -1,4 +1,4 @@
-## Application Service > Maps > Webマップv1.0ガイド
+﻿## Application Service > Maps > Webマップv1.0ガイド
 
 Maps Webマップを使用するのに必要なAPIを説明します。
 
@@ -32,13 +32,13 @@ TOAST Maps APIは、THINKWARE座標を使用します。縮約してTW座標、T
 #### 主要TOAST Maps API案内
 ##### TOAST Maps APIの詳細な使用方法は、<a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">Thinkware API Center</a>を参照してください。
 
-| API名                                  | Parameter               | Returns                                  | 説明                                |
+| API名                                | Parameter               | Returns                                  | 説明                              |
 | ---------------------------------------- | ----------------------- | ---------------------------------------- | ---------------------------------------- |
 | THINKMAP.initMap(map_div_name, twX, twY, level, init_cb, arrange_type, map_type) | map_div : String        |                                          | マップ入れるdivタグID<br>マップを使用するために、最初に呼び出す必要がある初期化関数です。 |
-|                                          | twX : Number            |                                          | マップ初期化TW X座標                    |
-|                                          | twY : Number            |                                          | マップ初期化TW Y座標                    |
+|                                          | twX : Number            |                                          | マップ初期化TW X座標                  |
+|                                          | twY : Number            |                                          | マップ初期化TW Y座標                  |
 |                                          | level : Number          |                                          | マップ初期化レベル<br>- 一般マップ：1～13<br>- 航空写真：1～13 |
-|                                          | init_cb : function()    |                                          | マップ初期化後に呼び出されるコールバック関数               |
+|                                          | init_cb : function()    |                                          | マップ初期化後に呼び出されるコールバック関数             |
 |                                          | arrange_type : Number   |                                          | マップレイヤーソート方式<br>1：中央ソート方式(resize効果あり)<br>2：全体ローディング方式(resize効果なし)<br> 3：右上ソート方式(resize効果あり) |
 |                                          | map_type : String       |                                          | マップタイプ設定<br>'i'：一般マップ<br>'a'：航空写真<br>'s'：要約マップ<br>'m'：モバイルマップ |
 | THINKMAP.imageMap()                      |                         |                                          | マップを一般マップに切り替えます。                        |
@@ -48,20 +48,20 @@ TOAST Maps APIは、THINKWARE座標を使用します。縮約してTW座標、T
 |                                          | func_cb : function()    |                                          | マップでイベントが発生した時に呼び出されるコールバック関数<br>(コールバック関数にパラメータとしてMapオブジェクトが渡されます) |
 | THINKMAP.removeMapListener(event_name)   | event_name : String     |                                          | マップから削除するイベント名<br>'movestart'<br>- マップが動き始めた時<br>'move'<br> - マップが動く時<br>'moveend'<br>- マップの動きが終わった時<br>'zoomend'<br>- マップ拡大、縮小が終わった時<br>'mouseover'<br>- マップ上にマウスを移動させた時<br>'mouseout'<br>- マップの外にマウスを移動させた時<br> 'mousemove'<br>- マップでマウスが動く時<br><br>マップに登録したイベントを削除します。 <br>THINKMAP.addMapListenerメソッドに登録したevent_nameに該当するすべてのコールバック関数を削除するので注意してください。 |
 | THINKMAP.createMarker(twX, twY, width, height, iconUrl, [param]) | twX : Number            |                                          | <br>Markerオブジェクト位置TW X座標 <br><br>Markerオブジェクトを作成します。 <br>作成したMarkerオブジェクトをマップに表示するには、THINKMAP.addMarkerメソッドでマップにMarkerオブジェクトを追加する必要があります。 |
-|                                          | twY : Number            |                                          | Markerオブジェクト位置TW Y座標              |
-|                                          | width : Number          |                                          | Markerイメージの幅                          |
-|                                          | height : Number         |                                          | Markerイメージの高さ                         |
+|                                          | twY : Number            |                                          | Markerオブジェクト位置TW Y座標            |
+|                                          | width : Number          |                                          | Markerイメージの幅                        |
+|                                          | height : Number         |                                          | Markerイメージの高さ                       |
 |                                          | iconURL : String        |                                          | MarkerイメージのURL                          |
-|                                          | param : String          |                                          | Markerオブジェクトのユーザー変数                 |
+|                                          | param : String          |                                          | Markerオブジェクトのユーザー変数               |
 | THINKMAP.addMarker(marker)               | marker : Marker         |                                          | マップに追加する対象Markerオブジェクト<br><br>マップにMarkerオブジェクトを追加します。 |
 | THINKMAP.featureDrawing(draw_type, style, func_cb) | draw_type : String      |                                          | ユーザーが描写するFeatureオブジェクトタイプ<br>'lineDraw'：線<br>'polygonDraw'：多角形<br> 'regularPolygonDraw'：形が決まっている多角形<br><br>ユーザーがマップにマウスでPolyline、Polygonを直接描写できる描写モードに切り替えます。<br>マップをクリックした時、オブジェクトの描写が始まり、マウスをダブルクリックすると描写が完了します。 <br>描写完了時、コールバック関数に描写したFeatureオブジェクトを渡します。 |
 |                                          | style : Object          |                                          | <br> Polygon, Polylineのスタイルを指定するためのObject<br>strokeColor：線の色<br>- 'red', '#fff123' <br> strokeWidth：線の太さ<br> - 10<br> strokeOpacity：線の透明度<br>fillColor：塗りつぶしの色<br>fillOpacity：塗りつぶしの透明度<br>strokeDashstyle：線のスタイル<br>dot：· · · · · · <br>dash: - - - - - -<br>dashdot：- · - · - · - <br>longdashdot:ㅡ·ㅡ·ㅡ<br> solid：実線 <br> |
 |                                          | func_cb : function()    |                                          | ユーザーがマップをダブルクリックして<br>Featureオブジェクトの描写が完了した時に呼び出されるコールバック関数 |
 | THINKMAP.featureDrawingCancel()          |                         |                                          | マップにユーザーがマウスでPolyline、Polygonを直接描写できる描写モードを終了します。 |
 | THINKMAP.tw_Wgs84(twX, twY)              | twX：Number            | coord：Object<br>変換されたWGS84座標<br>- coord.curx：WGS84 X座標<br>- coord.cury：WGS84 Y座標 | 変換するTW X座標<br><br>TW座標をWGS84座標に変換します。 |
-|                                          | twY : Number            |                                          | 変換するTW Y座標                       |
+|                                          | twY : Number            |                                          | 変換するTW Y座標                     |
 | THINKMAP.wgs84_Tw(wgs_lon, wgs_lat)      | wgs_lon：Number        | coord：Object<br>変換されたTW座標 <br>- coord.curx：TW X座標<br>- coord.cury：TW Y座標 | 変換するWGS84経度座標<br><br>WGS84座標をTW座標に変換します。 |
-|                                          | wgs_lat : Number        |                                          | 変換するWGS84緯度座標                   |
+|                                          | wgs_lat : Number        |                                          | 変換するWGS84緯度座標                 |
 
 
 #### TOAST Maps APIの使用
@@ -213,18 +213,18 @@ TOAST Maps APIは、THINKWARE座標を使用します。縮約してTW座標、T
 </script>
 ```
 
-| 名前 | タイプ | 必須かどうか | 説明                     |
+| 名前 | タイプ | 必須かどうか | 説明                   |
 | ------- | ------- | ----- | ----------------------------- |
-| x       | Integer | 必須 | マップ中心のX座標             |
-| y       | Integer | 必須 | マップ中心のY座標             |
-| mx      | Integer | 必須 | マーカーのX座標                |
-| my      | Integer | 必須 | マーカーのY座標                |
+| x       | Integer | 必須 | マップ中心のX座標           |
+| y       | Integer | 必須 | マップ中心のY座標           |
+| mx      | Integer | 必須 | マーカーのX座標              |
+| my      | Integer | 必須 | マーカーのY座標              |
 | width   | Integer | 任意 | マップの幅<br>未入力時は基本600px     |
 | height  | Integer | 任意 | マップの高さ<br>未入力時は基本600px     |
 | imgurl  | String  | 任意 | マーカーイメージURL<br> 未入力時は基本マーカーを使用 |
 | level   | Integer | 任意 | マップレベル <br> 未入力時は基本10        |
-| maptype | String  | 任意 | マップタイプ <br> 未入力時は基本一般マップ    |
-| label   | String  | 任意 | ラベルの内容                  |
+| maptype | String  | 任意 | マップタイプ <br> 未入力時は基本一般マップ  |
+| label   | String  | 任意 | ラベルの内容                |
 
 ### 3. モバイルWebマップ
 
@@ -276,3 +276,4 @@ APIの詳細は、[1. Webマップ](#1-web)を参照してください。
 
 </html>
 ```
+

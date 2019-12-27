@@ -1,4 +1,4 @@
-## Application Service > Maps > エラーコード
+﻿## Application Service > Maps > エラーコード
 
 ## APIエラーコード
 |resultCode|	resultMessage|	説明|	備考|
@@ -17,3 +17,4 @@
 |208|	Neighbor Search Only|結果なし(周辺検索のみ入力)|	検索専用|
 |209|	Neighbor Search not Found|結果なし(周辺 + キーワード検索結果なし)|	検索専用|
 |300|	AppKey Error|アプリケーションキー認証エラー	|共通|
+
