@@ -1,4 +1,4 @@
-﻿## Application Service > Maps > API v3.0ガイド
+## Application Service > Maps > API v3.0ガイド
 
 inaviの長年培ったナビエンジン技術を利用した検索、Geocoding、Reverse Geocoding、経路検索(ルート検索)、Static Map APIの使用方法について説明します。 
 

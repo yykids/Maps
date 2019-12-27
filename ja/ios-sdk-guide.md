@@ -1,4 +1,4 @@
-﻿## Application Service > Maps > iOSマップSDKガイド
+## Application Service > Maps > iOSマップSDKガイド
 iOSプラットフォームでinaviマップを使用するためのプロジェクト基本設定方法を説明します。
 
 ### 事前準備

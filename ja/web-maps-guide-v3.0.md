@@ -1,4 +1,4 @@
-﻿## Application Service > Maps > Webマップガイド
+## Application Service > Maps > Webマップガイド
 
 Maps Webマップを使用するのに必要なJavaScript基盤Web APIを説明します。
 
