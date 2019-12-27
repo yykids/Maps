@@ -1,4 +1,4 @@
-﻿## Application Service > Maps > Webマップv1.0ガイド
+## Application Service > Maps > Webマップv1.0ガイド
 
 Maps Webマップを使用するのに必要なAPIを説明します。
 

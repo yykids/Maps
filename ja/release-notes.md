@@ -1,4 +1,4 @@
-﻿## Application Service > Maps > リリースノート
+## Application Service > Maps > リリースノート
 
 ### 2019.12.24
 #### 機能改善
