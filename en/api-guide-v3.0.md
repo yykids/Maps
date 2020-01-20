@@ -1,13 +1,13 @@
-## Application Service > Maps > API User Guide v3.0 
+## Application Service > Maps > API User Guide v3.0
 
-Describes the Search by iNavi's historic engine technology, Geocoding, Reverse Geocoding, Route Navigation (Getting Directions), and Static Map API. 
+Describes the Search by iNavi's historic engine technology, Geocoding, Reverse Geocoding, Route Navigation (Getting Directions), and Static Map API.
 
-## Common API Information 
+## Common API Information
 
-### Prerequisites 
+### Prerequisites
 
-* Appkey is required to use APIs. 
-* To check your appkey, go to **URL & Appkey** on top of the **TOAST Console**. 
+* Appkey is required to use APIs.
+* To check your appkey, go to **URL & Appkey** on top of the **TOAST Console**.
 
 ### Common Request Information
 
@@ -17,11 +17,11 @@ Describes the Search by iNavi's historic engine technology, Geocoding, Reverse G
 | ----------- | -------------------------------- |
 | Real        | https://api-maps.cloud.toast.com |
 
-### Common Response Information 
+### Common Response Information
 
 #### Search API
 
-* Respond with '200 OK' for all API requests. See header at the response body for more detail response results. 
+* Respond with '200 OK' for all API requests. See header at the response body for more detail response results.
 
 ```
 {
@@ -35,9 +35,9 @@ Describes the Search by iNavi's historic engine technology, Geocoding, Reverse G
 
 ## Search
 
-### 1\. Integrated Search 
+### 1\. Integrated Search
 
-* Search integrated information on key words, such as business name, phone number, and address. 
+* Search integrated information on key words, such as business name, phone number, and address.
 
 #### Request
 
@@ -70,7 +70,7 @@ Describes the Search by iNavi's historic engine technology, Geocoding, Reverse G
 | x2            | String | Optional |             | X2 coordinates<br>X coordinate on bottom right of Extent, if spopt is 1; disabled if spopt is 2 |
 | y2            | String | Optional |             | Y2 coordinates<br>Y coordinate on bottom right of Extent, if spopt is 1; disabled if spopt is 2 |
 | sortopt       | String | Optional |             | Sorting option<br>1: Sort by name<br>2: Sort by distance (with coordinates)<br>3: Match names ->Sort by distance (with coordinates)<br>4: Sort by weight of a search word (for engine)<br>5: Sort by weight + length of a search word (for engine)<br>6: Sort by preferred category [V8.1.5 is not supported]<br>7: Sort by most-updated data <br>8: Sort by weight in the order of (Landmark>Distance>PoiWeight) + distance (if coordinates are available) of a search word <br>*Set 4, if sortopt is not set |
-| catecode      | String | Optional |             | Preferred Category<br>If a category name is entered for a search word, for the search of a preferred category, search is made for the search word rather than the preferred category, according to search word-first policy  <br>e.g.) Search Word: "Beauty salon", Preferred Category: "100000"(restaurant) ->Search is made for a beauty salon |
+
 
 #### Response
 
@@ -207,7 +207,7 @@ Describes the Search by iNavi's historic engine technology, Geocoding, Reverse G
 }
 ```
 
-##### Field	
+##### Field
 
 | Name                           | Type   | Description                             |
 | -------------------------------- | ------- | ---------------------------------------- |
@@ -300,7 +300,7 @@ in the order of gas, premium gas, light oil, and LPG |
 | search.oilprice.avg_l_price      | Integer | Average LPG price                        |
 
 
-### 2\. Search of Recommended Words 
+### 2\. Search of Recommended Words
 
 * Search recommended words of a search word.
 
@@ -326,7 +326,7 @@ in the order of gas, premium gas, light oil, and LPG |
 
 #### Response
 
-##### Body 
+##### Body
 
 ```
 {
@@ -384,7 +384,7 @@ in the order of gas, premium gas, light oil, and LPG |
 }
 ```
 
-##### Field	
+##### Field
 
 | Name                          | Type    | Description                        |
 | ----------------------------- | ------- | ---------------------------------- |
@@ -399,9 +399,9 @@ in the order of gas, premium gas, light oil, and LPG |
 | proposer.keyword[0].keyword   | String  | Recommended search words           |
 | proposer.keyword[0].frequency | Integer | Query frequency                    |
 
-### 3\. Search of POI Details 
+### 3\. Search of POI Details
 
-* Search details of POI. 
+* Search details of POI.
 
 #### Request
 
@@ -594,9 +594,9 @@ in the order of gas, premium gas, light oil, and LPG |
 | poi.poiinfo[0].oilda.fix           | Boolean | Availability of car repairs                                  |
 | poi.poiinfo[0].oilda.mart          | Boolean | Availability of a store                                      |
 
-### 4\. Search of POI Sub-Facilities 
+### 4\. Search of POI Sub-Facilities
 
-* Search sub-facilities for a specific POI. 
+* Search sub-facilities for a specific POI.
 
 #### Request
 
@@ -744,9 +744,9 @@ In the order of gas, premium gas, light oil, and LPG |
 
 ### 5\. Conversion of Coordinates
 
-* Return conversion value between WGS84 <-> TM coordinates. 
+* Return conversion value between WGS84 <-> TM coordinates.
 
-#### Request 
+#### Request
 
 [URI]
 
@@ -801,11 +801,174 @@ In the order of gas, premium gas, light oil, and LPG |
 | coordinate.y         | String  | Y coordinates for conversion |
 
 
+### 6\. 주변 카테고리 검색
+
+* 기준 좌표를 기준으로 주변 카테고리 검색기능을 지원합니다.
+
+#### 요청
+
+[URI]
+
+| 메서드  | URI                                      |
+| ---- | ---------------------------------------- |
+| GET  | /maps/v3.0/appkeys/{appkey}/nearby-category-searches?depth={depth}&x1={x1}&y1={y1}&x2={x2}&y2={y2}&radius={radius}&catecode={catecode}&coordtype={coordtype}&reqcount={reqcount}  |
+
+[Path parameter]
+
+| 이름     | 타입     | 필수 여부 | 유효 범위 | 설명     |
+| ------ | ------ | ----- | ----- | ------ |
+| appkey | String | 필수    |       | 고유의 앱키 |
+
+[Query Parameters]
+
+| 이름        | 타입     | 필수 여부 |  설명                                   |
+| --------- | ------ | ----- |  ------------------------------------ |
+| depth | Integer | 필수    | 0 : 전체 depth <br> 1 : depth1 <br> 2 : depth2 <br> 3 : depth3|
+| spopt         | Integer | 필수   | 1 : Extent(x1,y1,x2,y2) <br> 2 : 반경검색(x1,y1,radius)                                   |
+| catecode         | String | 필수   | 카테고리 코드 |
+| x1         | String | 필수(spopt 참조)    | 기준 X1좌표 |
+| y1         | String | 필수(spopt 참조)    | 기준 Y1좌표 |
+| x2         | String | 필수(spopt 참조)    | 기준 X2좌표 |
+| y2         | String | 필수(spopt 참조)    | 기준 Y2 좌표 |
+| radius         | String | 필수(spopt 참조)    | 반경(m) |
+
+#### 응답
+
+##### 응답 본문
+
+```
+{
+    "cate": {
+        "result": true,
+        "totalcount": 7,
+        "count": 1,
+        "poi": [
+            {
+                "poiid": 717788,
+                "depth": 0,
+                "dpx": "127.110762",
+                "dpy": "37.402184",
+                "rpx": "127.110862",
+                "rpy": "37.402334",
+                "name1": "팅크웨어(주)",
+                "name2": "아이나비(본사)",
+                "name3": "THINKWARE",
+                "name4": "INAVI",
+                "admcode": "4113510900",
+                "jibun": "678",
+                "address": "경기도 성남시 분당구 삼평동",
+                "roadname": "경기도 성남시 분당구 판교역로",
+                "roadjibun": "240",
+                "detailaddress": "삼환하이펙스 A동 8층,9층",
+                "catecode": "130600",
+                "catename": "기업",
+                "dp_catecode": "000",
+                "userid": "",
+                "imagecount": 0,
+                "userimagecount": 0,
+                "badgeflag": false,
+                "distance": 40,
+                "tel": "15774242",
+                "islandmark": true,
+                "visitscore": "7.12",
+                "landmarkscore": "10",
+                "popularity": false,
+                "pop_tv": false,
+                "pop_sns": false,
+                "pop_hot": false,
+                "pop_hit": false,
+                "pop_top": "경기_,분당구_2",
+                "updateTS": "2019-05-02 00:00:00",
+                "hasoildata": false,
+                "hasdetailinfo": true,
+                "hassubpoi": true,
+                "subpoi": {
+                    "count": 1
+                }
+            }
+        ],
+        "hasgasstation": false
+    },
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": ""
+    }
+}
+```
+
+##### 필드
+
+##### 필드
+
+| 이름                                 | 타입      | 설명                                       |
+| ---------------------------------- | ------- | ---------------------------------------- |
+| header                             | Object  | 헤더 영역                                    |
+| header.isSuccessful                | Boolean | 성공 여부                                    |
+| header.resultCode                  | Integer | 실패 코드                                    |
+| header.resultMessage               | String  | 실패 메시지                                   |
+| cate                                | Object  | 본문 영역                                    |
+| cate.result                         | Boolean | 성공 여부                                    |
+| cate.totalcount                     | Integer | 전체 검색 결과 대상 개수                           |
+| cate.count                          | Integer | 검색 결과 개수                                 |
+| cate.poi                        | Array   | POI 검색 결과 목록                             |
+| cate.poi[0].poiid               | Integer | POI ID                                   |
+| cate.poi[0].dpx                 | String  | display X 좌표(WGS84의 경우 longitude)         |
+| cate.poi[0].dpy                 | String  | display Y 좌표(WGS84의 경우 latitude)          |
+| cate.poi[0].rpx                 | String  | 탐색 X 좌표(WGS84의 경우 longitude)              |
+| cate.poi[0].rpy                 | String  | 탐색 Y 좌표(WGS84의 경우 latitude)               |
+| cate.poi[0].name1               | String  | 정식 명칭                                    |
+| cate.poi[0].name2               | String  | 축약 명칭                                    |
+| cate.poi[0].name3               | String  | 확장 명칭 1                                  |
+| cate.poi[0].name4               | String  | 확장 명칭 2                                  |
+| cate.poi[0].admcode             | String  | 행정코드                                    |
+| cate.poi[0].jibun               | String  | 지번                                       |
+| cate.poi[0].address             | String  | 주소                                       |
+| cate.poi[0].roadname            | String  | 새주소 도로명                                  |
+| cate.poi[0].roadjibun           | String  | 새주소 지번                                   |
+| cate.poi[0].detailaddress       | String  | 상세 주소                                    |
+| cate.poi[0].catecode            | String  | 분류 코드                                    |
+| cate.poi[0].catename            | String  | 분류 명칭                                    |
+| cate.poi[0].fulladdress         | String  | 전체 주소(행정주소+지번+상세주소)                      |
+| cate.poi[0].zip                 | String  | 우편번호                                     |
+| cate.poi[0].homeage             | String  | 홈페이지 url                                 |
+| cate.poi[0].email               | String  | 이메일                                      |
+| cate.poi[0].howtogo             | String  | 교통편                                      |
+| cate.poi[0].tel1                | String  | 전화번호 1                                   |
+| cate.poi[0].tel2                | String  | 전화번호 2                                   |
+| cate.poi[0].fax1                | String  | 팩스번호 1                                   |
+| cate.poi[0].fax2                | String  | 팩스번호 2                                   |
+| cate.poi[0].icode               | String  | ICODE                                    |
+| cate.poi[0].detail_count        | Integer | 분류 상세 항목 개수                              |
+| cate.poi[0].etc_count           | Integer | 분류 기타 항목 개수                              |
+| cate.poi[0].imagecount          | Integer | POI 이미지 개수                               |
+| cate.poi[0].hasoildata          | Boolean | 유가 데이터 존재 유무                             |
+| cate.poi[0].detailinfo          | Array   | 분류 상세 항목                                 |
+| cate.poi[0].detailinfo[0].name  | String  | 분류 상세 항목 설명                              |
+| cate.poi[0].detailinfo[0].value | String  | 분류 상세 항목 내용                              |
+| cate.poi[0].etcinfo             | Array   | 분류 기타 항목                                 |
+| cate.poi[0].etcinfo[0].name     | String  | 분류 기타 항목 설명                              |
+| cate.poi[0].etcinfo[0].value    | String  | 분류 기타 항목 내용                              |
+| cate.poi[0].oildata             | Object  | 유가 데이터 정보                                |
+| cate.poi[0].oilda.tag_price     | Integer | 휘발유 가격                                   |
+| cate.poi[0].oilda.hg_price      | Integer | 고급휘발유 가격                                 |
+| cate.poi[0].oilda.d_price       | Integer | 경유 가격                                    |
+| cate.poi[0].oilda.l_price       | Integer | LPG 가격                                   |
+| cate.poi[0].oilda.updatetime    | String  | 업데이트 시간                                  |
+| cate.poi[0].oilda.priceinfo     | String  | 최고, 최저 유가 정보<br>(H : 최고, L : 최저, X : 해당없음)<br>휘발유, 고급휘발유, 경유, LPG 순 |
+| cate.poi[0].oilda.wash          | Boolean | 세차 시설 여부                                 |
+| cate.poi[0].oilda.fix           | Boolean | 정비 가능 여부                                 |
+| cate.poi[0].oilda.mart          | Boolean | 매점 여부                                    |
+| cate.poi[0].hassubpoi          | Boolean | 하위 시설물 데이터 존재 유무          |
+| cate.poi[0].subpoi          | Object | 하위 시설물 정보                                 |
+| cate.poi[0].subpoi.count          | Integer | 하위 시설물 개수                                 |
+| cate.poi[0].subpoi.poi          | Array |  POI 정보와 동일                            |
+
 ## Geocoding API
 
 ### 1\. Search of Address \(Address \-\> Coordinates\)
 
-* Search coordinates (TW/WGS84/TM) with address. 
+* Search coordinates (TW/WGS84/TM) with address.
 
 #### Request
 
@@ -835,7 +998,7 @@ In the order of gas, premium gas, light oil, and LPG |
 
 #### Response
 
-##### Body 
+##### Body
 
 ```
 {
@@ -958,29 +1121,38 @@ In the order of gas, premium gas, light oil, and LPG |
     },
     "location": {
         "result": true,
-        "posx": "126.947265",
-        "posy": "37.384033",
-        "roadname": "Gwiin-ro, Dongan-gu, Anyang-si, Gyeonggi-do",
-        "roadjibun": "59",
+        "hasAdmAddress": true,
+        "adm": {
+            "posx": "126.947265",
+            "posy": "37.384033",
+            "address": "경기도 안양시 동안구 호계동",
+            "distance": 0,
+            "bldname": "",
+            "admcode": "4117310400",
+            "postcode": "14079",
+            "jibun": "921",
+            "roadname": "경기도 안양시 동안구 귀인로",
+            "roadjibun": "59"
+        },
         "adm_address": {
-            "address": "Beomgye-dong, Dongan-gu, Anyang-si, Gyeonggi-do",
-            "admcode": "4117361000",
-            "address_category3": "Beomgye-dong",
+            "address": "경기도 안양시 동안구 호계2동",
+            "admcode": "4117359000",
+            "address_category3": "호계2동",
             "address_category4": "",
             "jibun": "921",
-            "address_category1": "Gyeonggi-do",
-            "address_category2": "Dongan-gu, Anyang-si",
-            "cut_address": "Beomgye-dong, Dongan-gu, Anyang-si, Gyeonggi-do"
+            "address_category1": "경기도",
+            "address_category2": "안양시 동안구",
+            "cut_address": "경기 안양시 동안구 호계2동"
         },
         "legal_address": {
-            "address": "Hogye-dong, Dongan-gu, Anyang-si, Gyeonggi-do",
+            "address": "경기도 안양시 동안구 호계동",
             "admcode": "4117310400",
-            "address_category3": "Hogye-dong",
+            "address_category3": "호계동",
             "address_category4": "",
             "jibun": "921",
-            "address_category1": "Gyeonggi-do",
-            "address_category2": "Dongan-gu, Anyang-si",
-            "cut_address": "Hogye-dong, Dongan-gu, Anyang-si, Gyeonggi-do"
+            "address_category1": "경기도",
+            "address_category2": "안양시 동안구",
+            "cut_address": "경기 안양시 동안구 호계동"
         }
     }
 }
@@ -988,35 +1160,43 @@ In the order of gas, premium gas, light oil, and LPG |
 
 ##### Field
 
-| Name                 | Type   | Description                             |
+
+| 이름                     | 타입      | 설명                                       |
 | ---------------------- | ------- | ---------------------------------------- |
-| header                 | Object  | Header area                           |
-| header.isSuccessful    | Boolean | Successful or not                    |
-| header.resultCode      | Integer | Failure code                          |
-| header.resultMessage   | String  | Failure message                     |
-| location               | Object  | Body area                            |
-| location.result        | Boolean | Successful or not                    |
-| location.posx      | String  | X coordinates                         |
-| location.posy      | String  | Y coordinates                         |
-| location.roadname  | String  | Road name for new address system  |
-| location.roadjibun | String  | Land-lot number for new address system |
-| location.adm_address           | Object  | Administrative address    |
-| location.adm_address.admcode   | String  | Administrative code                |
-| location.adm_address.address   | String  | Address                                |
-| location.adm_address.jibun     | String  | Land-lot number                        |
-| location.adm_address.address_category1     | String  |   Do/Si (Province/City)   |
-| location.adm_address.address_category2     | String  |   Si/Gun/Gu (City/County/District)   |
-| location.adm_address.address_category3     | String  | Eup/Myeon/Dong (Town/Township/Neighborhood) |
-| location.adm_address.address_category4     | String  |   Ri (Village)     |
+| header                 | Object  | 헤더 영역                                    |
+| header.isSuccessful    | Boolean | 성공 여부                                    |
+| header.resultCode      | Integer | 실패 코드                                    |
+| header.resultMessage   | String  | 실패 메시지                                   |
+| location               | Object  | 본문 영역                                    |
+| location.result        | Boolean | 성공 여부                                    |
+| location.hasAdmAddress        | Boolean | 행정 주소 반환 여부                                    |
+| location.adm           | Object  | 법정 주소 정보                           |
+| location.adm.posx      | String  | X 좌표                                     |
+| location.adm.posy      | String  | Y 좌표                                     |
+| location.adm.admcode  | String  | 법정코드                                  |
+| location.adm.address  | String  | 주소                                  |
+| location.adm.jibun  | String  | 지번                                  |
+| location.adm.roadname  | String  | 새주소 도로명                                  |
+| location.adm.roadjibun | String  | 새주소 지번                                   |
+| location.adm.bldname  | String  | 건물명(해당될 때만)                              |
+| location.adm.postcode  | String  | 우편번호                   |
+| location.adm_address           | Object  | 행정동 주소 정보                           |
+| location.adm_address.admcode   | String  | 행정코드                                    |
+| location.adm_address.address   | String  | 주소                                       |
+| location.adm_address.jibun     | String  | 지번                                       |
+| location.adm_address.address_category1     | String  |   도/시                      |
+| location.adm_address.address_category2     | String  |   시/군/구                   |
+| location.adm_address.address_category3     | String  |   읍/면/동                 |
+| location.adm_address.address_category4     | String  |   리                  |
 | location.adm_address.cut_address     | String  |                         |
-| location.legal_address           | Object  | Administrative address   |
-| location.legal_address.admcode   | String  | Administrative code                |
-| location.legal_address.address   | String  | Address                                |
-| location.legal_address.jibun     | String  | Land-lot number                        |
-| location.legal_address.address_category1     | String  | Do/Si (Province/City) |
-| location.legal_address.address_category2     | String  | Si/Gun/Gu (City/County/District) |
-| location.legal_address.address_category3     | String  | Eup/Myeon/Dong (Town/Township/Neighborhood) |
-| location.legal_address.address_category4     | String  |  Ri (Village)           |
+| location.legal_address           | Object  | 법정동 주소 정보                           |
+| location.legal_address.admcode   | String  | 법정코드                                    |
+| location.legal_address.address   | String  | 주소                                       |
+| location.legal_address.jibun     | String  | 지번                                       |
+| location.legal_address.address_category1     | String  |  도/시                       |
+| location.legal_address.address_category2     | String  |  시/군/구                      |
+| location.legal_address.address_category3     | String  |  읍/면/동                      |
+| location.legal_address.address_category4     | String  |  리                       |
 | location.legal_address.cut_address     | String  |                         |
 
 
@@ -1025,9 +1205,9 @@ In the order of gas, premium gas, light oil, and LPG |
 
 ## Navigate
 
-### 1\. Route Navigation 
+### 1\. Route Navigation
 
-* Use departure and destination coordinates (including optional stopovers) to return navigated details and route information. 
+* Use departure and destination coordinates (including optional stopovers) to return navigated details and route information.
 
 #### Request
 
@@ -1150,7 +1330,7 @@ In the order of gas, premium gas, light oil, and LPG |
 | route.data.option              | String | Navigation option |
 | route.data.spend_time           | Integer | Required time (second)          |
 | route.data.distance           | Integer | Distance (m)                 |
-| route.data.total_fee    | Integer | Toll fee                    |
+| route.data.toLl_fee    | Integer | Toll fee                    |
 | route.data.paths	 | Array | List of route details       |
 | route.data.paths[0].coords | Array | List of coordinate details |
 | route.data.paths[0].coords[0].x   | Double | X coordinates                 |
@@ -1176,7 +1356,7 @@ In the order of gas, premium gas, light oil, and LPG |
 
 ### 2\. Summary of Route Navigation
 
-* Use departure and destination coordinates (including optional stopovers) to return navigated summary data (e.g. distance, time, and, navigation options). 
+* Use departure and destination coordinates (including optional stopovers) to return navigated summary data (e.g. distance, time, and, navigation options).
 
 #### Request
 
@@ -1252,9 +1432,9 @@ In the order of gas, premium gas, light oil, and LPG |
 | route.data[0].distance           | Integer | Distance (m)               |
 
 
-### 3\. Summary of Navigation Routes with Multiple Departures 
+### 3\. Summary of Navigation Routes with Multiple Departures
 
-* Navigate coordinates of multiple departures and one departure, and return each time and distance data. 
+* Navigate coordinates of multiple departures and one departure, and return each time and distance data.
 
 #### Request
 
@@ -1334,9 +1514,9 @@ In the order of gas, premium gas, light oil, and LPG |
 
 
 
-### 4\. Summary of Navigation Routes with Multiple Destinations 
+### 4\. Summary of Navigation Routes with Multiple Destinations
 
-* Navigate coordinates of one departure and multiple destinations, and return each time and distance data. 
+* Navigate coordinates of one departure and multiple destinations, and return each time and distance data.
 
 #### Request
 
@@ -1398,7 +1578,7 @@ In the order of gas, premium gas, light oil, and LPG |
 }
 ```
 
-##### Field	
+##### Field
 
 | Name                      | Type   | Description                             |
 | --------------------------- | ------- | ---------------------------------------- |
@@ -1416,7 +1596,7 @@ In the order of gas, premium gas, light oil, and LPG |
 
 
 
-### 5\. Search of Estimated Routes 
+### 5\. Search of Estimated Routes
 
 * Use estimated arrival time based on estimated start and arrival time, as well as coordinates at departure and destination (including optional stopovers), and return navigated details and route information.  
 
@@ -1467,7 +1647,7 @@ In the order of gas, premium gas, light oil, and LPG |
 | afterCount   | Integer | Optional    |       | Navigation count after base time |
 | interval   | Integer | Optional    |       | Inverval (minute) before/after base time  |
 
-#### Response	
+#### Response
 
 ##### Body
 ```
@@ -1663,7 +1843,7 @@ In the order of gas, premium gas, light oil, and LPG |
 }
 ```
 
-##### Field	
+##### Field
 
 | Name                      | Type   | Description                             |
 | --------------------------- | ------- | ---------------------------------------- |
@@ -1677,7 +1857,7 @@ In the order of gas, premium gas, light oil, and LPG |
 | route.data.option              | String | Navigation option           |
 | route.data.spend_time           | Integer | Required time (second)         |
 | route.data.distance           | Integer | Distance (m)                 |
-| route.data.total_fee    | Integer | Toll fee                    |
+| route.data.toLl_fee    | Integer | Toll fee                    |
 | route.data.times	 | Array | List of route details |
 | route.data.times[0].index	 | Integer | Index as compared to base time (which is applied for 0) |
 | route.data.times[0].spend_time	 | Integer | Required time (second) |
@@ -1719,7 +1899,7 @@ In the order of gas, premium gas, light oil, and LPG |
 
 ### 1\. Static Map
 
-* Return static map images within user-defined map range. 
+* Return static map images within user-defined map range.
 
 #### Request
 
@@ -1754,5 +1934,5 @@ In the order of gas, premium gas, light oil, and LPG |
 
 #### Response
 
-##### Body 
+##### Body
 <img src="http://static.toastoven.net/toastcloud/notice/20191029_Maps_new/map_static.png">

@@ -1,19 +1,35 @@
 ## Application Service > Maps > 릴리스 노트
-
+### 2020.01.21
+#### 기능  추가
+* [API] 주변 카테고리 검색 API 추가
+	* 기준 좌표X,Y 공간 및 반경 카테고리 검색 추가
+#### 기능  개선
+* [API] ReverseGeocoding 건물명, 우편번호 추가
+* [API] 통합검색 catecode 삭제
+* [SDK] 마커 표출 상태 변경 시 애니메이션 기본값 비활성화로 변경
+* [SDK] 마커 표출 상태 변경 시 애니메이션 설정 API 추가
+* [SDK] INVMarker#infoWindow 속성 nullable로 변경 (iOS)
+#### Bug fixes
+* [API] 통합검색 spopt 2일때 vaildation check 개선
+* [API] POI 하위시설물조회 vaildation check 개선
+* [SDK] 마커 타이틀에 “^” 문자 포함 시 줄바꿈되는 오류 수정
+* [SDK] Fly 애니메이션 타입 카메라 이동 시 자연스럽지 않은 오류 수정 (iOS)
+* [SDK] 줌 컨트롤러에 지도의 Padding 값이 적용되지 않는 오류 수정 (iOS)
 ### 2019.12.24
 #### 기능  개선
 * [API] 숫자데이터 8자리 초과시 깨지는 버그 해결
 * [API] ReverseGeocoding 엔진변경
 * [API] StaticMap IE 버그 해결
-* [SDK] 지도 이동 영역을 제한하는 인터페이스 추가
+* [CONSOLE]  TCA admin 권한 및 로그인 체크
+* [SDK] 지도 이동 영역을 제한하는 I/F 추가
 * [SDK] 로고 클릭 이벤트 활성화 여부 설정 I/F 추가
-* [SDK] 오픈소스 라이선스, 법적 공지 Activity 호출 Intent 인터페이스 추가 (Android)
-* [SDK] 오픈소스 라이선스, 법적 공지 ViewController 호출 인터페이스 추가 (iOS)
+* [SDK] 오픈소스 라이선스, 법적 공지 Activity 호출 Intent I/F 추가 (Android)
+* [SDK] 오픈소스 라이선스, 법적 공지 ViewController 호출 I/F 추가 (iOS)
 * [SDK] 마커 아이콘과 타이틀 사이의 여백을 설정하는 기능 추가.
 * [SDK] INVLatLng, INVLatLngBounds의 property readonly 속성으로 변경 (iOS)
-* [SDK] INVCameraUpdateParams#scrollTo Deprecated 적용 (targetTo로 대체) (iOS)
-* [SDK] INVCameraUpdateParams#scrollBy Deprecated 적용 (targetBy로 대체) (iOS)
-* [SDK] INVLatLngBounds#latLngBoundsSouthWest Deprecated 적용 (boundsWithSouthWest로 대체) (iOS)
+* [SDK] INVCameraUpdateParams#scrollTo Deprecated 적용 (targetTo 로 대체됩니다.) (iOS)
+* [SDK] INVCameraUpdateParams#scrollBy Deprecated 적용 (targetBy 로 대체됩니다.) (iOS)
+* [SDK] INVLatLngBounds#latLngBoundsSouthWest Deprecated 적용 (boundsWithSouthWest 로 대체됩니다.) (iOS)
 
 ### 2019.11.26
 #### 기능 추가
