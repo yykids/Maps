@@ -1,20 +1,20 @@
-## Application Service > Maps > iOS SDK Guide
-iOS 플랫폼에서 아이나비 지도를 사용하기 위한 프로젝트 기본 설정 방법을 설명합니다.
+## Application Service > Maps > SDK User Guide for iOS Maps
+Describes the basic project configuration method to enable iNavi maps on iOS. 
 
-### 사전 준비
-- 아이나비 지도를 사용하기 위해서는 인증을 위한 **Appkey**가 필요합니다.
+### Prerequisites 
+- To enable iNavi maps, **Appkey** is required for authentication. 
 
-#### 서비스 활성화
-- **[NHN TOAST Console]** 에서 서비스 선택 후 Application Service > Maps를 클릭합니다
+#### Enable Service 
+- Go to **[NHN TOAST Console]**, select a service and click Application Service > Maps. 
 
-#### Appkey 확인
-- **Appkey**는 **TOAST Console** 상단 **URL & Appkey** 메뉴에서 확인할 수 있습니다.
+#### Check Appkey 
+- To check your appkey, go to **URL & Appkey** on top of the **TOAST Console**. 
 
 
-### Project 환경 구성
-다음과 같이 Podfile을 생성하여 아이나비 지도 SDK에 대한 Pod 의존성을 설정합니다.
+### Project Configuration 
+Create a podfile like below and set pod dependency for iNavi maps SDK.  
 
-> 아이나비 지도 iOS SDK는 CocoaPods를 통해 배포되며, Beta 기간 종료 후에는 정책에 맞춰 변경될 수 있습니다. (사전 공지 예정)
+> The iOS SDK for iNavi Maps shall be deployed via CocoaPods, and it may change depending on policy after Beta period ends (to be posted before schedule). 
 
 ```ruby
 # Podfile
@@ -26,18 +26,18 @@ target 'iNaviMapsDemoiOS' do
 end
 ```
 
-의존성 설정 후 Terminal에서 프로젝트 path로 이동한 다음, 아래 명령어를 실행하여 아이나비 지도 SDK를 설치합니다.
+After dependency setting, go to protect path at the terminal, execute the command as below and install iNavi maps SDK. 
 ```
 pod install --repo-update
 ```
 
-### Appkey 설정
-발급받은 Appkey를 설정할 수 있도록 아래의 두 가지 방법을 제공합니다. 
+### Setting Appkey 
+Appkeys can be set in two methods as below: 
 
-> Appkey가 설정되지 않으면 지도 초기화 단계에서 인증 오류가 발생합니다.
+> Without appkey setup, authentication error may occur during map initialization. 
 
-#### 1. 프로젝트 info.plist에서 설정
-`info.plist`파일 내부에 Appkey를 설정할 수 있습니다.
+#### 1. Set on Project info.plist  
+An appkey can be set within the `info.plist` file. 
 ```xml
 <!-- info.plist -->
 <?xml version="1.0" encoding="UTF-8"?>
@@ -52,48 +52,47 @@ pod install --repo-update
 </plist>
 ```
 
-#### 2. INVMapSdk API 호출로 설정
-Application 생성 시점에 동적으로 [INVMapSdk] 싱글턴 객체의 함수를 호출하여 Appkey를 설정할 수 있습니다.
+#### 2. Call INVMapSdk API 
+To set appkey, call function of the [INVMapSdk] singleton object dynamically at the time when application is created.  
 
 ```swift
 // Swift
 INVMapSdk.sharedInstance().appKey = "YOUR_APP_KEY"
 ```
 
-#### 인증 실패
-지도 초기화 단계에 인증이 실패하면 SDK 내부에서 등록된 Callback으로 에러 코드와 메시지를 전달합니다.
-실패에 대한 Callback을 받으려면 [INVMapSdk] 싱글턴 객체에 [INVMapSdkDelegate]을 아래와 같이 설정해야 합니다.
+#### Authentication Failure 
+If authentication fails for map initialization, the error code and message is delivered via callback registered within SDK. To receive callbacks on failure, set [INVMapSdkDelegate] for the [INVMapSdk] singleton object as below: 
 ```swift
 // Swift
 INVMapSdk.sharedInstance().delegate = self
 
 func authFailure(_ errorCode: Int, message: String) {
-    // 인증 실패 처리
+    // Process failure in authentication 
 }
 
 ```
-인증 실패 Callback을 별도로 설정하지 않으면 기본적으로 에러 코드와 메시지가 팝업 형태로 표출됩니다.
+Unless callback for authentication failure is set, error codes and messages are displayed on popups by default. 
 
-#### 인증 에러 코드
+#### Authentication Error Codes 
 | Code | Description |
 | ------ | ------ |
-| 300 | APP KEY 유효하지 않음
-| 401 | APP KEY 설정되지 않음 |
-| 503 | 서버 연결 실패 |
-| 504 | 서버 연결 시간 초과 |
-| 500 | 알 수 없는 에러 |
-| 그 외 | 서버 에러 (추후 정의 시 업데이트) |
+| 300 | Appkey is invalid |
+| 401 | Appkey is not set |
+| 503 | Server connection failed |
+| 504 | Exceeded server connection time  |
+| 500 | Unknown error |
+| Others | Server error  (to be updated with definition) |
 
 
 
 
-### 지도 생성하기
-앱 화면에 아이나비 지도를 표출하는 방법을 설명합니다.
+### Creating Maps 
+Describes how to display iNavi on the app. 
 
-#### 지도 표시
+#### Display Maps 
 
-#### 지도 표시
-UIViewController에서 직접 [InaviMapView]를 생성하고 추가하는 예제입니다.
+#### Display Maps 
+Create and add [InaviMapView] on the UIViewController, like the example shows. 
 ```swift
 // Swift
 import iNaviMaps
@@ -105,11 +104,10 @@ override func viewDidLoad() {
     view.addSubview(mapView)
 }
 ```
-Interface Builder를 사용하여 지도를 추가하려면 XIB나 Storyboard에 UIView를 추가한 다음
-Identity Inspector패널의 Custom Class 항목을 [InaviMapView]로 설정하면 됩니다.
+To add maps by using Interface Builder, add UIview to XIB or Storyboard, and set [InaviMapView] for Custom Class of the Identity Inspector panel. 
 
-#### 지도 이벤트 설정
-[INVMapViewDelegate]를 구현하고 [InaviMapView]의 `delegate` 속성을 설정하면 지도 클릭, 더블 클릭 등 지도와 사용자간 상호작용에 대한 이벤트를 설정할 수 있습니다.
+#### Set Map Events
+With [INVMapViewDelegate] implemented and  `delegate` is set for [InaviMapView], events can be set for interactions between map and user, such as clicks on the map, double-clicks, or long-clicks. 
 ```swift
 // Swift
 override func viewDidLoad() {
@@ -119,32 +117,31 @@ override func viewDidLoad() {
 }
 
 func didTapMapView(_ point: CGPoint, latLng latlng: INVLatLng) {
-    // point : 클릭한 지점의 화면상 좌표
-    // latlng : 클릭한 지점의 지도상 좌표
+    // point: Coordinates on screen of clicked point
+    // latlng: Coordinates on map of clicked point 
 }
 ```
 
-#### 마커 표출
-마커 객체를 생성하고 `position` 속성과 `map` 속성을 설정하면 마커가 표출됩니다.
+#### Expose Markers
+Create a marker object, and set `position` and `map` attributes, and the marker is displayed. 
 ```swift
 // Swift
 let marker = INVMarker(position: INVLatLng(lat: 37.40219, lng : 127.11077))
-marker.title = "타이틀"
+marker.title = "Title"
 marker.mapView = mapView
 ```
 
-#### 마커 제거
-마커 객체의 map 속성을 `null`로 설정하시면 마커가 제거됩니다.
+#### Remove Markers 
+Set `null` for the map attribute of the marker object, and the marker is removed. 
 ```swift
 // Swift
 marker.mapView = nil
 ```
 
-#### 카메라 이동
-[INVCameraUpdate]의 팩토리 메서드 또는 [INVCameraUpdateParams]를 통해 [INVCameraUpdate] 객체를 생성한 다음
-[moveCamera()] 함수에 파라미터를 전달하여 호출하면 카메라가 이동됩니다.
+#### Move Cameras 
+Create the [INVCameraUpdate] object via factory method or [INVCameraUpdateParams], and deliver parameters to the [moveCamera()] function and call, then you can move the camera.  
 
-애니메이션과 카메라 이벤트에 대한 콜백을 지원하므로, 카메라 이동을 원하는 대로 구현할 수 있습니다.
+Since callback is supported for animation and camera events, you can implement camera movement as much as you need. 
 ```swift
 // Swift
 let camUpdate = INVCameraUpdate.init(targetTo: INVLatLng(lat: 36.99473, lng : 127.81832))
@@ -153,8 +150,8 @@ camUpdate.animationDuration = 3
 mapView.moveCamera(camUpdate)
 ```
 
-## 주요 Maps SDK 안내
-추가적인 Maps SDK 사용법은 [iNavi Maps API 센터](http://imapsapi.inavi.com/)를 참고하시기 바랍니다.
+## Guide for Main Maps SDK 
+For more details on Maps SDK, see [API Center for iNavi Maps](http://imapsapi.inavi.com/).
 
 [INVMapSdk] : [http://imapsapi.inavi.com/iOS/Classes/INVMapSdk.html](http://imapsapi.inavi.com/iOS/Classes/INVMapSdk.html)
 [INVMapSdkDelegate] : [http://imapsapi.inavi.com/iOS/Protocols/INVMapSdkDelegate.html](http://imapsapi.inavi.com/iOS/Protocols/INVMapSdkDelegate.html)

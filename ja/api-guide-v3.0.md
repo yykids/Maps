@@ -1,6 +1,6 @@
-## Application Service > Maps > API v3.0ガイド
+﻿## Application Service > Maps > API v3.0ガイド
 
-inaviの長年培ったナビエンジン技術を利用した検索、Geocoding、Reverse Geocoding、経路検索(ルート検索)、Static Map APIの使用方法について説明します。 
+inaviの長年培ったナビエンジン技術を利用した検索、Geocoding、Reverse Geocoding、経路検索(ルート検索)、Static Map APIの使用方法について説明します。
 
 ## API共通情報
 
@@ -70,7 +70,7 @@ inaviの長年培ったナビエンジン技術を利用した検索、Geocoding
 | x2            | String | 任意 |       | X2座標<br>spopt値が1の場合、Extentの右下X座標、spopt値が2の場合、使用しない |
 | y2            | String | 任意 |       | Y2座標<br>spopt値が1の場合、Extentの右下Y座標、spopt値が2の場合、使用しない |
 | sortopt       | String | 任意 |       | ソートoption<br>1：名称順ソート<br>2：距離順ソート(座標を入力した場合)<br>3：名前マッチ→距離順ソート(座標を入力した場合)<br>4：検索ワードWeightソート(エンジン基準)<br>5：検索ワードWeightソート + length(エンジン基準)<br>6：お気に入りカテゴリー優先ソート[V8.1.5未サポート]<br>7：最新データ順ソート<br>8：検索ワードWeightソート(Landmark>距離>PoiWeight) + 距離順(座標を入力した場合)<br>* sortopt値が未設定の場合、4に設定 |
-| catecode      | String | 任意 |       | 好きなカテゴリー<br>好きなカテゴリー検索時、検索ワードにカテゴリー名を入力した場合、検索ワード優先ポリシーにより、入力した好きなカテゴリーより検索ワードを基準に検索される<br>例)検索ワード："美容室"、好きなカテゴリー："100000"(飲食店) →美容室基準で検索される |
+
 
 #### レスポンス
 
@@ -798,7 +798,168 @@ inaviの長年培ったナビエンジン技術を利用した検索、Geocoding
 | coordinate.x         | String  | 変換X座標 |
 | coordinate.y         | String  | 変換Y座標 |
 
+### 6\. 주변 카테고리 검색
 
+* 기준 좌표를 기준으로 주변 카테고리 검색기능을 지원합니다.
+
+#### 요청
+
+[URI]
+
+| 메서드  | URI                                      |
+| ---- | ---------------------------------------- |
+| GET  | /maps/v3.0/appkeys/{appkey}/nearby-category-searches?depth={depth}&x1={x1}&y1={y1}&x2={x2}&y2={y2}&radius={radius}&catecode={catecode}&coordtype={coordtype}&reqcount={reqcount}  |
+
+[Path parameter]
+
+| 이름     | 타입     | 필수 여부 | 유효 범위 | 설명     |
+| ------ | ------ | ----- | ----- | ------ |
+| appkey | String | 필수    |       | 고유의 앱키 |
+
+[Query Parameters]
+
+| 이름        | 타입     | 필수 여부 |  설명                                   |
+| --------- | ------ | ----- |  ------------------------------------ |
+| depth | Integer | 필수    | 0 : 전체 depth <br> 1 : depth1 <br> 2 : depth2 <br> 3 : depth3|
+| spopt         | Integer | 필수   | 1 : Extent(x1,y1,x2,y2) <br> 2 : 반경검색(x1,y1,radius)                                   |
+| catecode         | String | 필수   | 카테고리 코드 |
+| x1         | String | 필수(spopt 참조)    | 기준 X1좌표 |
+| y1         | String | 필수(spopt 참조)    | 기준 Y1좌표 |
+| x2         | String | 필수(spopt 참조)    | 기준 X2좌표 |
+| y2         | String | 필수(spopt 참조)    | 기준 Y2 좌표 |
+| radius         | String | 필수(spopt 참조)    | 반경(m) |
+
+#### 응답
+
+##### 응답 본문
+
+```
+{
+    "cate": {
+        "result": true,
+        "totalcount": 7,
+        "count": 1,
+        "poi": [
+            {
+                "poiid": 717788,
+                "depth": 0,
+                "dpx": "127.110762",
+                "dpy": "37.402184",
+                "rpx": "127.110862",
+                "rpy": "37.402334",
+                "name1": "팅크웨어(주)",
+                "name2": "아이나비(본사)",
+                "name3": "THINKWARE",
+                "name4": "INAVI",
+                "admcode": "4113510900",
+                "jibun": "678",
+                "address": "경기도 성남시 분당구 삼평동",
+                "roadname": "경기도 성남시 분당구 판교역로",
+                "roadjibun": "240",
+                "detailaddress": "삼환하이펙스 A동 8층,9층",
+                "catecode": "130600",
+                "catename": "기업",
+                "dp_catecode": "000",
+                "userid": "",
+                "imagecount": 0,
+                "userimagecount": 0,
+                "badgeflag": false,
+                "distance": 40,
+                "tel": "15774242",
+                "islandmark": true,
+                "visitscore": "7.12",
+                "landmarkscore": "10",
+                "popularity": false,
+                "pop_tv": false,
+                "pop_sns": false,
+                "pop_hot": false,
+                "pop_hit": false,
+                "pop_top": "경기_,분당구_2",
+                "updateTS": "2019-05-02 00:00:00",
+                "hasoildata": false,
+                "hasdetailinfo": true,
+                "hassubpoi": true,
+                "subpoi": {
+                    "count": 1
+                }
+            }
+        ],
+        "hasgasstation": false
+    },
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": ""
+    }
+}
+```
+
+##### 필드
+
+##### 필드
+
+| 이름                                 | 타입      | 설명                                       |
+| ---------------------------------- | ------- | ---------------------------------------- |
+| header                             | Object  | 헤더 영역                                    |
+| header.isSuccessful                | Boolean | 성공 여부                                    |
+| header.resultCode                  | Integer | 실패 코드                                    |
+| header.resultMessage               | String  | 실패 메시지                                   |
+| cate                                | Object  | 본문 영역                                    |
+| cate.result                         | Boolean | 성공 여부                                    |
+| cate.totalcount                     | Integer | 전체 검색 결과 대상 개수                           |
+| cate.count                          | Integer | 검색 결과 개수                                 |
+| cate.poi                        | Array   | POI 검색 결과 목록                             |
+| cate.poi[0].poiid               | Integer | POI ID                                   |
+| cate.poi[0].dpx                 | String  | display X 좌표(WGS84의 경우 longitude)         |
+| cate.poi[0].dpy                 | String  | display Y 좌표(WGS84의 경우 latitude)          |
+| cate.poi[0].rpx                 | String  | 탐색 X 좌표(WGS84의 경우 longitude)              |
+| cate.poi[0].rpy                 | String  | 탐색 Y 좌표(WGS84의 경우 latitude)               |
+| cate.poi[0].name1               | String  | 정식 명칭                                    |
+| cate.poi[0].name2               | String  | 축약 명칭                                    |
+| cate.poi[0].name3               | String  | 확장 명칭 1                                  |
+| cate.poi[0].name4               | String  | 확장 명칭 2                                  |
+| cate.poi[0].admcode             | String  | 행정코드                                    |
+| cate.poi[0].jibun               | String  | 지번                                       |
+| cate.poi[0].address             | String  | 주소                                       |
+| cate.poi[0].roadname            | String  | 새주소 도로명                                  |
+| cate.poi[0].roadjibun           | String  | 새주소 지번                                   |
+| cate.poi[0].detailaddress       | String  | 상세 주소                                    |
+| cate.poi[0].catecode            | String  | 분류 코드                                    |
+| cate.poi[0].catename            | String  | 분류 명칭                                    |
+| cate.poi[0].fulladdress         | String  | 전체 주소(행정주소+지번+상세주소)                      |
+| cate.poi[0].zip                 | String  | 우편번호                                     |
+| cate.poi[0].homeage             | String  | 홈페이지 url                                 |
+| cate.poi[0].email               | String  | 이메일                                      |
+| cate.poi[0].howtogo             | String  | 교통편                                      |
+| cate.poi[0].tel1                | String  | 전화번호 1                                   |
+| cate.poi[0].tel2                | String  | 전화번호 2                                   |
+| cate.poi[0].fax1                | String  | 팩스번호 1                                   |
+| cate.poi[0].fax2                | String  | 팩스번호 2                                   |
+| cate.poi[0].icode               | String  | ICODE                                    |
+| cate.poi[0].detail_count        | Integer | 분류 상세 항목 개수                              |
+| cate.poi[0].etc_count           | Integer | 분류 기타 항목 개수                              |
+| cate.poi[0].imagecount          | Integer | POI 이미지 개수                               |
+| cate.poi[0].hasoildata          | Boolean | 유가 데이터 존재 유무                             |
+| cate.poi[0].detailinfo          | Array   | 분류 상세 항목                                 |
+| cate.poi[0].detailinfo[0].name  | String  | 분류 상세 항목 설명                              |
+| cate.poi[0].detailinfo[0].value | String  | 분류 상세 항목 내용                              |
+| cate.poi[0].etcinfo             | Array   | 분류 기타 항목                                 |
+| cate.poi[0].etcinfo[0].name     | String  | 분류 기타 항목 설명                              |
+| cate.poi[0].etcinfo[0].value    | String  | 분류 기타 항목 내용                              |
+| cate.poi[0].oildata             | Object  | 유가 데이터 정보                                |
+| cate.poi[0].oilda.tag_price     | Integer | 휘발유 가격                                   |
+| cate.poi[0].oilda.hg_price      | Integer | 고급휘발유 가격                                 |
+| cate.poi[0].oilda.d_price       | Integer | 경유 가격                                    |
+| cate.poi[0].oilda.l_price       | Integer | LPG 가격                                   |
+| cate.poi[0].oilda.updatetime    | String  | 업데이트 시간                                  |
+| cate.poi[0].oilda.priceinfo     | String  | 최고, 최저 유가 정보<br>(H : 최고, L : 최저, X : 해당없음)<br>휘발유, 고급휘발유, 경유, LPG 순 |
+| cate.poi[0].oilda.wash          | Boolean | 세차 시설 여부                                 |
+| cate.poi[0].oilda.fix           | Boolean | 정비 가능 여부                                 |
+| cate.poi[0].oilda.mart          | Boolean | 매점 여부                                    |
+| cate.poi[0].hassubpoi          | Boolean | 하위 시설물 데이터 존재 유무          |
+| cate.poi[0].subpoi          | Object | 하위 시설물 정보                                 |
+| cate.poi[0].subpoi.count          | Integer | 하위 시설물 개수                                 |
+| cate.poi[0].subpoi.poi          | Array |  POI 정보와 동일                            |
 ## Geocoding API
 
 ### 1\. 住所検索\(住所→座標\)
@@ -953,68 +1114,81 @@ inaviの長年培ったナビエンジン技術を利用した検索、Geocoding
     },
     "location": {
         "result": true,
-        "posx": "126.947265",
-        "posy": "37.384033",
-        "roadname": "京畿道安養市東安区貴仁路",
-        "roadjibun": "59",
+        "hasAdmAddress": true,
+        "adm": {
+            "posx": "126.947265",
+            "posy": "37.384033",
+            "address": "경기도 안양시 동안구 호계동",
+            "distance": 0,
+            "bldname": "",
+            "admcode": "4117310400",
+            "postcode": "14079",
+            "jibun": "921",
+            "roadname": "경기도 안양시 동안구 귀인로",
+            "roadjibun": "59"
+        },
         "adm_address": {
-            "address": "京畿道安養市東安区凡溪洞",
-            "admcode": "4117361000",
-            "address_category3": "凡溪洞",
+            "address": "경기도 안양시 동안구 호계2동",
+            "admcode": "4117359000",
+            "address_category3": "호계2동",
             "address_category4": "",
             "jibun": "921",
-            "address_category1": "京畿道",
-            "address_category2": "安養市東安区",
-            "cut_address": "京畿道安養市東安区凡溪洞"
+            "address_category1": "경기도",
+            "address_category2": "안양시 동안구",
+            "cut_address": "경기 안양시 동안구 호계2동"
         },
         "legal_address": {
-            "address": "京畿道安養市東安区虎溪洞",
+            "address": "경기도 안양시 동안구 호계동",
             "admcode": "4117310400",
-            "address_category3": "虎溪洞",
+            "address_category3": "호계동",
             "address_category4": "",
             "jibun": "921",
-            "address_category1": "京畿道",
-            "address_category2": "安養市東安区",
-            "cut_address": "京畿道安養市東安区虎溪洞"
+            "address_category1": "경기도",
+            "address_category2": "안양시 동안구",
+            "cut_address": "경기 안양시 동안구 호계동"
         }
     }
 }
 ```
 
 ##### フィールド
-
-| 名前                  | タイプ   | 説明                                    |
+| 이름                     | 타입      | 설명                                       |
 | ---------------------- | ------- | ---------------------------------------- |
-| header                 | Object  | ヘッダ領域                            |
-| header.isSuccessful    | Boolean | 成否                            |
-| header.resultCode      | Integer | 失敗コード                            |
-| header.resultMessage   | String  | 失敗メッセージ                           |
-| location               | Object  | 本文領域                            |
-| location.result        | Boolean | 成否                            |
-| location.posx      | String  | X座標                                   |
-| location.posy      | String  | Y座標                                   |
-| location.roadname  | String  | 新住所道路名                                 |
-| location.roadjibun | String  | 新住所地番                                  |
-| location.adm_address           | Object  | 行政洞住所情報                         |
-| location.adm_address.admcode   | String  | 行政コード                                  |
-| location.adm_address.address   | String  | 住所                                     |
-| location.adm_address.jibun     | String  | 地番                                      |
-| location.adm_address.address_category1     | String  |  道/市                     |
-| location.adm_address.address_category2     | String  |  市/郡/区                  |
-| location.adm_address.address_category3     | String  |  邑/面/洞                |
-| location.adm_address.address_category4     | String  |  里                 |
+| header                 | Object  | 헤더 영역                                    |
+| header.isSuccessful    | Boolean | 성공 여부                                    |
+| header.resultCode      | Integer | 실패 코드                                    |
+| header.resultMessage   | String  | 실패 메시지                                   |
+| location               | Object  | 본문 영역                                    |
+| location.result        | Boolean | 성공 여부                                    |
+| location.hasAdmAddress        | Boolean | 행정 주소 반환 여부                                    |
+| location.adm           | Object  | 법정 주소 정보                           |
+| location.adm.posx      | String  | X 좌표                                     |
+| location.adm.posy      | String  | Y 좌표                                     |
+| location.adm.admcode  | String  | 법정코드                                  |
+| location.adm.address  | String  | 주소                                  |
+| location.adm.jibun  | String  | 지번                                  |
+| location.adm.roadname  | String  | 새주소 도로명                                  |
+| location.adm.roadjibun | String  | 새주소 지번                                   |
+| location.adm.bldname  | String  | 건물명(해당될 때만)                              |
+| location.adm.postcode  | String  | 우편번호                   |
+| location.adm_address           | Object  | 행정동 주소 정보                           |
+| location.adm_address.admcode   | String  | 행정코드                                    |
+| location.adm_address.address   | String  | 주소                                       |
+| location.adm_address.jibun     | String  | 지번                                       |
+| location.adm_address.address_category1     | String  |   도/시                      |
+| location.adm_address.address_category2     | String  |   시/군/구                   |
+| location.adm_address.address_category3     | String  |   읍/면/동                 |
+| location.adm_address.address_category4     | String  |   리                  |
 | location.adm_address.cut_address     | String  |                         |
-| location.legal_address           | Object  | 行政洞住所情報                         |
-| location.legal_address.admcode   | String  | 行政コード                                  |
-| location.legal_address.address   | String  | 住所                                     |
-| location.legal_address.jibun     | String  | 地番                                      |
-| location.legal_address.address_category1     | String  | 道/市                      |
-| location.legal_address.address_category2     | String  | 市/郡/区                     |
-| location.legal_address.address_category3     | String  | 邑/面/洞                     |
-| location.legal_address.address_category4     | String  | 里                      |
+| location.legal_address           | Object  | 법정동 주소 정보                           |
+| location.legal_address.admcode   | String  | 법정코드                                    |
+| location.legal_address.address   | String  | 주소                                       |
+| location.legal_address.jibun     | String  | 지번                                       |
+| location.legal_address.address_category1     | String  |  도/시                       |
+| location.legal_address.address_category2     | String  |  시/군/구                      |
+| location.legal_address.address_category3     | String  |  읍/면/동                      |
+| location.legal_address.address_category4     | String  |  리                       |
 | location.legal_address.cut_address     | String  |                         |
-
-
 
 
 
@@ -1145,7 +1319,7 @@ inaviの長年培ったナビエンジン技術を利用した検索、Geocoding
 | route.data.option              | String | 探索オプション                     |
 | route.data.spend_time           | Integer | 所要時間(秒)                              |
 | route.data.distance           | Integer | 距離(m)                          |
-| route.data.total_fee    | Integer | 料金所の料金                          |
+| route.data.toll_fee    | Integer | 料金所の料金                          |
 | route.data.paths	 | Array | 詳細経路リスト                          |
 | route.data.paths[0].coords | Array | 詳細座標リスト                         |
 | route.data.paths[0].coords[0].x   | Double | X座標                          |
@@ -1672,7 +1846,7 @@ inaviの長年培ったナビエンジン技術を利用した検索、Geocoding
 | route.data.option              | String | 探索オプション                      |
 | route.data.spend_time           | Integer | 所要時間(秒)                              |
 | route.data.distance           | Integer | 距離(m)                          |
-| route.data.total_fee    | Integer | 料金所の料金                           |
+| route.data.toll_fee    | Integer | 料金所の料金                           |
 | route.data.times	 | Array | 詳細経路リスト                           |
 | route.data.times[0].index	 | Integer | 基準時間対比Index(0の場合は基準時間)       |
 | route.data.times[0].spend_time	 | Integer | 所要時間(秒)       |
@@ -1751,4 +1925,3 @@ inaviの長年培ったナビエンジン技術を利用した検索、Geocoding
 
 ##### レスポンス本文
 <img src="http://static.toastoven.net/toastcloud/notice/20191029_Maps_new/map_static.png">
-

@@ -1,83 +1,83 @@
-## Application Service > Maps > Web maps Guide
+## Application Service > Maps > Guide for Web Maps 
 
-Maps 웹 지도를 사용하는 데 필요한 JavaScript 기반 웹 API를 설명합니다.
-
-
-## API 공통 정보
-
-### 사전 준비
-- API를 사용하려면 앱키가 필요합니다.
-- 앱키는 **TOAST Console** 상단 **URL & Appkey** 메뉴에서 확인할 수 있습니다.
-
-### 요청 공통 정보
-
-#### URL 정보
-
-| 항목        | URL                                      |
-| --------- | ---------------------------------------- |
-| 지도        | https://api-maps.cloud.toast.com |
+Describes JavaScript-based web APIs required to use web maps. 
 
 
-## 웹 지도
+## Common API Information 
 
-### 1. 웹 지도
+### Prerequisites 
+- Appkey is required to use APIs. 
+- To check your appkey, go to **URL & Appkey** on top of the **TOAST Console**. 
 
-JavaScript 기반 TOAST Maps API를 이용해 웹 브라우저에 지도를 표시하는 방법을 설명합니다.
-TOAST Maps API는 WGS84(EPSG:4326) 좌표를 사용합니다.
+### Common Request Information
+
+#### URL Information 
+
+| Item | URL                              |
+| ---- | -------------------------------- |
+| Maps | https://api-maps.cloud.toast.com |
 
 
-#### 주요 Maps API 안내
-##### 추가적인 Maps API 상세 사용법은 <a href="http://imapsapi.inavi.com/" target="_blank" rel="nofollow">iNavi Maps API Center</a>를 참고하시기 바랍니다. <p>
+## Web Maps
+
+### 1. Web Maps
+
+Describes how to show maps on the web browser by using Javascript-based TOAST Maps API. 
+TOAST Maps API adopts Thinkware coordinates
 
 
-| API 명                                    | Parameter                        | Returns                                  | 설명                                       |
+#### Guide for Maps API
+##### For more details on Maps API, see <a href="http://imapsapi.inavi.com/" target="_blank" rel="nofollow">iNavi Maps API Center</a>. <p>
+
+
+| API Name                                | Parameter                        | Returns                                  | Description                            |
 | ---------------------------------------- | -------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| new inavi.maps.Map(options)  | options.container : string                 | inavi.maps.Map 지도 객체 | 지도를 표시할 DOM 엘리먼트의 ID             |
-|                                          | options.type : string             |                                          | 지도의 타입 <br> 'NORMAL' : 일반 맵,<br> 'SATTELITE' : 항공 맵<br>default: 'NORMAL' |
-|                                          | options.center : LngLatLike       |                                          | 지도의 중심 좌표                  |
-|                                          | options.zoom : number            |                                          | 지도의 레벨                                   |
-|                                          | options.heading : number             |                                          | 북쪽을 기준으로 반시계 방향으로 회전한 각도 |
-|                                          | options.tilt : number             |                                          | 지도를 눕혔을 때의 기울기 |
-|                                          | options.maxZoom : number             |                                          | 북쪽을 기준으로 반시계 방향으로 회전한 각도 |
-|                                          | options.heading : number             |                                          | 최대 확대 레벨 |
-|                                          | options.hash : boolean             |                                          | 주소 표시줄에 지도 정보 표시 여부 |
-|                                          | options.zoomable : boolean             |                                          | 확대 가능 여부 |
-|                                          | options.draggable : boolean             |                                          | 드래그 가능 여부 |
-|                                          | options.rotatable : boolean             |                                          | 회전 가능 여부 |
-|                                          | options.keyboard : boolean             |                                          | 키보드를 사용한 지도 이동 가능 여부 |
-|                                          | options.disableDefaultUI : boolean             |                                          | 기본 컨트롤 숨김 여부 |
-|                                          | options.logoScaleControl : LogoScaleControlOptions             |                                          | 로고 및 스케일 표시 컨트롤 옵션 |
-|                                          | options.compassControl : CompassControlOptions             |                                          | 나침반 표시 컨트롤 옵션 |
-|                                          | options.zoomControl : ZoomControlOptions             |                                          | 확대 축소 표시 컨트롤 옵션 |
-| changeType(type)                         | type : string                    |                                          | 지도의 타입 <br> 'NORMAL' : 일반 맵,<br> 'SATTELITE' : 항공 <br>default: 'NORMAL' |
+| new inavi.maps.Map(options)  | options.container : string                 | inavi.maps. map object | ID of DOM element to mark maps |
+|                                          | options.type : string             |                                          | Map type <br> 'NORMAL': General maps,<br> 'SATTELITE': Aerial maps<br>default: 'NORMAL' |
+|                                          | options.center : LngLatLike       |                                          | Central coordinates on the map |
+|                                          | options.zoom : number            |                                          | Level of a map        |
+|                                          | options.heading : number             |                                          | Counter clockwise angle on north |
+|                                          | options.tilt : number             |                                          | Tilt of a map |
+|                                          | options.maxZoom : number             |                                          | Counter clockwise angle on north |
+|                                          | options.heading : number             |                                          | Maximum zoom-in level |
+|                                          | options.hash : boolean             |                                          | If map information shows on the address bar |
+|                                          | options.zoomable : boolean             |                                          | If zoom-in is available |
+|                                          | options.draggable : boolean             |                                          | If a drag is available |
+|                                          | options.rotatable : boolean             |                                          | If rotation is available |
+|                                          | options.keyboard : boolean             |                                          | If map movement on keyboard is available |
+|                                          | options.disableDefaultUI : boolean             |                                          | If default control can be hidden |
+|                                          | options.logoScaleControl : LogoScaleControlOptions             |                                          | Log and scale mark control option |
+|                                          | options.compassControl : CompassControlOptions             |                                          | Compass mark control option |
+|                                          | options.zoomControl : ZoomControlOptions             |                                          | Zoom-in/out mark control option |
+| changeType(type)                         | type : string                    |                                          | Map Type <br> 'NORMAL': General maps,<br> 'SATTELITE': Aerial <br>default: 'NORMAL' |
 | on(eventType, listener) | eventType : string              |                                          | load,<br>zoomstart, zoom, zoomend,<br>rotatestart, rotate, rotateend,<br>tiltstart, tilt, tiltend,<br>click, dblclick,<br>mousedown, mouseup, mousemove,<br>mouseenter, mouseleave, mouseover, mouseout,<br>contextmenu,<br>wheel,<br>touchstart, touchend, touchcancel, touchmove,<br>movestart, move, moveend,<br>dragstart, drag, dragend|
-|                                          | listener : Function             |                                          | 등록할 리스너                                  |
+|                                          | listener : Function             |                                          | Listener for registration        |
 | once(eventType, listener) | eventType : string              |                                          | load,<br>zoomstart, zoom, zoomend,<br>rotatestart, rotate, rotateend,<br>tiltstart, tilt, tiltend,<br>click, dblclick,<br>mousedown, mouseup, mousemove,<br>mouseenter, mouseleave, mouseover, mouseout,<br>contextmenu,<br>wheel,<br>touchstart, touchend, touchcancel, touchmove,<br>movestart, move, moveend,<br>dragstart, drag, dragend|
-|                                          | listener : Function             |                                          | 등록할 리스너                                  |
+|                                          | listener : Function             |                                          | Listener for registration   |
 | off(eventType, listener) | eventType : string              |                                          | load,<br>zoomstart, zoom, zoomend,<br>rotatestart, rotate, rotateend,<br>tiltstart, tilt, tiltend,<br>click, dblclick,<br>mousedown, mouseup, mousemove,<br>mouseenter, mouseleave, mouseover, mouseout,<br>contextmenu,<br>wheel,<br>touchstart, touchend, touchcancel, touchmove,<br>movestart, move, moveend,<br>dragstart, drag, dragend|
-|                                          | listener : Function             |                                          | 제거할 리스너                                  |
-| new inavi.maps.Marker(option)        | option.map : Map              | inavi.maps.Marker 마커 객체 | 지도 객체                                    |
-|                                          | option.icon : string         |                                          | 아이콘 URL                                   |
-|                                          | option.position : LngLatLike     |                                          | 마커 생성 좌표                    |
-|                                          | option.anchor : string      |                                          | 좌표가 위치할 곳<br> top-left, top, top-right,<br>left, center, right,<br>bottom-left, bottom, bottom-right |
-|                                          | option.title : string            |                                          | 툴팁 문자열                                   |
-|                                          | option.offset : Array       |                                          | 픽셀 단위 오프셋                                    |
-|                                          | option.draggable : boolean       |                                          | 드래그 가능 여부                                |
-|                                          | option.zIndex : number           |                                          | z-index 값                                |
-|                                          | option.opacity : number          |                                          | 투명도                                      |
-| inavi.maps.LngLat.convertToPixel(lngLat) | lngLat.lng : number               | 화면 픽셀 좌표 | WGS84 경도                                 |
-|                                          | lngLat.lat : number               |                                          | WGS84 위도                                 |
-| inavi.maps.Pixel.convertToLngLat(pixel) | pixel.pxX : number               | 경위도 좌표 | 화면 픽셀 x 좌표                                       |
-|                                          | pixel.pxY : number               |                                          | 화면 픽셀 y 좌표                                       |
+|                                          | listener : Function             |                                          | Listener for removal        |
+| new inavi.maps.Marker(option)        | option.map : Map              | inavi.maps.Marker object | Map object                         |
+|                                          | option.icon : string         |                                          | Icon URL                               |
+|                                          | option.position : LngLatLike     |                                          | Marker creation coordinates |
+|                                          | option.anchor : string      |                                          | To be located by coordinates <br> top-left, top, top-right,<br>left, center, right,<br>bottom-left, bottom, bottom-right |
+|                                          | option.title : string            |                                          | Character strings for tool-tips   |
+|                                          | option.offset : Array       |                                          | Offset by pixel                    |
+|                                          | option.draggable : boolean       |                                          | If a drag is available   |
+|                                          | option.zIndex : number           |                                          | z-index value                           |
+|                                          | option.opacity : number          |                                          | Opacity level                |
+| inavi.maps.LngLat.convertToPixel(lngLat) | lngLat.lng : number               | Screen pixel coordinates | WGS84 longitude                        |
+|                                          | lngLat.lat : number               |                                          | WGS84 latitude                         |
+| inavi.maps.Pixel.convertToLngLat(pixel) | pixel.pxX : number               | Longitude/latitude coordinates | Screen pixel x coordinates               |
+|                                          | pixel.pxY : number               |                                          | Screen pixel y coordinates               |
 
 
-#### Maps API 사용
+#### Enable Maps API 
 ```html
 <script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/v3.0/appkeys/{appkey}/maps?callback=initMap"></script>
 <div id="div_map"></div>
 <script type="text/javascript">
     function initMap() {
-        //선언한 DIV에 지도를 표출합니다.
+        //Expose the map on declared DIV. 
         var map = new inavi.maps.Map({
             container: "div_map",
             center: {
@@ -91,41 +91,41 @@ TOAST Maps API는 WGS84(EPSG:4326) 좌표를 사용합니다.
 </script>
 ```
 
-#### 지도 모드 변경
+#### Change Map Mode 
 ```html
 <script type="text/javascript">
-    // 생성된 지도 객체의 지도 Type을 변경합니다.
-    // 일반: NORMAL, 항공배경: SATTELITE
-    // 항공배경지도로 변경합니다.
+    // Change map type of created map object. 
+    // General:NORMAL, Aerial background:SATTELITE
+    // Change into aerial background map.
     map.setType("SATTELITE");
 </script>
 ```
 
-#### 지도 이벤트 등록
+#### Register Map Events
 ```html
 <script type="text/javascript">
-    //지도에 move 이벤트를 등록합니다.
+    //Register move events on the map. 
     map.addListener("click", clickHandler)
 
-    //지도 이벤트 발생 시 콜백 함수
+    //Callback function when map event occurs
     function clickHandler(event){
         console.log("event callback!");
     }
 </script>
 ```
 
-#### 지도 이벤트 제거
+#### Remove Map Events 
 ```html
 <script type="text/javascript">
-    //지도에 move 이벤트를 제거합니다.
+    //Remove move events from the map. 
     map.off("move", moveHandler)
 </script>
 ```
 
-#### 지도 마커 추가
+#### Add Map Markers 
 ```html
 <script type="text/javascript">
-    // 지도에 마커 객체를 추가합니다.
+    // Add marker objects on the map. 
     var marker = new inavi.maps.Marker({
         map: map,
         position: {
@@ -134,15 +134,15 @@ TOAST Maps API는 WGS84(EPSG:4326) 좌표를 사용합니다.
         }
     });
 
-    // 마커 객체를 이동시킵니다.
+    // Move marker objects. 
     marker.setPosition({lng: 127.2, lat: 37.5});
 </script>
 ```
 
-#### 화면 픽셀 좌표를 WGS 좌표로 변환
+#### Convert Screen Pixel Coordinates into WGS Coordinates 
 ```html
 <script type="text/javascript">
-    // 화면 픽셀 좌표를 WGS 좌표로 변환합니다.
+    // Convert screen pixel coordinates into WGS coordinates. 
     var screen_pixel = {
         pxX: 100,
         pxY: 100
@@ -154,10 +154,10 @@ TOAST Maps API는 WGS84(EPSG:4326) 좌표를 사용합니다.
 </script>
 ```
 
-#### WGS 좌표를 화면 픽셀 좌표로 변환
+#### Convert WGS Coordinates into Screen Pixel Coordinates 
 ```html
 <script type="text/javascript">
-    // WGS 좌표를 화면 픽셀 좌표로 변환합니다.
+    // Convert WGS coordinates into screen pixel coordinates. 
     var wgs84 = {
         lon: 127.11074994024005,
         lat: 37.40215870673785

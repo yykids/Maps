@@ -1,56 +1,56 @@
 ## Application Service > Maps > Overview
 
-Maps 서비스는 오랫동안 내비게이션 기술을 축적해 온 아이나비 서비스를 지도(웹, 모바일)와 HTTP REST API로 제공합니다.
-쉽고 정확한 지도, 검색, 길 찾기 등 다양한 기능을 사용할 수 있습니다.
+The Maps Service provides navigation services through iNavi with accumulated expertise via maps (web or mobile) and HTTP REST APIs. 
+A variety of features are available, including easy and precise maps, search, and getting directions. 
 
-## 주요 기능
+## Main Features
 
 
-### 지도  API
+### Maps API
 
-- JavaScript 기반 지도 API
-    - 지도 API를 사용해 쉽고 빠르게 웹 페이지에서 벡터 지도 및 항공 지도를 사용하실 수 있습니다.
-    - WebGL과 벡터 타일을 함께 이용함으로써 고해상도의 매끄러운 줌, 배경 지도와 데이터 레이어 간의 시각화 효과를 다양하게 지원 합니다.
-    - 지도 이동, 회전, 기울이기, 확대/축소, 마커, 정보창, 도형, 지도 타입 변경, 좌표 변환 등 230개 이상의  다양한 기능을 제공합니다.
-- 모바일 지도 SDK
-    - Android, iOS용 지도 SDK를 제공하여 모바일 환경에 최적화된 지도 App 서비스 개발이 가능합니다.
-    - 모바일 어플리케이션에서 지도 기능을 구현 할 수 있도록 다양한 클래스와 메서드를 제공 합니다.
-    - 선명한 주기와 지형 공간 데이터가 해상도에 맞게 최적화 되어 표출이 됩니다.
+- Maps API based on JavaScript 
+    - Vector maps and aerial maps are available easy and fast on the web page.
+    - Using both WebGL and vector files allows flawless zoom-in/out of high resolution and supports various visualization effects between the background map and data layer.  
+    - More than 230 features are supported, including map movement, rotation, tilting, zoom-in/out, marker, information window, figures, changing map types, and converting coordinates. 
+- Mobile Maps SDK 
+    - Maps SDKs are available both on Android and iOS, so that most optimized mobile app services can be developed. 
+    - A variety of classes and methods are supported to implement map features on mobile apps. 
+    - Distinct cycle and geographical space data are optimized to the resolution for display.   
 
-### 통합 검색
+### Integrated Search
 
-- 통합 검색 기능 제공
-    - 상호명, 전화번호, 주소(지번주소 & 도로명)를 한 번에 검색할 수 있습니다.
-- 다양한 검색 서비스 제공
-    - 추천어 검색이나 하위 시설물 검색 등 다양한 검색 서비스를 제공합니다.
-- Geocoding, Reverse Geocoding
-    - 주소를 좌표로 변환하거나 반대로 좌표를 주소로 변환하는 서비스를 제공합니다.
+- Integrated Search 
+    - Search is available by business name, phone number, or address (by lot number or road name). 
+- Various Search Services
+    - A variety of search services are supported, including search of recommended words, or sub-facilities. 
+- Geocoding, or Reverse Geocoding
+    - Conversion service is provided from address to coordinates, or vice versa.  
 
-### 길 찾기 서비스(경로 탐색)
+### Getting Directions (Route Navigation)  
 
-- 길 안내 서비스 제공
-    - 아이나비 내비게이션과 같은 기능의 '길 찾기 서비스'를 통해 스마트하고 정확한 길 안내 서비스를 이용할 수 있습니다.
-    - 상세정보 탐색, 요약 정보 탐색, 다중 출발지 탐색, 다중 목적지 탐색 기능과 같이 상황에 맞는 여러 탐색 옵션을 제공합니다.
+- Get Directions 
+    - The route navigation service such as iNavi Navigation provides smart and precise route search. 
+    - A variety of navigation options are provided, including detail information, summary information, multiple departure, and multiple destination. 
     
-- 실시간 교통 정보 반영
-    - 실시간 교통 정보를 반영하여 보다 정확하고 빠른 길 안내를 제공 합니다.
+- Real-time Traffic Data 
+    - Based on the real-time traffic data, more precise and faster routes are guided. 
 
 
-## 주요 용어 정리
+## Glossary
 
-|용어|    설명|
+|Term| Description |
 |---|---|
-| WGS84 위도, 경도 좌표 | WGS84 타원체를 사용하는 좌표계입니다. 위도, 경도 구형 좌표계 |
-| TW 좌표 | 팅크웨어 지도에서 사용하는 좌표계(ThinkWare 좌표) |
-| TM 좌표 | 횡단메르카토르좌표계(Transverse Mercator)<br>4개의 원점을 가지고 해당하는 원점에서의 거리를 좌표로 나타낸 것입니다.<br>임의 지역에 대한 기준 지점을 좌표 원점으로 정하고 원점을 중심으로 TM 투영한 평면상에서 원점을 지나는 자오선을 X축, 동서 방향의 위도선을 Y축으로 각 지점의 위치를 m 단위의 평면 직각좌표계로 표시함 |
-| 지도 주기 | 배경 지도 위의 정보 표출 데이터. 위치에 맞게 정보를 인식할 수 있도록 표출해 주는 정보로 행정명이나 상호, 관공서, 수계, 도로명 등 다양한 정보의 데이터가 있음 |
-| 일반 맵/항공 맵 | 일반 맵: 일반 배경 데이터의 지도로, PC 웹 지도에 최적화된 지도  <br>항공 맵: 항공기로 실제 촬영한 지도<br>
-| 행정 코드 | 행정 기관 간 행정 정보의 원활한 공동 이용을 도모하기 위해 각급 기관의 행정 업무에 필요한 행정 코드를 표준화하여 정해진 절차에 따라 제정한 코드 |
-| 구 주소(지번주소) | 동, 리+지번의 토지 중심의 주소 체계 |
-| 도로명주소 | 도로명+건물번호의 건물 중심의 주소 체계 |
-| 공간 검색 | 영역, 반경 내를 검색하는 검색 방식<br>Extent 검색: 왼쪽 상단(X,Y) 좌표/오른쪽 하단(X,Y) 좌표의 영역 내를 검색하는 검색 방식 <br> Range 검색: 중심 좌표로부터의 반경 내를 검색하는 검색 방식 |
-| POI | 관심 지점 혹은 POI(Point of Interest)는 내비게이션 등의 전자 지도 위에 표시된 건물과 상점 등을 말함 |
-| 하위 시설물 | 해당 POI에 속한 시설물 정보(e.g. 에버랜드의 하위 시설물: 1A 주차장, 1B 주차장) |
-| 경유지 | 경로 탐색 시 출발지와 목적지 사이에 거쳐 지나가는 장소 |
-| KML(Keyhole Markup Language) | 지리 데이터 표시를 위한 XML 표준 기반의 파일 형식 <br> Google Earth에서 사용하기 위해 개발되어 현재 Google, HERE Map 등 여러 곳에서 지원됨 |
-| GPX(GPS Exchange Format) | 인터넷의 애플리케이션과 웹 서비스 간의 GPS 데이터 교환을 위한 XML 기반의 파일 형식 <br> waypoint, route, track으로 나뉘며 지점과 경로 정보를 나타낼 수 있음 |
+| WGS84 Latitude/Longitude Coordinates | Coordinates enabled by WGS84 spheroid: spherical coordinates to latitude or longitude |
+| TW Coordinates | Coordinate system on Thinware maps (ThinkWare coordinates) |
+| TM Coordinates | With the location of a random area as origin point of coordinate, the meridian traversing the origin point on the plane is displayed as axis X while the parallel between the east and west as axis Y, so that each location can be marked by m under the rectangular coordinate system. |
+| Map Cycle | Data exposing information on the background map: information which is exposed properly so as to recognize information on each location, such as administrative names, business names, public institutions, water system, and road name. |
+| General/Aerial Maps | General Map: Maps with general background data which are optimized for PC web maps  <br>Aerial Maps: Maps that are photographed on airplane <br>
+| Administrative Codes | Codes that are stipulated in accordance with procedures from standardized administrative codes which are required for tasks of each institution so that information can be shared between institutions |
+| Old Address System (based on land-lot numbers) | Land-based address system, like Dong, Li + lot number |
+| Road Name Address System | Building-based address system, like road name + building number |
+| Space Search | Search within area or radius <br>Extent Search: Search within areas on top-left coordinates (X,Y)/bottom-right coordinates (X,Y) <br>Range Search: Search within radius from central coordinates |
+| POI | Short for Point of Interest, which refers to buildings or stores which are marked on electronic maps, like navigation  |
+| Sub-facilities | Facilities included at each POI (e.g. Sub-facilities of Everland: Parking lot 1A , Parking lot 1B) |
+| Stopover | A location which is passed by between departure and destination |
+| Keyhole Markup Language, or KML | XML standard-based file format to mark geographical data <br>Developed for Google Earth and now supported for many services, such as Google and HERE Map.  |
+| GPS Exchange Format, or GPX | XML-based file format to exchange GPS data between Internet application and web services  <br>Classified into waypoint, route, and track, to indicate points and path information  |

@@ -1,78 +1,77 @@
-## Application Service > Maps > Android Guide
+## Application Service > Maps > Android User Guide 
 
-Android 기반으로 Maps 서비스를 사용하는 방법에 대해 설명합니다.
+Describes the Maps service for Android users.  
 
-## API 공통 정보
+## Common API Information
 
-### 사전 준비
-- API 사용을 위해서는 앱키가 필요합니다.
-- 앱 키는 Console 상단 "URL & Appkey" 메뉴에서 확인 가능합니다.
+### Prerequisites 
+- Appkey is required to use APIs. 
+- To check your appkey, go to **URL & Appkey** on top of the **TOAST Console**. 
 
-### 요청 공통 정보
+### Common Request Information
 
-#### URL 정보
-##### [지도 API]
+#### URL Information
+##### [Maps API]
 
-| 항목 | URL |
-| --- | --- |
-| 지도 | https://api-maps.cloud.toast.com/maps/js/v1.0/map.js |
-| Static 지도 | https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js |
+| Item    | URL                                      |
+| --------- | ---------------------------------------- |
+| Map     | https://api-maps.cloud.toast.com/maps/js/v1.0/map.js |
+| Static Map | https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js |
 
-## 지도
+## Maps 
 
-### 1. Android WebView 지도
+### 1. Android WebView Map
 
-Android에서 API를 호출하고 콜백함수로 매개변수를 전달받는 방법에 대해서 설명합니다.
+Describes how to call APIs on Android and get parameters via callback functions.  
 
-#### A. 주요 TOAST Maps Android WebView API 안내
-##### 추가적인 TOAST Maps Android WebView API 사용법은 해당 <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">링크</a>를 참조 하시기 바랍니다.
+#### A. Guide for Main TOAST Maps APIs on Android WebView  
+##### For more details on using TOAST Maps APIs on Android Webview, see <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">Thinkware API Center</a>.
 
-> ※ TOAST Maps API에서 사용되고 있는 좌표는 팅크웨어 전용 좌표로만 사용되고 있습니다.
-<br>팅크웨어 좌표를 위경도 좌표(WGS84)로 변환하기 위해서는 TMWA.getWgs84FromTw() 함수를 이용하여 변경하시고,
-반대로 위경도 좌표(WGS84)를 팅크웨어 좌표로 변환하기 위해서는 TMWA.getTwFromWgs84() 함수를 이용하시기 바랍니다.
-
-
-| API 명 | Parameter | Callback Method | Callback Parameter | 설명	|
-|------|------------------------|---------------|------------------|----------------|
-|TMWA.initMap(map_div_name, twX, twY, level, arrange_type, map_type)|map_div : String|initCB <br><br>|지도 초기화 성공여부<br>'true' : 성공<br> 'false' : 실패|지도를 담을 div 태그 ID<br><br>지도를 사용하기 위해서 최초에 반드시 호출해야 하는 초기화 함수입니다.|
-||twX : Number|||지도 초기화 TW X 좌표|
-||twY : Number|||지도 초기화 TW Y 좌표|
-||level : Number|||지도 초기화 Level<br>- 일반지도 : 1~13<br>- 항공지도 : 1~13|
-||arrange_type : Number|||지도 레이어 정렬방식<br>1 : 중앙정렬방식(resize효과 있음)<br>2 : 전체로딩방식(resize효과 없음)<br> 3 : 우상단정렬방식(resize효과 있음)|
-||map_type : String|||지도 타입 설정<br>'i' : 일반맵<br>'a' : 항공맵<br>'s' : 요약맵|
-|TMWA.getLevel()||getLevelCB |지도의 현재 레벨|지도의 레벨을 얻어옵니다.|
-|TMWA.getCenter()||getCenterCB|지도의 현재 중심좌표<br> 'twX&#124;twY' |지도의 중심좌표를 얻어옵니다.|
-|TMWA.getExtent()||getExtentCB|지도의 영역좌표<br> 'leftX&#124;topY&#124;rightX&#124;bottomY' |현재 지도가 표출되는 영역좌표를 얻어옵니다.|
-|TMWA.setMoveend()||setMoveendCB|	확대,축소,이동 후 지도 중심좌표와 레벨 <br>'twX&#124;twY&#124;level'|지도에 moveend 이벤트를 등록합니다.<br>moveend : 지도 확대,축소,이동이 끝났을 때|
-|TMWA.removeMoveend()||||지도에서 moveend 이벤트를 제거합니다.|
-|TMWA.setTouchend()||setTouchendCB|터치한 지도 좌표<br> 'twX&#124;twY'|지도에 touchend 이벤트를 등록합니다.<br>  touchend : 지도 터치가 끝났을 때|
-|TMWA.removeTouchend()||||지도에서 touchend 이벤트를 제거합니다.|
-|TMWA.setZoomend()||setZoomendCB|	확대,축소 후 지도 중심좌표와 레벨<br> 'twX&#124;twY&#124;level'|지도에 zoomend 이벤트를 등록합니다. <br> zoomend : 지도 확대,축소가 끝났을 때|
-|TMWA.removeZoomend()||||지도에서 zoomend 이벤트를 제거합니다.|
-|TMWA.setTouchEvent(event_name)|event_name : String|setTouchEventCB|발생한 이벤트와 터치한 지도 좌표 <br>'event_name&#124;twX&#124;twY'|등록할 이벤트 이름<br> 'touchstart' : 지도터치를 시작했을때<br>  'touchend' : 지도 터치가 끝났을 때<br>  'longpress' : 지도를 길게 눌렀을 때<br><br>지도에 touch관련 이벤트를 등록합니다.|
-|TMWA.removeTouchEvent(event_name)|event_name : String|||등록할 이벤트 이름<br> 'touchstart' : 지도터치를 시작했을때<br>  'touchend' : 지도 터치가 끝났을 때<br>  'longpress' : 지도를 길게 눌렀을 때<br><br>지도에서 touch관련 이벤트를 제거합니다.|
-|TMWA.createAndAddMarker(twX, twY, iconWidth, iconHeight, iconUrl, [param])|twX : Number|createMarkerCB|Marker 객체 아이디와 사용자 변수 param<br> 'marker_id&#124;param'|Marker 객체의 TW X 좌표<br><br>Marker 객체를 생성하고 지도에 추가합니다.|
-||twY : Number|||Marker 객체의 TW Y 좌표|
-||iconWidth : Number|||Marker 이미지 너비|
-||iconHeight : Number|||Marker 이미지의 높이|
-||iconURL : String|||Marker 이미지의 URL|
-||param : String|||Marker 객체의 사용자 변수|
-|TMWA.setTouchendMarkerCB(id)|id : Number|touchendMarkerCB|이벤트를 등록할 대상 Marker 객체 아이디<br><br>Marker 객체 아이디와 Marker 객체의 TW X좌표, TW Y좌표,<br> 사용자 변수 param<br> 'marker_id&#124;twX&#124;twY&#124;param'|Marker 객체에 touchend 이벤트를 등록합니다.|
-|TMWA.removeTouchendMarker(id)|id : Number|||이벤트를 제거할 대상 Marker 객체 아이디<br><br>Marker 객체에 touchend 이벤트를 제거합니다.|
-|TMWA.getTwFromWgs84(lon, lat)|lon : Number|getTwFromWgs84CB|변환된 TW 좌표 <br>'twX&#124;twY'|변환할 WGS84 경도 좌표<br><br>WGS84 좌표를 TW 좌표로 변환합니다.|
-||lat : Number|||변환할 WGS84 위도 좌표|
-|TMWA.getWgs84FromTw(twX, twY)|twX: Number|getWgs84FromTwCB|변환된 WGS84 좌표 <br>'lon&#124;lat'|변환할 TW X 좌표<br><br>TW 좌표를 WGS84 좌표로 변환합니다.|
-||twY : Number|||변환할 TW Y 좌표 |
+> ※ The TOAST Maps API adopts Thinkware-only coordinates.  
+> <br>To convert Thinkware coordinates into Latitude/Longitude (WGS84), use the TMWA.getWgs84FromTw() function. On the contrary, to convert Latitude/Longitude (WGS84) into Thinkware coordinates, use the  TMWA.getTwFromWgs84() function. 
 
 
-#### TOAST Maps Android WebView API 사용하기
+| API Name                               | Parameter          | Callback Method | Callback Parameter                 | Description                           |
+| ---------------------------------------- | --------------------- | ---------------- | ---------------------------------------- | ---------------------------------------- |
+| TMWA.initMap(map_div_name, twX, twY, level, arrange_type, map_type) | map_div : String      | initCB <br><br>  | Successful in map initialization or not<br>'true': Successful<br>'false': Failed | ID in div tags to contain a map  <br><br>Refers to the initialization function which must be called initially to use maps. |
+|                                          | twX : Number          |                  |                                          | TW X coordinates for map initialization |
+|                                          | twY : Number          |                  |                                          | TW Y coordinates for map initialization |
+|                                          | level : Number        |                  |                                          | Level of map initialization<br>- General Maps: 1~13<br>- Aerial Maps: 1~13 |
+|                                          | arrange_type : Number |                  |                                          | Alignment method of map layers <br>1: Central Alignment (effective in resizing)<br>2: Entire Loading (no resizing effects)<br> 3: Top-right Alignment (effective in resizing) |
+|                                          | map_type : String     |                  |                                          | Map Type Settings<br>'i : General Maps <br>'a': Aerial Maps<br>'s': Summary Maps |
+| TMWA.getLevel()                          |                       | getLevelCB       | Current level of the map      | Load the level of the map. |
+| TMWA.getCenter()                         |                       | getCenterCB      | Current central coordinates of the map <br> 'twX&#124;twY' | Load the central coordinates of the map. |
+| TMWA.getExtent()                         |                       | getExtentCB      | Area coordinates of the map <br> 'leftX&#124;topY&#124;rightX&#124;bottomY' | Load the area coordinates which show the current map. |
+| TMWA.setMoveend()                        |                       | setMoveendCB     | Central coordinates and level after zoom-out, zoom-in, and move  <br>'twX&#124;twY&#124;level' | Register moveend events on the map.<br>moveend: When zoom-out, zoom-in, or move ends on the map |
+| TMWA.removeMoveend()                     |                       |                  |                                          | Remove  moveend events from the map. |
+| TMWA.setTouchend()                       |                       | setTouchendCB    | Touched coordinates of the map <br> 'twX&#124;twY' | Register touchend events on the map.<br> touchend: When touch on the map ends |
+| TMWA.removeTouchend()                    |                       |                  |                                          | Remove touchend events from the map. |
+| TMWA.setZoomend()                        |                       | setZoomendCB     | Central coordinates and level of the map after zoom-out and zoom-in <br> 'twX&#124;twY&#124;level' | Register zoomend events on the map. <br>zoomend: When zoom-out/zoom-in ends |
+| TMWA.removeZoomend()                     |                       |                  |                                          | Remove zoomend events from the map. |
+| TMWA.setTouchEvent(event_name)           | event_name: String   | setTouchEventCB  | Coordinates of the map touched with events  <br>'event_name&#124;twX&#124;twY' | Event name to register<br>'touchstart': When touch on the map starts <br> 'touchend': When touch on the map ends<br> 'longpress': When map is pressed long<br><br>Register touch-related events on the map. |
+| TMWA.removeTouchEvent(event_name)        | event_name: String   |                  |                                          | Event name to register<br> 'touchstart': When touch on the map starts<br> 'touchend': When touch on the map ends<br> 'longpress': When map is pressed long<br><br>Remove touch-related events from the map. |
+| TMWA.createAndAddMarker(twX, twY, iconWidth, iconHeight, iconUrl, [param]) | twX : Number          | createMarkerCB   | Marker object ID and user variable parameters <br> 'marker_id&#124;param' | TW X coordinates of the marker object<br><br>Create a marker object and add it on the map. |
+|                                          | twY : Number          |                  |                                          | TW Y coordinates of the marker object |
+|                                          | iconWidth : Number    |                  |                                          | Width of the marker image |
+|                                          | iconHeight : Number   |                  |                                          | Height of the marker image |
+|                                          | iconURL : String      |                  |                                          | URL of the marker image  |
+|                                          | param : String        |                  |                                          | User variable of the marker object |
+| TMWA.setTouchendMarkerCB(id)             | id : Number           | touchendMarkerCB | Marker object ID to register events for <br><br>ID, TW X coordinates, and TW Y coordinates of the marker object <br>User variable parameters <br> 'marker_id&#124;twX&#124;twY&#124;param' | Register touchend events for the marker object. |
+| TMWA.removeTouchendMarker(id)            | id : Number           |                  |                                          | Marker object ID to remove events from<br><br>Remove touchend events from the marker object. |
+| TMWA.getTwFromWgs84(lon, lat)            | lon : Number          | getTwFromWgs84CB | Converted TW coordinates <br>'twX&#124;twY' | WGS84 longitude coordinates to convert<br><br>Convert WGS84 coordinates into TW coordinates. |
+|                                          | lat : Number          |                  |                                          | WGS84 latitude coordinates to convert |
+| TMWA.getWgs84FromTw(twX, twY)            | twX: Number           | getWgs84FromTwCB | Converted WGS84 coordinates <br>'lon&#124;lat' | TW X coordinates to convert<br><br>Convert TW coordinates into WGS84 coordinates. |
+|                                          | twY : Number          |                  |                                          | TW Y coordinates to convert   |
 
-TOAST Maps Android WebView API를 사용하기 위해서는
-<br>안드로이드 프로젝트경로/app/src/main/manifest.xml 파일에 android.permission.INTERNET 권한을 추가해야합니다.
-<br>팅크웨어 WebView API는 웹페이지에 발급받은 Appkey를 선언하여 해당 웹페이지를 웹뷰에서 호출하고
-<br>발급 키 권한에 따라 다운로드 된 API(자바스크립트)를 호출하고, 콜백함수를 연결하여 사용합니다.
-<br>※ 콜백 함수를 사용할 때 주의점 : 안드로이드 버전 4.2 이상에서는 아래와 같이 콜백 함수 위에
-<br>@JavascriptInterface 어노테이션을 꼭 써주시기 바랍니다.
+
+#### Using TOAST Maps APIs on Android Webview    
+
+To enable TOAST Maps APIs on Android WebView, 
+<br>add authority for android.permission.INTERNET to the Android project path file (/app/src/main/manifest.xml). 
+<br>For Thinkware WebView API, call the webpage from the Webview by declaring appkey issued on the website. 
+<br>Depending on the authority of issued key, call downloaded API (JavaScript) and connect it to the corresponding callback function. 
+<br>※ Caution for Using Callback Functions: For Android 4.2 or higher versions, 
+<br>make sure to include the @javascriptInterface annotation on the callback function, as below.  
 
 ```
 @JavascriptInterface
@@ -81,13 +80,12 @@ public void setMoveendCB(String result){
 	Toast toast = Toast.makeText(mWebView.getContext(), msg, Toast.LENGTH_SHORT);
 	toast.show();
 }
-
 ```
 
 
-아래는 간단한 맵을 로딩하는 방법입니다.
-<br>아래의 예제에서 어떻게 웹페이지와 웹뷰간 API를 호출하고 이벤트 발생 시 콜백함수로 어떤 매개변수를 받는지 볼 수 있습니다.
-<br>아래 파일의 경로 : 프로젝트경로/app/src/main/assets/www/android_webview.html
+Below shows how to load simple maps. 
+<br>In the example as below, you can find how to call API between webpage and WebView, and which parameters to get via callback function when an event occurs. 
+<br>Path of the below file: Project Path /app/src/main/assets/www/android_webview.html
 
 ```
 <!DOCTYPE HTML>
@@ -98,7 +96,7 @@ public void setMoveendCB(String result){
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v1.0/map.js"></script>
 	<script>
-	    // 지도 사용을 위한 인증을 진행 합니다.
+	    // Authenticate to enable the map service.
 	    Map.authentification("appKey");
 	</script>
 	</head>
@@ -106,7 +104,6 @@ public void setMoveendCB(String result){
 	<div id="div_map" style="position:absolute;top:0px;left:0px;width:100%;height:100%;z-index:10;"></div>
 </body>
 </html>
-
 ```
 <center>**android_webview.html**</center>
 
@@ -119,32 +116,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Layout을 설정
+        //Set Layout
         setContentView(R.layout.activity_main);
 
-		//active_main에 선언한 Webview 타입을 생성
+		//Create the webview type as declared at active_main
         mWebView = (WebView) findViewById(R.id.webView);
 
-        //자바스크립트 사용
+        //Enable JavaScript 
         mWebView.getSettings().setJavaScriptEnabled(true);
 
-        //웹뷰 클라이언트를 설정, 페이지 로딩 시작, 로딩 종료 등 이벤트를 얻어올 수 있음
+        //Load events, including setting the webView client, and starting/closing pages  
         mWebView.setWebViewClient(new WebViewClientClass());
 
-        // API로 부터 콜백
-        // 자바스크립트로 부터 콜백 함수 발생 시 안드로이드에서 사용할 객체와 자바스크립트에서 사용할 객체 이름 설정
+        // Call back from APIs 
+        // Set object names for Android or Javascript, when callback function occurs from the JavaScript 
         mWebView.addJavascriptInterface(new AndroidBridge(), "tmjscall");
-        // API 키로 권한이 부여된 Javascript 기반 팅크웨어 API 다운
+        // Download Javascript-based Thinkware API authorized by the API key  
         mWebView.loadUrl("file:///android_asset/www/android_webview.html");
 
     }
 
-    // 웹뷰 이벤트 감지
+    // Detect WebView events  
     private class WebViewClientClass extends WebViewClient {
 
         @Override
-        public void onPageFinished(WebView view, String url) { // 페이지 로딩이 끝나면
-            // 지도를 초기화 한다
+        public void onPageFinished(WebView view, String url) { // When loading page is done
+            // initialize the map
             mWebView.loadUrl("javascript:TMWA.initMap('div_map', 163670, 526934, 11, 2, 'i')");
             super.onPageFinished(view, url);
         }
@@ -153,14 +150,14 @@ public class MainActivity extends AppCompatActivity {
 
     // Android Bridge
     private class AndroidBridge {
-        // TMWA.initMap 콜백함수
+        // TMWA.initMap Callback Function 
         @JavascriptInterface
         public void initCB(String init){
             String msg = "";
             if(init.equals("true")){
-                msg = "지도 초기화 성공!";
+                msg = "Successful in map initialization!";
             }else{
-                msg = "지도 초기화 실패!";
+                msg = "Failed in map initialization!";
             }
             Toast toast = Toast.makeText(mWebView.getContext(), msg, Toast.LENGTH_SHORT);
             toast.show();
@@ -169,50 +166,49 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
 ```
 <center>**MainActivity.java**</center>
 
 
 
-[1] 지도 초기화 & 정보 얻어오기
-<br>1번 예제에서는 지도를 초기화 하고 지도 정보를 얻어오는 방법에 대해 설명합니다.
-<br>지도를 초기화 하는 방법은 두가지가 있습니다.
-<br>웹뷰에서 로딩할 페이지 android_webview.html에서 THINKMAP.initMap을 호출하는 방법과
-<br>안드로이드 프로젝트에서 TMWA.initMap을 사용하는 방법이 있습니다.
-<br>지도 초기화 이후에 추가로 해야할 작업이 있다면 TMWA.initMap을 사용하여 콜백함수에서 추가 처리 할 수 있습니다.
-<br>이 예제에서는 TMWA.initMap을 호출하는 방법을 사용하였습니다.
+[1] Initialize maps and load information 
+<br>Example no.1 shows how to initialize maps and load map information. 
+<br>Maps can be initialized in two ways: 
+<br>One is calling THINKMAP.initMap from android_webview.html, which is to be loaded from WebView; 
+<br>and the other is using TMWA.initMap on an Android project.  
+<br>If there is additional task required after map initialization, use TMWA.initMap to process further via callback function. 
+<br>In this example, TMWA.initMap is applied for a call. 
 
 
 ```
 public class MainActivity extends AppCompatActivity {
     private WebView mWebView;
 
-    //버튼
+    //Button
     Button getLevel, getCenter, getExtent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-		//Layout을 설정
+		//Set Layout
         setContentView(R.layout.activity_main);
 
-		//active_main에 선언한 Webview 타입을 생성
+		//Create Webview type as declared at active_main
         mWebView = (WebView) findViewById(R.id.webView);
 
-        //자바스크립트 사용
+        //Enable JavaScript
         mWebView.getSettings().setJavaScriptEnabled(true);
 
-        //웹뷰 클라이언트를 설정, 페이지 로딩 시작, 로딩 종료 등 이벤트를 얻어올 수 있음
+        //Set clients and load events, such as start page loading or close loading. 
         mWebView.setWebViewClient(new WebViewClientClass());
 
-        // 자바스크립트로 부터 콜백 함수 발생 시 안드로이드에서 사용할 객체와 자바스크립트에서 사용할 객체 이름 설정
+        // When callback function occurs from JavaScript, set object names for Android and Javascript. 
         mWebView.addJavascriptInterface(new AndroidBridge(), "tmjscall");
-        // API 키로 권한이 부여된 Javascript 기반 팅크웨어 API 다운
+        // Download Javascript-based Thinkware API authorized by API keys  
         mWebView.loadUrl("file:///android_asset/www/android_webview.html");
 
-        // 버튼 이벤트 연결
+        // Connect with Button Events 
         getLevel = (Button) findViewById(R.id.getLevel);
         getLevel.setOnClickListener(new OnClickListener() {
             @Override
@@ -239,12 +235,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // 웹뷰 이벤트 감지
+    // Detect WebView Events 
     private class WebViewClientClass extends WebViewClient {
 
         @Override
-        public void onPageFinished(WebView view, String url) { // 페이지 로딩이 끝나면
-            // 지도를 초기화 한다
+        public void onPageFinished(WebView view, String url) { // After page loading ends
+            // initialize the map 
             mWebView.loadUrl("javascript:TMWA.initMap('div_map', 163670, 526934, 11, 2, 'i')");
             super.onPageFinished(view, url);
         }
@@ -253,42 +249,42 @@ public class MainActivity extends AppCompatActivity {
 
     // Android Bridge
     private class AndroidBridge {
-        // TMWA.initMap 콜백함수
+        // TMWA.initMap callback function 
         @JavascriptInterface
         public void initCB(String init){
             String msg = "";
             if(init.equals("true")){
-                msg = "지도 초기화 성공!";
+                msg = "Successful in map initialization!";
             }else{
-                msg = "지도 초기화 실패!";
+                msg = "Failed in map initialization!";
             }
             Toast toast = Toast.makeText(mWebView.getContext(), msg, Toast.LENGTH_SHORT);
             toast.show();
         }
 
-        //  TMWA.getLevel 콜백함수
+        //  TMWA.getLevel callback function 
         @JavascriptInterface
         public void getLevelCB(String level){
-            String msg = "지도 레벨 :" + level;
+            String msg = "Map level:" + level;
 
             Toast toast = Toast.makeText(mWebView.getContext(), msg, Toast.LENGTH_SHORT);
             toast.show();
 
         }
 
-        // TMWA.getCenter 콜백함수
+        // TMWA.getCenter callback function 
         @JavascriptInterface
         public void getCenterCB(String cn){
-            String msg = "지도 중심 : " + cn;
+            String msg = "Map center: " + cn;
 
             Toast toast = Toast.makeText(mWebView.getContext(), msg, Toast.LENGTH_SHORT);
             toast.show();
         }
 
-        // TMWA.getExtent 콜백함수
+        // TMWA.getExtent callback function 
         @JavascriptInterface
         public void getExtentCB(String ex){
-            String msg = "현재 지도영역 : " + ex;
+            String msg = "Current map area: " + ex;
 
             Toast toast = Toast.makeText(mWebView.getContext(), msg, Toast.LENGTH_SHORT);
             toast.show();
@@ -298,19 +294,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
 ```
 <center>**MainActivity.java**</center>
 
 
-[2] 지도 이벤트
-<br>2번 예제에서는 지도에 이벤트를 등록하고 제거하는 방법에 대해 설명합니다.
+[2] Maps Event 
+<br>Example no.2 describes how to register and remove events from the map. 
 
 ```
 public class MainActivity extends AppCompatActivity {
     private WebView mWebView;
 
-    //버튼
+    //Button
     Button btnMove, btnTouchend, btnZoom, btnTouch;
     Boolean moveFlag = false;
     Boolean touchendFlag = false;
@@ -319,9 +314,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // 공통 코드 생략 (지도 초기화 예제 참조)
+        // Common codes missing (see example of map initialization for reference)
 
-        // 버튼 이벤트 등록
+        // Register button events  
         btnMove = (Button) findViewById(R.id.setMoveend);
         btnMove.setOnClickListener(new OnClickListener() {
             @Override
@@ -376,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!touchFlag){
-                    //longpress 이벤트 발생시간을 2초로 설정,  설정하지 않은 경우 1.5초
+                    //Set 2 seconds for longpress event; or 1.5 seconds, if not set.  
                     mWebView.loadUrl("javascript:THINKMAP.setLongPressTime(2)");
                     mWebView.loadUrl("javascript:TMWA.setTouchEvent('longpress')");
                     btnTouch.setText("removeTouchEvent");
@@ -391,12 +386,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // 웹뷰 이벤트 감지
+    // Detect WebView Events 
     private class WebViewClientClass extends WebViewClient {
 
         @Override
-        public void onPageFinished(WebView view, String url) { // 페이지 로딩이 끝나면
-            // 지도를 초기화 한다
+        public void onPageFinished(WebView view, String url) { // When page loading ends
+            // initialize the map 
             mWebView.loadUrl("javascript:TMWA.initMap('div_map', 163670, 526934, 11, 2, 'i')");
             super.onPageFinished(view, url);
         }
@@ -406,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
     // Android Bridge
     private class AndroidBridge {
 
-        // setMoveend 콜백함수
+        // setMoveend callback function 
         @JavascriptInterface
         public void setMoveendCB(String result){
             String msg = "moveend Event \n twX|twY|level : " + result;
@@ -414,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
 
-        // setTouchend 콜백함수
+        // setTouchend callback function
         @JavascriptInterface
         public void setTouchendCB(String result){
             String msg = "touchend Event \n twX|twY : " + result;
@@ -422,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
 
-        // setZoomend 콜백함수
+        // setZoomend callback function 
         @JavascriptInterface
         public void setZoomendCB(String result){
             String msg = "zoomend Event \n twX|twY|level : " + result;
@@ -430,7 +425,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
 
-        //setTouchEvent 콜백함수
+        //setTouchEvent callback function 
         @JavascriptInterface
         public void setTouchEventCB(String result){
             String msg = "event_name|twX|twY :\n" + result;
@@ -446,8 +441,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-[3] 지도 마커
-<br> 3번 예제에서는 지도에 Marker를 추가하고 Marker에 이벤트를 등록하고 제거하는 방법에 대해 설명합니다.
+[3] Map Marker 
+<br> Example no.3 describes how to register and remove events from the marker, after a marker is added to the map. 
 
 ```
 public class MainActivity extends AppCompatActivity {
@@ -464,9 +459,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // 공통 코드 생략 (지도 초기화 예제 참조)
+        // Common codes missing (see example of map initialization for reference)
 
-        // 버튼 이벤트 연결
+        // Connect with button events
         btnMarker = (Button) findViewById(R.id.createMarker);
         btnMarker.setOnClickListener(new OnClickListener() {
             @Override
@@ -504,12 +499,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // 웹뷰 이벤트 감지
+    // Detect WebView Events
     private class WebViewClientClass extends WebViewClient {
 
         @Override
-        public void onPageFinished(WebView view, String url) { // 페이지 로딩이 끝나면
-            // 지도를 초기화 한다
+        public void onPageFinished(WebView view, String url) { // After page loading ends
+            // initialize the map
             mWebView.loadUrl("javascript:TMWA.initMap('div_map', 163670, 526934, 11, 2, 'i')");
             super.onPageFinished(view, url);
         }
@@ -543,12 +538,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
 ```
 <center>**MainActivity.java**</center>
 
-[4] 기타
-<br>4번 예제에서는 주소 검색, 경로 탐색과 좌표 변환, 계산하는 방법에 대해 설명합니다.
+[4] Others
+<br>Example no.4 describes how to search addresses, navigate routes, and convert or calculate coordinates. 
 
 ```
 public class MainActivity extends AppCompatActivity {
@@ -563,9 +557,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // 공통 코드 생략 (지도 초기화 예제 참조)
+        // Common codes missing (see example of map initialization for reference)
 
-        // 버튼 이벤트 연결
+        // Connect with button events 
         btnTwFromWgs84 = (Button) findViewById(R.id.twFromWgs84);
         btnTwFromWgs84.setOnClickListener(new OnClickListener() {
             @Override
@@ -584,12 +578,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // 웹뷰 이벤트 감지
+    // Detect WebView Events
     private class WebViewClientClass extends WebViewClient {
 
         @Override
-        public void onPageFinished(WebView view, String url) { // 페이지 로딩이 끝나면
-            // 지도를 초기화 한다
+        public void onPageFinished(WebView view, String url) { // After page loading ends
+            // initialize the map 
             mWebView.loadUrl("javascript:TMWA.initMap('div_map', 163670, 526934, 11, 2, 'i')");
             super.onPageFinished(view, url);
         }
@@ -597,14 +591,14 @@ public class MainActivity extends AppCompatActivity {
     }
     // Android Bridge
     private class AndroidBridge {
-        // WGS84 -> TW 콜백
+        // WGS84 -> TW callback
         @JavascriptInterface
         public void getTwFromWgs84CB(String result){
             String msg ="twX, twY -> " + result;
             Toast toast = Toast.makeText(mWebView.getContext(), msg, Toast.LENGTH_SHORT);
             toast.show();
         }
-        // WGS84 -> TW 콜백
+        // WGS84 -> TW callback
         @JavascriptInterface
         public void getWgs84FromTwCB(String result){
             String msg ="lon, lat -> " + result;
