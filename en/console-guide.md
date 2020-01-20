@@ -1,27 +1,27 @@
-## Application Service > Maps > Console Guide
+## Application Service > Maps > Console User Guide 
 
-Maps 서비스를 사용하려면 먼저 서비스를 활성화해야 합니다. 서비스를 활성화한 후 지도, 검색, 탐색 API를 사용할 수 있습니다.
+To use service, the Maps Service must be enabled. Then, the Maps, Search, and Navigate APIs become available. 
 
-여기에서는 **TOAST Console**에서 서비스를 활성화, 비활성화하는 방법과 통계 확인 방법을 설명합니다.
+This document describes how to enable or disable service on **TOAST Console** and check statistics. 
 
-### 서비스 활성화
+### Enable Service
 
-Maps 서비스를 사용하려면 **서비스 선택**에서 **Application Service > Maps**를 클릭합니다.
+To use the Maps Service, go to **Select Services** and click **Application Service > Maps**. 
 
-### URL & Appkey 확인
-서비스를 활성화하면 자동으로 생성된 Maps API의 URL과 앱키를 **URL & Appkey**에서 확인할 수 있습니다.<br>
-URL과 앱키는 Maps API(지도, 검색, 탐색)를 호출할 때 URI로 사용합니다.
+### Check URL & Appkey 
+With a service enabled, the URL and appkey, which are automatically created, become available on **URL & Appkey**. <br>
+URL and appkeys serve as URI to call Maps API (Maps, Search, and Navigate). 
 
-###  API 통계 확인
-API를 호출한 시간별, 일별, 월별 통계를 Maps API의 세부 API별로 확인할 수 있습니다.
-통계 데이터는 10분 단위로 업데이트됩니다.
+###  Check API Statistics 
+You may check statistics on API calls by the hour, day, or month for each Maps API details. 
+Statistics are updated at every 10 minutes. 
 
 ![](http://static.toastoven.net/prod_maps/img_02.JPG)
 
-### 종별 코드 검색
-통합 검색 API 사용 시 검색 옵션으로 사용 가능한 종별 코드를 확인할 수 있습니다.
+### Search Codes by Type 
+As a search option for the integrated search API, available codes can be found by type. 
 
 ![](http://static.toastoven.net/prod_maps/img_03.JPG)
 
-### 서비스 비활성화
-Maps 서비스 사용을 중지하려면 **서비스 선택**에서 **Application Service > Maps**를 클릭하여 서비스를 비활성화합니다.
+### Disable Service
+To stop using the Maps Service, go to **Select Services** and click **Application Service > Maps**, and disable the service. 

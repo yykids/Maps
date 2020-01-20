@@ -1,136 +1,134 @@
-## Application Service > Maps > Web map v1.0 Guide
+## Application Service > Maps > Guide for Web Maps v1.0 
 
-Maps 웹지도를 사용하는 데 필요한 API를 설명합니다.
+Describes APIs that are required to use web maps. 
 
-## API 공통 정보
+## Common API Information 
 
-### 사전 준비
-- API 사용을 위해서는 앱키가 필요합니다.
-- 앱 키는 Console 상단 "URL & Appkey" 메뉴에서 확인 가능합니다.
+### Prerequisites 
+- Appkey is required to use APIs. 
+- To check your appkey, go to **URL & Appkey** on top of the **TOAST Console**. 
 
-### 요청 공통 정보
+### Common Request Information
 
-#### URL 정보
+#### URL Information
 
-| 항목 | URL |
-| --- | --- |
-| 지도 | https://api-maps.cloud.toast.com/maps/js/v1.0/map.js |
-| Static 지도 | https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js |
+| Item    | URL                                      |
+| --------- | ---------------------------------------- |
+| Map     | https://api-maps.cloud.toast.com/maps/js/v1.0/map.js |
+| Static Map | https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js |
 
-## Web 지도
+## Web Maps 
 
-### 1. Web 지도
+### 1. Web Maps
 
-JavaScript 기반 TOAST Maps API를 이용하여 웹 브라우저에 지도를 표시하는 방법을 설명합니다.
-TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표, TW X좌표, TW Y좌표로 표시합니다.
-메소드에서 옵션 매개변수는 [param]으로 표시합니다. 옵션 매개변수는 생략할 수 있습니다.
+Describes how to display maps on the web browser by using Javascript-based TOAST Maps API.  
+TOAST Maps API adopts Thinkware coordinates: TW, TW X, or TW Y coordinates, in short. 
+Optional parameters are displayed as [param] for method: they can be omitted.
 
-> ※ TOAST Maps API에서 사용되고 있는 좌표는 팅크웨어 전용 좌표로만 사용되고 있습니다.
-<br>팅크웨어 좌표를 위경도 좌표(WGS84)로 변환하기 위해서는 THINKMAP.tw_Wgs84() 함수를 이용하여 변경하시고,
-반대로 위경도 좌표(WGS84)를 팅크웨어 좌표로 변환하기 위해서는 THINKMAP.wgs84_Tw() 함수를 이용하시기 바랍니다.
+> ※ TOAST Maps API adopts Thinkware-only coordinates. 
+> <br>To convert Thinkware coordinates into Latitude/Longitude (WGS84), use the THINKMAP.tw_Wgs84() function. On the contrary, to convert Latitude/Longitude (WGS84) into Thinkware coordinates, use the THINKMAP.wgs84_Tw() function.
 
+#### Guide for Main TOAST Maps APIs
+##### For more details on using TOAST Maps APIs, see <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">Thinkware API Center</a>.
 
-#### 주요 TOAST Maps API 안내
-##### 추가적인 TOAST Maps API 사용법은 해당 <a href="http://developers1.inavi.com:8086?key=19b6272o5" target="_blank" rel="nofollow">링크</a>를 참조하시기 바랍니다.
-
-| API 명 | Parameter | Returns | 설명 |
-|------|------------------------|---------------|---------------|
-| THINKMAP.initMap(map_div_name, twX, twY, level, init_cb, arrange_type, map_type) | map_div : String || 지도를 담을 div 태그 ID<br>지도를 사용하기 위해서 최초에 반드시 호출해야 하는 초기화 함수입니다. |
-||twX : Number	||지도 초기화 TW X 좌표|
-||twY : Number	||지도 초기화 TW Y 좌표|
-||level : Number||지도 초기화 Level<br>- 일반지도 : 1~13<br>- 항공지도 : 1~13|
-||init_cb : function()||지도 초기화 이후 호출되는 콜백함수|
-||arrange_type : Number	||지도 레이어 정렬방식<br>1 : 중앙정렬방식(resize효과 있음)<br>2 : 전체로딩방식(resize효과 없음)<br> 3 : 우상단정렬방식(resize효과 있음)|
-||map_type : String	||지도 타입 설정<br>'i' : 일반맵<br>'a' : 항공맵<br>'s' : 요약맵<br>'m' : 모바일|
-|THINKMAP.imageMap()|||지도를 일반 지도로 전환합니다.|
-|THINKMAP.aerialMap()|||지도를 항공 지도로 전환합니다.|
-|THINKMAP.setAerialHybrid(active)|active : Boolean||항공주기 표시 여부  <br>true : 지도위에 항공주기를 표출   <br>false : 지도위에 항공주기 표출안함<br><br>지도 위에 항공지도 주기 표출여부를 설정합니다.|
-|THINKMAP.addMapListener(event_name, func_cb)|event_name : String<br> ||지도에 등록할 이벤트 이름<br>'movestart'<br>- 지도가 움직이기 시작했을 때<br>'move'<br> - 지도가 움직일 때<br>'moveend'<br>- 지도 움직임이 끝났을 때<br>'zoomend'<br>- 지도가 확대, 축소가 끝났을 때<br>'mouseover'<br>- 지도위에 마우스가 들어왔을 때<br>'mouseout'<br>- 지도에서 마우스가 나갔을 때<br> 'mousemove'<br>- 지도에서 마우스가 움직일 때<br><br>지도에 이벤트를 등록합니다.<br>(지도에 관련된 이벤트, 확대/축소, 움직임 등)|
-||func_cb : function()||지도에서 이벤트가 발생했을 때 호출되는 콜백 함수<br>(콜백함수에 매개변수로 Map 객체가 전달됩니다)|
-|THINKMAP.removeMapListener(event_name)|event_name : String||지도에 제거할 이벤트 이름<br>'movestart'<br>- 지도가 움직이기 시작했을 때<br>'move'<br> - 지도가 움직일 때<br>'moveend'<br>- 지도 움직임이 끝났을 때<br>'zoomend'<br>- 지도가 확대, 축소가 끝났을 때<br>'mouseover'<br>- 지도위에 마우스가 들어왔을 때<br>'mouseout'<br>- 지도에서 마우스가 나갔을 때<br> 'mousemove'<br>- 지도에서 마우스가 움직일 때<br><br>지도에 등록한 이벤트를 제거합니다. <br>THINKMAP.addMapListener 메소드로 등록한 event_name에 해당하는 모든 콜백함수를 삭제하므로 주의가 필요합니다.|
-|THINKMAP.createMarker(twX, twY, width, height, iconUrl, [param])|twX : Number||<br>Marker 객체 위치 TW X 좌표 <br><br>Marker 객체를 생성합니다. <br>생성한 Marker 객체를 지도에 표출하기 위해서는 THINKMAP.addMarker 메소드로 지도에 Marker 객체를 추가해야합니다.|
-||twY : Number	||Marker 객체 위치 TW Y 좌표|
-||width : Number||Marker 이미지 너비|
-||height : Number ||Marker 이미지의 높이|
-||iconURL : String ||Marker 이미지의 URL|
-||param : String||Marker 객체의 사용자 변수||
-|THINKMAP.addMarker(marker)|marker : Marker||지도에 추가할 대상 Marker 객체<br><br>지도에 Marker 객체를 추가합니다.|
-|THINKMAP.featureDrawing(draw_type, style, func_cb)|draw_type : String||사용자가 그릴 Feature 객체 타입<br>'lineDraw' : 선<br>'polygonDraw' : 다각형<br> 'regularPolygonDraw' :   형태가 정해진 다각형<br><br>사용자가 지도에 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드로 전환합니다.<br>지도 마우스 클릭 시 객체 그리기가 시작되고 마우스를 더블클릭하면 그리기가 완료됩니다. <br>그리기 완료 시 콜백함수로 그려진 Feature 객체를 넘겨줍니다. |
-||style : Object||<br> Polygon, Polyline의 스타일을 지정하기 위한 Object<br>strokeColor : 선 색<br>- 'red', '#fff123' <br> strokeWidth : 선 두께<br> - 10<br> strokeOpacity : 선 투명도<br>fillColor : 채우기 색<br>fillOpacity : 채우기 투명도 <br>strokeDashstyle : 선 스타일<br>dot : · · · · · · <br>dash : - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid : 일반라인  <br> |
-||func_cb : function()||사용자가 지도를 더블클릭하여<br>Feature 객체 그리기가 완료되었을 때 호출되는 콜백함수|
-|THINKMAP.featureDrawingCancel()|||지도에 사용자가 마우스로 Polyline, Polygon을 직접 그릴 수 있는 그리기모드를 종료합니다. |
-|THINKMAP.tw_Wgs84(twX, twY)|twX : Number|coord : Object<br>변환된 WGS84 좌표<br>- coord.curx : WGS84 X 좌표<br>- coord.cury  : WGS84 Y 좌표|변환할 TW X 좌표<br><br>TW 좌표를 WGS84 좌표로 변환합니다. |
-||twY : Number||변환할 TW Y 좌표|
-|THINKMAP.wgs84_Tw(wgs_lon, wgs_lat)|wgs_lon : Number|coord : Object<br>변환된 TW 좌표 <br>- coord.curx  : TW X 좌표<br>- coord.cury  : TW Y 좌표 |변환할 WGS84 경도 좌표<br><br>WGS84 좌표를 TW 좌표로 변환합니다.|
-||wgs_lat : Number||변환할 WGS84 위도 좌표|
+| API Name                                | Parameter               | Returns                                  | Description                             |
+| ---------------------------------------- | ----------------------- | ---------------------------------------- | ---------------------------------------- |
+| THINKMAP.initMap(map_div_name, twX, twY, level, init_cb, arrange_type, map_type) | map_div : String        |                                          | ID in div tags to contain a map<br>Refers to the initialization function which must be called initially to use maps. |
+|                                          | twX : Number            |                                          | TW X coordinates for map initialization |
+|                                          | twY : Number            |                                          |                            |
+|                                          | level : Number          |                                          | Level of map initialization<br>- General Maps: 1~13<br>- Aerial Maps: 1~13 |
+|                                          | init_cb : function()    |                                          | Callback function called after map initialization |
+|                                          | arrange_type : Number   |                                          | Alignment method of map layers <br>1: Central Alignment (effective in resizing)<br>2: Entire Loading (no resizing effects)<br> 3: Top-right Alignment (effective in resizing) |
+|                                          | map_type : String       |                                          | Map Type Settings<br>'i': General Maps<br>'a': Aerial Maps<br>'s': Summary Maps<br>'m': Mobile Maps |
+| THINKMAP.imageMap()                      |                         |                                          | Convert maps into general maps. |
+| THINKMAP.aerialMap()                     |                         |                                          | Convert maps into aerial maps. |
+| THINKMAP.setAerialHybrid(active)         | active: Boolean        |                                          | Whether to expose aerial cycle  <br>true:  Show aerial cycle on the map <br>false: Do not show aerial cycle on the map<br><br>Set whether to show aerial map cycle on the map. |
+| THINKMAP.addMapListener(event_name, func_cb) | event_name : String<br> |                                          | Event name for registration on the map <br>'movestart'<br>- When the map starts to move<br>'move'<br> - When the map moves<br>'moveend'<br>- When the map ends movement<br>'zoomend'<br>- When zoom-in/out ends on the map <br>'mouseover'<br>- When the mouse is placed on the map <br>'mouseout'<br>- When the mouse is placed out of the map<br> 'mousemove'<br>- When the mouse moves on the map <br><br>Register events on the map.<br>(map-related events, zoom-in/out, movement, and etc.) |
+|                                          | func_cb : function()    |                                          | Callback function which is called when an event occurs on the map<br>(the map object is delivered to callback function via parameters.) |
+| THINKMAP.removeMapListener(event_name)   | event_name : String     |                                          | Event name to be removed out of the map <br>'movestart'<br>- When the map starts to move<br>'move'<br> - When the map moves<br>'moveend'<br>- When the map ends movement<br>'zoomend'<br>- When zoom-in/out ends on the map<br>'mouseover'<br>- When the mouse is placed on the map<br>'mouseout'<br>- When the mouse is placed out of the map<br> 'mousemove'<br>- When the mouse moves on the map<br><br>Remove registered events from the map. <br>Caution is required since all callback functions for event_name under the THINKMAP.addMapListener method are to be removed. |
+| THINKMAP.createMarker(twX, twY, width, height, iconUrl, [param]) | twX : Number            |                                          | <br>TW X coordinates for marker object location <br><br>Create a marker object.  <br>To mark the created marker object on the map, use the THINKMAP.addMarker method to add the marker object. |
+|                                          | twY : Number            |                                          | TW Y coordinates for marker object location |
+|                                          | width : Number          |                                          | Width of marker image     |
+|                                          | height : Number         |                                          | Height of marker image |
+|                                          | iconURL : String        |                                          | URL of marker image       |
+|                                          | param : String          |                                          | User variable for marker object |
+| THINKMAP.addMarker(marker)               | marker : Marker         |                                          | Marker object to be added on the map <br><br>Add the marker object on the map. |
+| THINKMAP.featureDrawing(draw_type, style, func_cb) | draw_type : String      |                                          | Feature object type to be drawn by user <br>'lineDraw': Line<br>'polygonDraw': Polygon<br> 'regularPolygonDraw': Fixed-shape polygon <br><br>Convert into the drawing mode in which user can draw polyline or polygon on the map with a mouse. <br>Object drawing begins at the click of the mouse on the map, and is completed with a double-click. <br>When drawing is done, the drawn feature object is delivered via callback function. |
+|                                          | style : Object          |                                          | <br>Object to specify the style for polygon or polyline<br>strokeColor: Color of a stroke <br>- 'red', '#fff123' <br> strokeWidth: Width of a stroke <br> - 10<br> strokeOpacity: Opacity of a storke<br>fillColor : Color of a fill<br>fillOpacity: Opacity of a fill <br>strokeDashstyle: Style of a stroke or dash<br>dot: · · · · · · <br>dash: - - - - - -<br>dashdot : - · - · - · - <br>longdashdot: ㅡ · ㅡ · ㅡ<br> solid: Solid stroke  <br> |
+|                                          | func_cb : function()    |                                          | Callback function which is called when a user double clicks the map<br>and drawing feature object is completed |
+| THINKMAP.featureDrawingCancel()          |                         |                                          | Close the drawing mode in which the user can draw a polyline or polygon with a mouse. |
+| THINKMAP.tw_Wgs84(twX, twY)              | twX : Number            | coord : Object<br>Converted WGS84 coordinates<br>- coord.curx : WGS84 X coordinates<br>- coord.cury  : WGS84 Y coordinates | TW X coordinates to convert <br><br>Convert TW coordinates into WGS84 coordinates. |
+|                                          | twY : Number            |                                          | TW Y coordinates to convert   |
+| THINKMAP.wgs84_Tw(wgs_lon, wgs_lat)      | wgs_lon : Number        | coord: Object<br>Converted TW coordinates <br>- coord.curx: TW X coordinates<br>- coord.cury: TW Y coordinates | WGS84 longitude coordinates to convert<br><br>Convert WGS84 into TW coordinates. |
+|                                          | wgs_lat : Number        |                                          | WGS84 latitude coordinates to convert |
 
 
-#### TOAST Maps API 사용하기
+#### Enable TOAST Maps API
 ```
-// 지도 사용을 위한 js 파일을 선언 합니다.
+// Declare js file to use maps.
 <script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v1.0/map.js"></script>
 <script>
-	// 지도 사용을 위한 인증을 진행 합니다.
-	Map.authentification("appKey");
+	// Authenticate to enable maps. 
+	Map.authentication("appKey");
 </script>
 
-//지도를 담을 DIV를 생성 합니다.
+//Create DIV to contain maps. 
 <div id="div_map"></div>
 <script type="text/javascript">
 
-	//선언한 DIV에 지도를 표출 합니다.
+	// Expose maps on declared DIV. 
 	THINKMAP.initMap("div_map", 165406, 500198, 12, init, 2, 'i');
 
-	// 지도 init 후 콜백 함수가 실행 됩니다.
+	// After map initialization, callback function is executed.    
 	function init(){
 		alert('init!');
 	}
 </script>
 ```
 
-#### 지도 모드  변경 하기
+#### Change Map Modes 
 ```
 <script type="text/javascript">
-	//지도를 일반 지도로 전환
+	//Convert map into general map 
 	THINKMAP.imageMap();
 
-	//지도를 항공 지도로 전환
+	//Covert map into aerial map 
 	THINKMAP.aerialMap();
 
-	//지도 위에 항공주기 표출여부 설정
+	//Set whether to display aerial cycle on the map
 	THINKMAP.setAerialHybrid(active);
 </script>
 ```
-#### 지도 이벤트 등록 하기
+#### Register Map Events 
 ```
 <script type="text/javascript">
-	//지도에 move 이벤트를 등록 한다.
+	//Register move events on the map.
 	THINKMAP.addMapListener('move', mapEvent_cb);
 
-	//지도 이벤트 발생 시 콜백 함수
+	//Callback function when map event occurs  
 	function mapEvent_cb(map){
 	    console.log("event callback!");
 	}
 </script>
 ```
-#### 지도 이벤트 제거 하기
+#### Remove Map Events
 ```
 <script type="text/javascript">
-	//지도에 move 이벤트를 제거 한다.
+	//Remove move events from the map. 
 	THINKMAP.removeMapListener('move');
 </script>
 ```
 
-#### 지도 마커 추가 하기
+#### Add Map Marker
 ```
 <script type="text/javascript">
-	//지도에 마커를 객체를 초기화 한다.
+	//Initialize marker objects on the map. 
 	var marker = null;
 	function createMarker(){
 		if(!marker){
-			//마커 객체를 생성 한다.
+			//Create marker object. 
 			marker = THINKMAP.createMarker(163670, 526934, 47, 46, '../img/img.png', 'my_marker');
-			//마커를 지도에 추가 한다.
+			//Add marker on the map. 
 			THINKMAP.addMarker(marker);
 			console.log('id : ' + marker._feature_id + ', param : ' + marker._param);
 		}
@@ -139,10 +137,10 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 ```
 
 
-#### 지도 그리기 모드로 전환 하기
+#### Convert to Map Drawing Mode 
 ```
 <script type="text/javascript">
-	//지도를 그리기 모드로 전환 한다.
+	//Convert into the map drawing mode. 
 	var style = {
 		strokeColor: '#fff123',
 		strokeWidth: 5,
@@ -155,26 +153,26 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 	THINKMAP.featureDrawing("lineDraw", style, drawEvent_cb);
 
 	function drawEvent_cb(){
-		alert("그리기 모드 전환!");
+		alert("Convert to drowing mode!");
 	}
 </script>
 ```
 
-#### 지도 그리기 모드 종료 하기
+#### Close Map Drawing Mode 
 ```
 <script type="text/javascript">
-	//지도 그리기 모드를 종료 한다.
+	//Close the map drawing mode. 
 	THINKMAP.featureDrawingCancel();
 </script>
 ```
 
 
-#### TW 좌표를 WGS 좌표로 변환 하기
+#### Convert TW to WGS Coordinates 
 ```
 <script type="text/javascript">
 	var wgs;
 
-	// TW 좌표를 WGS좌표로 변환 한다.
+	// Convert TW coordinates into WGS coordinates.  
 	wgs = THINKMAP.tw_Wgs84(165406, 500198);
 
 	console.log(wgs.curx);
@@ -183,12 +181,12 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 ```
 
 
-#### WGS 좌표를 TW 좌표로 변환 하기
+#### Convert WGS to TW Coordinates 
 ```
 <script type="text/javascript">
 	var tw;
 
-	// WGS 좌표를 TW좌표로 변환 한다.
+	// Convert WGS coordinates into TW coordinates. 
 	wgs = THINKMAP.wgs84_Tw(127.28976653131843, 37.56515136725675);
 
 	console.log(tw.curx);
@@ -196,48 +194,48 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 </script>
 ```
 
-### 2. Static 지도
+### 2. Static Maps
 
-#### TOAST Maps API Static 지도 사용하기
+#### Enable Static TOAST Maps API 
 ```
-// Static 지도 사용을 위한 js 파일을 선언 합니다.
+// Declare js file to enable static maps. 
 <script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v1.0/staticMap.js"></script>
 
-// 지도를 담을 IMG를 생성 합니다.
+// Create IMG to contain maps. 
 <img id='staticMapImg' alt="" src="">
 
 <script>
 
-	// Static 지도 사용을 위한 인증 및 파라미터를 전달 합니다. 	
+	// Authenticate to enable static maps and deliver parameters. 
 	StaticMap.authentification('staticMapImg',"appkey",'x=157423&y=266836&width=970&height=300&level=10&maptype=i&mx=158323&my=266836&txt=');
 
 </script>
 ```
 
-| 이름 | 타입	| 필수 여부 | 설명 |
-|---|---|---|---|
-| x | Integer | 필수 | 지도 중심 X좌표 |
-| y | Integer | 필수 | 지도 중심 Y좌표 |
-| mx | Integer | 필수 | 마커 X좌표 |
-| my | Integer | 필수 | 마커 Y좌표 |
-| width	| Integer | 선택 | 지도 넓이 <br> 미입력 시 기본 600px |
-| height | Integer | 선택 | 지도 높이 <br> 미입력 시 기본 600px |
-| imgurl | String | 선택 | 마커 이미지 url<br> 미입력 시 기본 마커 사용 |
-| level | Integer | 선택 | 지도 레벨 <br> 미입력 시 기본 10 |
-| maptype | String | 선택 | 지도 타입 <br> 미입력 시 기본 일반맵 |
-| label | String | 선택 | 라벨 내용 |
+| Name    | Type    | Required | Description                                      |
+| ------- | ------- | -------- | ------------------------------------------------ |
+| x       | Integer | Required | X coordinates at map center                      |
+| y       | Integer | Required | Y coordinates at map center                      |
+| mx      | Integer | Required | Marker x coordinates                             |
+| my      | Integer | Required | Marker y coordinates                             |
+| width   | Integer | Optional | Map width <br>600px by default                   |
+| height  | Integer | Optional | Map height <br>600px by default                  |
+| imgurl  | String  | Optional | URL for marker image <br>Basic marker by default |
+| level   | Integer | Optional | Map level <br>10 by default                      |
+| maptype | String  | Optional | Map type <br>Basic general map by default        |
+| label   | String  | Optional | Content of label                                 |
 
-### 3. Mobile Web 지도
+### 3. Mobile Web Maps
 
-Android / iOS WebView로 하이브리드 형태의 앱을 개발할 때 TOAST Maps API를 이용하여 JavaScript 기반의  Web 지도와 동일한 API로 사용하실 수 있습니다.
-API 관련해서는 [1. Web 지도](#1-web)를 참고 하시기 바랍니다.
+Enable TOAST Maps API, which serves as the same API for Javascript-based web maps, to develop hybrid apps with Android/iOS WebView. 
+Regarding the API, see [1. Web Maps](#1-web) . 
 
-#### TOAST Maps API Mobile에서 사용하기
+#### Available for TOAST Maps API Mobile
 ```
 <!DOCTYPE html>
 <html>
     <head>
-		// 모바일 기기에 맞춰 viewport를 설정 합니다.
+		// Set viewport for each mobile device. 
         <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 
 		<style>
@@ -251,29 +249,29 @@ API 관련해서는 [1. Web 지도](#1-web)를 참고 하시기 바랍니다.
 				height: 100%;
 			}
     	</style>
-    
-		// 지도 사용을 위한 js 파일을 선언 합니다.
+
+		// Declare js file to enable maps. 
 		<script type="text/javascript" src="https://api-maps.cloud.toast.com/maps/js/v1.0/map.js"></script>
 		<script>
-			// 지도 사용을 위한 인증을 진행 합니다.
+			// Authenticate to enable the maps. 
 			Map.authentification("appKey");
 		</script>
 	</head>
-	
+
 	<body>
-		//지도를 담을 DIV를 생성 합니다.
+		//Create DIV to contain maps. 
 		<div id="div_map"></div>
 		<script type="text/javascript">
-		
-			//선언한 DIV에 지도를 표출 합니다. (모바일 지도 타입으로 'm'을 선언 합니다.)
+
+			//Mark maps on declared DIV (declare 'm' for the mobile map type.)
 			THINKMAP.initMap("div_map", 165406, 500198, 12, init, 2, 'm');
-		
-			// 지도 init 후 콜백 함수가 실행 됩니다.
+
+			// Callback function is executed after map initialization. 
 			function init(){
 				alert('init!');
 			}
 		</script>
 	</body>
-	
+
 </html>
 ```
