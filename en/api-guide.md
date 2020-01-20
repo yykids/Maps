@@ -1352,7 +1352,7 @@ function fnRouteParse(data){ // Detail result of route navigation
 | routeDetailInfo.roadName        | String  | Road name                                               |
 | routeDetailInfo.direction       | String  | Direction information                                   |
 | routeDetailInfo.district        | String  | District information                                    |
-| routeDetailInfo.cross           | String  | 안내 정보 Guide information                             |
+| routeDetailInfo.cross           | String  | Guide information                                       |
 | routeDetailInfo.directionDetail | String  | Description of route details                            |
 | vtxInfo                         | Array   | List of coordinates for map drawing                     |
 | vtxInfo[0].0                    | Integer | twX                                                     |
