@@ -13,7 +13,6 @@ Describes the basic project configuration method to enable iNavi maps on Android
 
 ### Project Configuration
 Add a repository for iNavi maps in the build.gradle file of the project and the app module level, as below, and set dependency. 
-
 > The Andriod SDK for iNavi Maps shall be deployed via Bintray, and it may change depending on policy after Beta period ends (to be posted before schedule). 
 
 ```gradle
@@ -35,7 +34,7 @@ allprojects {
 /* App Module build.gradle */
 
 dependencies {
-    implementation 'com.inavi.mapsdk:inavi-maps-sdk:0.3.2'
+    implementation 'com.inavi.mapsdk:inavi-maps-sdk:0.4.0'
 }
 ```
 
@@ -162,12 +161,12 @@ inaviMap.moveCamera(cameraUpdate)
 ## Guide for Main iNavi Maps SDK
 For more details on Maps SDK, see [API Center for iNavi Maps](http://imapsapi.inavi.com/).
 
-[InaviMapSdk] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.html)
-[InaviMap] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMap.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMap.html)
-[InvMapView] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapView.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapView.html)
-[InvMapFragment] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapFragment.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InvMapFragment.html)
-[AuthFailureCallback] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.AuthFailureCallback.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/InaviMapSdk.AuthFailureCallback.html)
-[CameraUpdate] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdate.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdate.html)
-[CameraUpdateBuilder] : [http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html](http://imapsapi.inavi.com/Android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html)
+[InaviMapSdk] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMapSdk.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMapSdk.html)
+[InaviMap] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMap.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMap.html)
+[InvMapView] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InvMapView.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InvMapView.html)
+[InvMapFragment] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InvMapFragment.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InvMapFragment.html)
+[AuthFailureCallback] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMapSdk.AuthFailureCallback.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMapSdk.AuthFailureCallback.html)
+[CameraUpdate] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/CameraUpdate.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/CameraUpdate.html)
+[CameraUpdateBuilder] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/CameraUpdateBuilder.html)
 
 [NHN TOAST Console] : [https://console.toast.com/](https://console.toast.com/)
