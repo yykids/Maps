@@ -12,8 +12,15 @@ Describes the basic project configuration method to enable iNavi maps on iOS.
 
 
 ### Project Configuration 
-Create a podfile like below and set pod dependency for iNavi maps SDK.  
+SDK 용량이 크기 때문에 Pod 의존성 설치 전 [Git Large File Storage(LFS)](https://git-lfs.github.com/) 설치가 필요합니다.
+> `git-lfs가 설치되어 있지 않으면 SDK 의존성 설치가 정상적으로 진행되지 않습니다.`
 
+```
+brew install git-lfs
+git lfs install
+```
+
+Create a podfile like below and set pod dependency for iNavi maps SDK.  
 > The iOS SDK for iNavi Maps shall be deployed via CocoaPods, and it may change depending on policy after Beta period ends (to be posted before schedule). 
 
 ```ruby
@@ -27,6 +34,7 @@ end
 ```
 
 After dependency setting, go to protect path at the terminal, execute the command as below and install iNavi maps SDK. 
+> `SDK 의존성 설치가 완료되었을 때 프레임워크 용량은 약 150MB 입니다.`
 ```
 pod install --repo-update
 ```
@@ -132,7 +140,7 @@ marker.mapView = mapView
 ```
 
 #### Remove Markers 
-Set `null` for the map attribute of the marker object, and the marker is removed. 
+Set `nil` for the map attribute of the marker object, and the marker is removed. 
 ```swift
 // Swift
 marker.mapView = nil
@@ -153,16 +161,16 @@ mapView.moveCamera(camUpdate)
 ## Guide for Main Maps SDK 
 For more details on Maps SDK, see [API Center for iNavi Maps](http://imapsapi.inavi.com/).
 
-[INVMapSdk] : [http://imapsapi.inavi.com/iOS/Classes/INVMapSdk.html](http://imapsapi.inavi.com/iOS/Classes/INVMapSdk.html)
-[INVMapSdkDelegate] : [http://imapsapi.inavi.com/iOS/Protocols/INVMapSdkDelegate.html](http://imapsapi.inavi.com/iOS/Protocols/INVMapSdkDelegate.html)
+[INVMapSdk] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/INVMapSdk.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/INVMapSdk.html)
+[INVMapSdkDelegate] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Protocols/INVMapSdkDelegate.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Protocols/INVMapSdkDelegate.html)
 
-[InaviMapView] : [http://imapsapi.inavi.com/iOS/Classes/InaviMapView.html](http://imapsapi.inavi.com/iOS/Classes/InaviMapView.html)
+[InaviMapView] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/InaviMapView.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/InaviMapView.html)
 
-[INVMapViewDelegate] : [http://imapsapi.inavi.com/iOS/Protocols/INVMapViewDelegate.html](http://imapsapi.inavi.com/iOS/Protocols/INVMapViewDelegate.html)
+[INVMapViewDelegate] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Protocols/INVMapViewDelegate.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Protocols/INVMapViewDelegate.html)
 
-[INVCameraUpdate] : [http://imapsapi.inavi.com/iOS/Classes/INVCameraUpdate.html](http://imapsapi.inavi.com/iOS/Classes/INVCameraUpdate.html)
-[INVCameraUpdateParams] : [http://imapsapi.inavi.com/iOS/Classes/INVCameraUpdateParams.html](http://imapsapi.inavi.com/iOS/Classes/INVCameraUpdateParams.html)
+[INVCameraUpdate] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/INVCameraUpdate.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/INVCameraUpdate.html)
+[INVCameraUpdateParams] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/INVCameraUpdateParams.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/INVCameraUpdateParams.html)
 
-[moveCamera()] : [http://imapsapi.inavi.com/iOS/Classes/InaviMapView.html#/c:objc(cs)InaviMapView(im)moveCamera:](http://imapsapi.inavi.com/iOS/Classes/InaviMapView.html#/c:objc(cs)InaviMapView(im)moveCamera:)
+[moveCamera()] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/InaviMapView.html#/c:objc(cs)InaviMapView(im)moveCamera:](https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/InaviMapView.html#/c:objc(cs)InaviMapView(im)moveCamera:)
 
 [NHN TOAST Console] : [https://console.toast.com/](https://console.toast.com/)
