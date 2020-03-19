@@ -14,7 +14,6 @@ Describes the basic project configuration method to enable iNavi maps on Android
 ### Project Configuration
 Add a repository for iNavi maps in the build.gradle file of the project and the app module level, as below, and set dependency. 
 > The Andriod SDK for iNavi Maps shall be deployed via Bintray, and it may change depending on policy after Beta period ends (to be posted before schedule). 
-
 ```gradle
 /* Root Project build.gradle */
 
@@ -34,14 +33,13 @@ allprojects {
 /* App Module build.gradle */
 
 dependencies {
-    implementation 'com.inavi.mapsdk:inavi-maps-sdk:0.4.0'
+    implementation 'com.inavi.mapsdk:inavi-maps-sdk:0.4.2'
 }
 ```
 
 
 ### Setting Appkey 
 Appkeys can be set in two methods as below: 
-
 > Without appkey setup, authentication error may occur during map initialization. 
 
 #### 1. Set on AndroidManifest.xml
@@ -60,7 +58,6 @@ Add `<meta-data>` to`AndroidManifest.xml` to set an appkey.
 
 #### 2. Call InaviMapSdk API 
 To set appkey, call function of the [InaviMapSdk] singleton object dynamically at the time when application is created. 
-
 ```kotlin
 // Kotlin
 InaviMapSdk.getInstance(context).appKey = "YOUR_APP_KEY"
@@ -69,7 +66,6 @@ InaviMapSdk.getInstance(context).appKey = "YOUR_APP_KEY"
 #### Authentication Failure 
 If authentication fails for map initialization, the error code and message is delivered via callback registered within SDK.  
 To receive callbacks on failure, set [AuthFailureCallback] for the [InaviMapSdk] singleton object as below:
-
 ```kotlin
 // Kotlin
 InaviMapSdk.getInstance(context).authFailureCallback =
@@ -77,7 +73,7 @@ InaviMapSdk.getInstance(context).authFailureCallback =
         // Process failure in authentication
 }
 ```
->Unless callback for authentication failure is set, error codes and messages are displayed on popups by default. 
+> Unless callback for authentication failure is set, error codes and messages are displayed on popups by default. 
 
 #### Authentication Error Codes
 | Code | Description |
@@ -158,7 +154,7 @@ inaviMap.moveCamera(cameraUpdate)
 ```
 
 
-## Guide for Main iNavi Maps SDK
+### Guide for Main iNavi Maps SDK
 For more details on Maps SDK, see [API Center for iNavi Maps](http://imapsapi.inavi.com/).
 
 [InaviMapSdk] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMapSdk.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMapSdk.html)

@@ -5,7 +5,7 @@ Maps 웹 지도를 사용하는 데 필요한 API를 설명합니다.
 ## v2.0 개선 사항
 * 지도 표준 관련 기능 확대
   * HTML5 기반 지도의 주요 기능을 사용할 수 있습니다.
-  * 지도 내 이미지, 마커 등 모든 사물(Feature)을 객체화하여 사용성 및 성능을 개선하였습니다.
+  * 지도 내 이미지, 마커 등 모든 사물(feature)을 객체화하여 사용성 및 성능을 개선했습니다.
 * 지도 회전 가능
   * 모바일에서는 손가락 두 개로 지도를 회전할 수 있습니다.
   * PC 버전에서는 Shift+Alt+드래그하거나 원하는 각도를 설정해 지도를 회전할 수 있습니다.
@@ -26,8 +26,8 @@ Maps 웹 지도를 사용하는 데 필요한 API를 설명합니다.
 ## API 공통 정보
 
 ### 사전 준비
-- API를 사용하려면 앱키가 필요합니다.
-- 앱키는 **TOAST Console** 상단 **URL & Appkey** 메뉴에서 확인할 수 있습니다.
+- API를 사용하려면 Appkey가 필요합니다.
+- Appkey는 **TOAST Console** 상단 **URL & Appkey** 메뉴에서 확인할 수 있습니다.
 
 ### 요청 공통 정보
 
@@ -110,7 +110,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 <div id="div_map"></div>
 <script type="text/javascript">
 
-	//선언한 DIV에 지도를 표출합니다.
+	//선언한 DIV에 지도를 표시합니다.
 	var map = new thinkware.maps.Map("div_map", {
 		center: {
 			twX: 169030,
@@ -129,9 +129,9 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 ```
 <script type="text/javascript">
 
- 	// 생성된 지도 객체의 지도 Type을 변경합니다.
- 	// 일반: i, 모바일: m, 요약: s, 항공배경: a, 모바일항공: m_a, 요약항공: s_a, 항공: hybrid
-	// 항공배경지도로 변경합니다.
+ 	// 생성된 지도 객체의 지도 타입을 변경합니다.
+ 	// 일반: i, 모바일: m, 요약: s, 항공 배경: a, 모바일 항공: m_a, 요약 항공: s_a, 항공: hybrid
+	// 항공 배경 지도로 변경합니다.
 	map.changeType('i');
 
 </script>
@@ -176,7 +176,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 	    stopEvent: false
 	});
 
-	// 지도에 마커 객체를 이동 시킵니다.
+	// 지도에 마커 객체를 이동시킵니다.
 	marker.setPosition({twX: 169030, twY: 517922});
 
 </script>
@@ -223,7 +223,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 ```
 <script type="text/javascript">
 
- 	// TW 좌표를 WGS좌표로 변환합니다.
+ 	// TW 좌표를 WGS 좌표로 변환합니다.
  	var tws = {
 		twX : 169030
 		, twY: 517922
@@ -240,7 +240,7 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 ```
 <script type="text/javascript">
 
- 	 // WGS 좌표를 TW좌표로 변환합니다.
+ 	 // WGS 좌표를 TW 좌표로 변환합니다.
 	 var wgs84 = {
 		lon: 127.11074994024005
 		, lat: 37.40215870673785
@@ -278,11 +278,11 @@ TOAST Maps API는 팅크웨어 좌표를 사용합니다. 축약해서 TW 좌표
 | y       | Integer | 필수    | 지도 중심 Y 좌표                     |
 | mx      | Integer | 필수    | 마커 X 좌표                        |
 | my      | Integer | 필수    | 마커 Y 좌표                        |
-| width   | Integer | 선택    | 지도 넓이 <br> 미입력 시 기본 600px     |
-| height  | Integer | 선택    | 지도 높이 <br> 미입력 시 기본 600px     |
-| imgurl  | String  | 선택    | 마커 이미지 URL<br> 미입력 시 기본 마커 사용 |
-| level   | Integer | 선택    | 지도 레벨 <br> 미입력 시 기본 10        |
-| maptype | String  | 선택    | 지도 타입 <br> 미입력 시 기본 일반 맵       |
+| width   | Integer | 선택    | 지도 너비 <br>미입력 시 기본 600px     |
+| height  | Integer | 선택    | 지도 높이 <br>미입력 시 기본 600px     |
+| imgurl  | String  | 선택    | 마커 이미지 URL<br>미입력 시 기본 마커 사용 |
+| level   | Integer | 선택    | 지도 레벨 <br>미입력 시 기본 10        |
+| maptype | String  | 선택    | 지도 타입 <br>미입력 시 기본 일반 맵       |
 | label   | String  | 선택    | 라벨 내용                         |
 
 ### 3. 모바일 웹 지도

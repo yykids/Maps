@@ -1,59 +1,79 @@
 ## Application Service > Maps > 릴리스 노트
+### 2020. 03. 24
+#### 기능  추가
+* [SDK] 특정 영역 전체가 보이는 카메라 위치 정보를 반환하는 API 추가
+* [SDK] 지도에 등록된 모든 셰이프를 지도에서 제거하는 API 추가
+* [SDK] 지도 로고 이미지 변경
 
-### 2020.02.25
+#### 기능  개선
+* [API] 검색엔진 변경
+* [API] Reverse Geocoding 유효성 검사 개선
+* [SDK] 기울기 조절 제스처 사용성 개선(Android)
+
+#### 버그 수정
+* [SDK] 지도 초기화 전에 일부 셰이프 객체 생성 시 지도에 비정상 표출되는 오류 수정(Android)
+* [SDK]  Proguard 난독화 적용 시 비정상 종료되는 오류 수정(Android)
+* [SDK]  낮은 버전의 OS에서 지도가 표출되지 않는 오류 수정(Android)
+
+### 2020. 02. 25
 #### 기능  추가
 * [SDK] 마커 클러스터링 기능 추가
+
 #### 기능  개선
 * [CONSOLE] 일본어 글꼴 추가
-#### Bug fixes
-* [SDK] INVRoute 표출 시 간헐적으로 외곽선이 비정상적으로 표출되는 오류 수정
-* [SDK] InvRoute#strokeWidth 속성이 정상적으로 적용되지 않는 오류 수정 (Android)
-* [SDK] 아이콘 이미지 크기 변경 시 아이콘의 위치가 비정상적으로 표출되는 오류 수정 (Android)
-* [SDK] INVShape 추가/제거 시 비정상 종료되는 오류 수정 (iOS)
 
-### 2020.01.21
+#### 버그 수정
+* [SDK] INVRoute 표출 시 간헐적으로 외곽선이 비정상적으로 표출되는 오류 수정
+* [SDK] InvRoute#strokeWidth 속성이 정상적으로 적용되지 않는 오류 수정(Android)
+* [SDK] 아이콘 이미지 크기 변경 시 아이콘의 위치가 비정상적으로 표출되는 오류 수정(Android)
+* [SDK] INVShape 추가/제거 시 비정상 종료되는 오류 수정(iOS)
+
+### 2020. 01. 21
 #### 기능  추가
 * [API] 주변 카테고리 검색 API 추가
 	* 기준 좌표X,Y 공간 및 반경 카테고리 검색 추가
+
 #### 기능  개선
-* [API] ReverseGeocoding 건물명, 우편번호 추가
-* [API] 통합검색 catecode 삭제
+* [API] ReverseGeocoding 건물명, 우편번호 항목 추가
+* [API] 통합검색 catecode 항목 삭제
 * [SDK] 마커 표출 상태 변경 시 애니메이션 기본값 비활성화로 변경
 * [SDK] 마커 표출 상태 변경 시 애니메이션 설정 API 추가
-* [SDK] INVMarker#infoWindow 속성 nullable로 변경 (iOS)
-#### Bug fixes
-* [API] 통합검색 spopt 2일때 vaildation check 개선
-* [API] POI 하위시설물조회 vaildation check 개선
-* [SDK] 마커 타이틀에 “^” 문자 포함 시 줄바꿈되는 오류 수정
-* [SDK] Fly 애니메이션 타입 카메라 이동 시 자연스럽지 않은 오류 수정 (iOS)
-* [SDK] 줌 컨트롤러에 지도의 Padding 값이 적용되지 않는 오류 수정 (iOS)
-### 2019.12.24
-#### 기능  개선
-* [API] 숫자데이터 8자리 초과시 깨지는 버그 해결
-* [API] ReverseGeocoding 엔진변경
-* [API] StaticMap IE 버그 해결
-* [CONSOLE]  TCA admin 권한 및 로그인 체크
-* [SDK] 지도 이동 영역을 제한하는 I/F 추가
-* [SDK] 로고 클릭 이벤트 활성화 여부 설정 I/F 추가
-* [SDK] 오픈소스 라이선스, 법적 공지 Activity 호출 Intent I/F 추가 (Android)
-* [SDK] 오픈소스 라이선스, 법적 공지 ViewController 호출 I/F 추가 (iOS)
-* [SDK] 마커 아이콘과 타이틀 사이의 여백을 설정하는 기능 추가.
-* [SDK] INVLatLng, INVLatLngBounds의 property readonly 속성으로 변경 (iOS)
-* [SDK] INVCameraUpdateParams#scrollTo Deprecated 적용 (targetTo 로 대체됩니다.) (iOS)
-* [SDK] INVCameraUpdateParams#scrollBy Deprecated 적용 (targetBy 로 대체됩니다.) (iOS)
-* [SDK] INVLatLngBounds#latLngBoundsSouthWest Deprecated 적용 (boundsWithSouthWest 로 대체됩니다.) (iOS)
+* [SDK] INVMarker#infoWindow 속성 nullable로 변경(iOS)
 
-### 2019.11.26
+#### 버그 수정
+* [API] 통합검색 spopt 2일때 유효성 검사 개선
+* [API] POI 하위시설물조회 유효성 검사 개선
+* [SDK] 마커 타이틀에 “^” 문자 포함 시 줄바꿈되는 오류 수정
+* [SDK] Fly 애니메이션 타입 카메라 이동 시 자연스럽지 않은 오류 수정(iOS)
+* [SDK] 줌 컨트롤러에 지도의 Padding 값이 적용되지 않는 오류 수정(iOS)
+
+### 2019. 12. 24.
+#### 기능  개선
+* [API] 숫자 데이터 8자리 초과 시 제대로 보이지 않는 버그 수정
+* [API] ReverseGeocoding 엔진 변경
+* [API] StaticMap Internet Exloprer 버그 수정
+* [SDK] 지도 이동 영역을 제한하는 인터페이스 추가
+* [SDK] 로고 클릭 이벤트 활성화 여부 설정 I/F 추가
+* [SDK] 오픈소스 라이선스, 법적 공지 Activity 호출 Intent 인터페이스 추가(Android)
+* [SDK] 오픈소스 라이선스, 법적 공지 ViewController 호출 인터페이스 추가(iOS)
+* [SDK] 마커 아이콘과 타이틀 사이의 여백을 설정하는 기능 추가
+* [SDK] INVLatLng, INVLatLngBounds의 property readonly 속성으로 변경(iOS)
+* [SDK] INVCameraUpdateParams#scrollTo Deprecated 적용(targetTo로 대체)(iOS)
+* [SDK] INVCameraUpdateParams#scrollBy Deprecated 적용(targetBy로 대체)(iOS)
+* [SDK] INVLatLngBounds#latLngBoundsSouthWest Deprecated 적용(boundsWithSouthWest로 대체)(iOS)
+
+### 2019. 11. 26.
 #### 기능 추가
 * [API] 일반 경로 예측 탐색 추가
-	* 통계데이터 기반의 출발,도착 예정시간기준 경로탐색 추가
+	* 통계 데이터 기반의 출발, 도착 예정 시간기준 경로 탐색 추가
 * [SDK] 일반 경로 예측 탐색 추가
-	* LocationIcon 기능 추가 (위치 아이콘의 모양과 위치를 변경하는 기능)
-	* InvRoute 추가 (지도 위에 경로를 표출하는 셰이프)
-	* InvMultiLine Deprecated 적용 (InvRoute로 대체)
+	* LocationIcon 기능 추가(위치 아이콘의 모양과 위치를 변경하는 기능)
+	* InvRoute 추가(지도 위에 경로를 표출하는 셰이프)
+	* InvMultiLine Deprecated 적용(InvRoute로 대체)
+
 #### 기능개선
-* [API] v3.0 API 기본좌표 WGS84로 변경  
-* StaticMap API Image파일 제공추가
+* [API] v3.0 API 기본 좌표 WGS84로 변경  
+* StaticMap API Image 파일 제공 추가
 * [SDK] alpha 값을 포함한 색상 설정 시 비정상인 색상으로 표출되는 오류 수정 (Android)
 * [SDK] 특정 지도 레벨에서 셰이프가 사라지는 오류 수정 (iOS)
 * [SDK] 간헐적으로 축척바의 거리가 비정상 표출하는 오류 수정 (iOS)
@@ -61,7 +81,7 @@
 * [SDK] iOS 10 이하 단말에서 로고 클릭 시 비정상 종료되는 오류 수정 (iOS)   
 * [SDK] 지도 초기화 전에 InvShape 객체 생성 시 비정상 종료되는 오류 수정 (Android)
 
-### 2019.10.29
+### 2019. 10. 29.
 #### 신규 v3.0 출시
 
 * 신규 Maps 버전에서 아이나비의 최신 기술을 API로 서비스
@@ -93,12 +113,12 @@
     * 마커(생성, 아이콘 지정, 위치 지정 등), 캡션(마커와 함께 노출되는 텍스트), 스타일 설정(색상, 크기, 투명도, 겹침, Z-index 등) 기능
     * 정보창(말풍선) 생성/설정 기능, adapter 설정, 이벤트 기능, 폴리라인/폴리곤/서클 생성, 스타일 설정 기능
 
-### 2018.11.27
+### 2018. 11. 27.
 #### 기능 추가
 * [API] 좌표 변환 API 추가
 	* 좌표간 변환 API 추가(WGS84 좌표 <-> TM 좌표)
 
-### 2018.04.24
+### 2018. 04. 24.
 #### 기능 개선/변경
 * [Batch] 통계 Batch 동작 기제 변경
     * 로그 생성 시간 변경 : 매시간 00분 00초에서 매시간 00분 30초로 변경
@@ -108,7 +128,7 @@
 * Android 사용 가이드, iOS 사용 가이드 삭제
     * Web 지도 가이드 내 Mobile Web 지도 항목으로 통합
 
-### 2018.03.22
+### 2018. 03. 22.
 #### 기능 추가
 * [API] Web 지도 v2.0 API 추가
     * Html5 기반의 지도 주요 기능 사용 가능
@@ -125,18 +145,18 @@
     * Web 지도 v2.0 예제 스크립트 추가
     * 통계 항목에 Web 지도 v2.0 항목 추가
 
-### 2017.06.22
+### 2017. 06. 22.
 #### 버그 수정
 * [Console] 실행예제 - 통합 검색 예제 검색 결과가 정상적으로 조회되지 않는 버그 수정
 
-### 2017.04.20
+### 2017. 04. 20.
 #### 기능 개선/변경
 * [API] 좌표검색(좌표 -> 주소)
 	* 좌표검색 이용 시 조회 가능한 좌표 타입 추가(기존 TW 좌표 -> TW 좌표, WGS84 좌표)
 
-### 2017.03.23
-#### 신규 상품 출시
-* 웹 지도, 통합검색, 경로탐색을 제공하는 API 서비스로 웹 지도 서비스를 이용하여 상품을 개발할 수 있는 최적의 웹 지도 솔루션
+### 2017. 03. 23.
+#### 신규 서비스 출시
+* 웹 지도, 통합검색, 경로탐색을 제공하는 API 서비스로 웹 지도 서비스를 이용하여 서비스를 개발할 수 있는 최적의 웹 지도 솔루션
     * 아이나비의 특화된 지도, 검색, 길 찾기 등의 API를 한번에 이용 가능
     * 웹 지도 API를 통하여 지도 이동, 확대/축소, 항공지도 등 다양한 지도 기능 제공
     * 통합된 검색 기능을 통하여 건물명, 전화번호, 지번 주소(구주소), 도로명 주소(신주소)를 한번에 모두 검색 할 수 있는 기능 제공
