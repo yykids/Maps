@@ -6,8 +6,8 @@ Maps 웹 지도를 사용하는 데 필요한 JavaScript 기반 웹 API를 설�
 ## API 공통 정보
 
 ### 사전 준비
-- API를 사용하려면 앱키가 필요합니다.
-- 앱키는 **TOAST Console** 상단 **URL & Appkey** 메뉴에서 확인할 수 있습니다.
+- API를 사용하려면 Appkey가 필요합니다.
+- Appkey는 **TOAST Console** 상단 **URL & Appkey** 메뉴에서 확인할 수 있습니다.
 
 ### 요청 공통 정보
 
@@ -27,13 +27,13 @@ TOAST Maps API는 WGS84(EPSG:4326) 좌표를 사용합니다.
 
 
 #### 주요 Maps API 안내
-##### 추가적인 Maps API 상세 사용법은 <a href="http://imapsapi.inavi.com/" target="_blank" rel="nofollow">iNavi Maps API Center</a>를 참고하시기 바랍니다. <p>
+##### 추가 Maps API 상세 사용법은 <a href="http://imapsapi.inavi.com/" target="_blank" rel="nofollow">iNavi Maps API Center</a>를 참고하시기 바랍니다. <p>
 
 
 | API 명                                    | Parameter                        | Returns                                  | 설명                                       |
 | ---------------------------------------- | -------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | new inavi.maps.Map(options)  | options.container : string                 | inavi.maps.Map 지도 객체 | 지도를 표시할 DOM 엘리먼트의 ID             |
-|                                          | options.type : string             |                                          | 지도의 타입 <br> 'NORMAL' : 일반 맵,<br> 'SATTELITE' : 항공 맵<br>default: 'NORMAL' |
+|                                          | options.type : string             |                                          | 지도 타입 <br> 'NORMAL': 일반 맵,<br> 'SATTELITE': 항공 맵<br>기본값: 'NORMAL' |
 |                                          | options.center : LngLatLike       |                                          | 지도의 중심 좌표                  |
 |                                          | options.zoom : number            |                                          | 지도의 레벨                                   |
 |                                          | options.heading : number             |                                          | 북쪽을 기준으로 반시계 방향으로 회전한 각도 |
@@ -49,7 +49,7 @@ TOAST Maps API는 WGS84(EPSG:4326) 좌표를 사용합니다.
 |                                          | options.logoScaleControl : LogoScaleControlOptions             |                                          | 로고 및 스케일 표시 컨트롤 옵션 |
 |                                          | options.compassControl : CompassControlOptions             |                                          | 나침반 표시 컨트롤 옵션 |
 |                                          | options.zoomControl : ZoomControlOptions             |                                          | 확대 축소 표시 컨트롤 옵션 |
-| changeType(type)                         | type : string                    |                                          | 지도의 타입 <br> 'NORMAL' : 일반 맵,<br> 'SATTELITE' : 항공 <br>default: 'NORMAL' |
+| changeType(type)                         | type : string                    |                                          | 지도 타입 <br> 'NORMAL': 일반 맵,<br> 'SATTELITE': 항공 <br>기본값: 'NORMAL' |
 | on(eventType, listener) | eventType : string              |                                          | load,<br>zoomstart, zoom, zoomend,<br>rotatestart, rotate, rotateend,<br>tiltstart, tilt, tiltend,<br>click, dblclick,<br>mousedown, mouseup, mousemove,<br>mouseenter, mouseleave, mouseover, mouseout,<br>contextmenu,<br>wheel,<br>touchstart, touchend, touchcancel, touchmove,<br>movestart, move, moveend,<br>dragstart, drag, dragend|
 |                                          | listener : Function             |                                          | 등록할 리스너                                  |
 | once(eventType, listener) | eventType : string              |                                          | load,<br>zoomstart, zoom, zoomend,<br>rotatestart, rotate, rotateend,<br>tiltstart, tilt, tiltend,<br>click, dblclick,<br>mousedown, mouseup, mousemove,<br>mouseenter, mouseleave, mouseover, mouseout,<br>contextmenu,<br>wheel,<br>touchstart, touchend, touchcancel, touchmove,<br>movestart, move, moveend,<br>dragstart, drag, dragend|

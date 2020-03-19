@@ -14,7 +14,6 @@ Androidプラットフォームでinaviマップを使用するためのプロ�
 ### Project環境構成
 次のようにProjectおよびAppモジュールレベルのbuild.gradleファイルにinaviマップ保存場所を追加し、依存性を設定します。
 > inaviマップAndroid SDKはBintrayを通して配布され、Beta期間終了後はポリシーに合わせて変更される場合があります。(事前告知予定)
-
 ```gradle
 /* Root Project build.gradle */
 
@@ -34,14 +33,13 @@ allprojects {
 /* App Module build.gradle */
 
 dependencies {
-    implementation 'com.inavi.mapsdk:inavi-maps-sdk:0.4.0'
+    implementation 'com.inavi.mapsdk:inavi-maps-sdk:0.4.2'
 }
 ```
 
 
 ### Appkey設定
 発行したAppkeyを設定する方法は下記のとおりです。
-
 > Appkeyが設定されていない場合、マップ初期化段階で認証エラーが発生します。
 
 #### 1. AndroidManifest.xmlで設定
@@ -60,7 +58,6 @@ dependencies {
 
 #### 2. InaviMapSdk APIを呼び出して設定
 Application作成時点で動的に[InaviMapSdk]シングルトンオブジェクトの関数を呼び出してAppkeyを設定できます。
-
 ```kotlin
 // Kotlin
 InaviMapSdk.getInstance(context).appKey = "YOUR_APP_KEY"
@@ -76,17 +73,18 @@ InaviMapSdk.getInstance(context).authFailureCallback =
         // 認証失敗処理
 }
 ```
->認証失敗Callbackを別途設定していない場合は、エラーコードとメッセージがポップアップ表示されます。
+> 認証失敗Callbackを別途設定していない場合は、エラーコードとメッセージがポップアップ表示されます。
 
 #### 認証エラーコード
 | Code | Description |
 | ------ | ------ |
-| 300 | APP KEYが無効
-| 401 | APP KEYが未設定 |
+| 300 | Appkeyが無効
+| 401 | Appkeyが未設定 |
 | 503 | サーバー接続失敗 |
 | 504 | サーバー接続時間超過 |
 | 500 | 不明なエラー |
 | その他 | サーバーエラー(今後定義したらアップデート) |
+
 
 ### マップを作成する
 アプリ画面にinaviマップを表示する方法を説明します。
@@ -157,7 +155,7 @@ inaviMap.moveCamera(cameraUpdate)
 ```
 
 
-## 主要iNavi Maps SDK案内
+### 主要iNavi Maps SDK案内
 Maps SDKの使用方法は[iNavi Maps APIセンター](http://imapsapi.inavi.com/)を参照してください。
 
 [InaviMapSdk] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMapSdk.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/android/com/inavi/mapsdk/maps/InaviMapSdk.html)

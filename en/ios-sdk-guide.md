@@ -12,14 +12,18 @@ Describes the basic project configuration method to enable iNavi maps on iOS.
 
 
 ### Project Configuration 
+아이나비 지도 SDK를 사용하기 위해서는 다음과 같은 순서로 프로젝트의 환경을 구성해주어야 합니다.
+
+#### Git LFS 설치
 SDK 용량이 크기 때문에 Pod 의존성 설치 전 [Git Large File Storage(LFS)](https://git-lfs.github.com/) 설치가 필요합니다.
-> `git-lfs가 설치되어 있지 않으면 SDK 의존성 설치가 정상적으로 진행되지 않습니다.`
+> `git-lfs가 설치되어 있지 않으면 SDK 의존성 설치가 정상적으로 진행되지 않아 빌드 시 오류가 발생합니다.`
 
 ```
 brew install git-lfs
 git lfs install
 ```
 
+#### Podfile 구성
 Create a podfile like below and set pod dependency for iNavi maps SDK.  
 > The iOS SDK for iNavi Maps shall be deployed via CocoaPods, and it may change depending on policy after Beta period ends (to be posted before schedule). 
 
@@ -33,10 +37,19 @@ target 'iNaviMapsDemoiOS' do
 end
 ```
 
+#### SDK 설치
 After dependency setting, go to protect path at the terminal, execute the command as below and install iNavi maps SDK. 
 > `SDK 의존성 설치가 완료되었을 때 프레임워크 용량은 약 150MB 입니다.`
 ```
 pod install --repo-update
+```
+
+#### CocoaPods 캐시 삭제
+간혹 이전에 다운로드 받은 SDK 의존성의 캐시가 남아있어 빌드에 오류가 발생할 수 있습니다.\
+아래 명령어를 통해 아이나비 지도 SDK의 CocoaPods 캐시를 삭제할 수 있습니다.
+```
+pod cache clean inavi-maps-sdk
+pod update inavi-maps-sdk
 ```
 
 ### Setting Appkey 
@@ -92,14 +105,10 @@ Unless callback for authentication failure is set, error codes and messages are 
 | Others | Server error  (to be updated with definition) |
 
 
-
-
 ### Creating Maps 
 Describes how to display iNavi on the app. 
 
-#### Display Maps 
-
-#### Display Maps 
+#### Display Maps
 Create and add [InaviMapView] on the UIViewController, like the example shows. 
 ```swift
 // Swift
@@ -158,7 +167,8 @@ camUpdate.animationDuration = 3
 mapView.moveCamera(camUpdate)
 ```
 
-## Guide for Main Maps SDK 
+
+### Guide for Main Maps SDK 
 For more details on Maps SDK, see [API Center for iNavi Maps](http://imapsapi.inavi.com/).
 
 [INVMapSdk] : [https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/INVMapSdk.html](https://inavi-systems.github.io/inavi-maps-sdk-reference/ios/Classes/INVMapSdk.html)
